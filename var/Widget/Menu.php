@@ -121,16 +121,16 @@ class Widget_Menu extends Typecho_Widget
             array(_t('Chào mừng'), _t('Chào mừng'), 'welcome.php', 'subscriber', true)
         ),
         array(
-            array(_t('撰写文章'), _t('撰写新文章'), 'write-post.php', 'contributor'),
+            array(_t('Viết một tiêu đề'), _t('Đăng bài viết mới'), 'write-post.php', 'contributor'),
             array(array('Widget_Contents_Post_Edit', 'getMenuTitle'), array('Widget_Contents_Post_Edit', 'getMenuTitle'), 'write-post.php?cid=', 'contributor', true),
-            array(_t('创建页面'), _t('创建新页面'), 'write-page.php', 'editor'),
+            array(_t('Tạo trang'), _t('Tạo trang mới'), 'write-page.php', 'editor'),
             array(array('Widget_Contents_Page_Edit', 'getMenuTitle'), array('Widget_Contents_Page_Edit', 'getMenuTitle'), 'write-page.php?cid=', 'editor', true),
         ),
         array(
-            array(_t('文章'), _t('管理文章'), 'manage-posts.php', 'contributor', false, 'write-post.php'),
+            array(_t('Bài viết'), _t('Quản lý các bài viết'), 'manage-posts.php', 'contributor', false, 'write-post.php'),
             array(array('Widget_Contents_Post_Admin', 'getMenuTitle'), array('Widget_Contents_Post_Admin', 'getMenuTitle'), 'manage-posts.php?uid=', 'contributor', true),
-            array(_t('独立页面'), _t('管理独立页面'), 'manage-pages.php', 'editor', false, 'write-page.php'),
-            array(_t('评论'), _t('管理评论'), 'manage-comments.php', 'contributor'),
+            array(_t('Trang độc lập'), _t('Quản lý các trang độc lập'), 'manage-pages.php', 'editor', false, 'write-page.php'),
+            array(_t('Bình luận'), _t('Quản lý bình luận'), 'manage-comments.php', 'contributor'),
             array(array('Widget_Comments_Admin', 'getMenuTitle'), array('Widget_Comments_Admin', 'getMenuTitle'), 'manage-comments.php?cid=', 'contributor', true),
             array(_t('分类'), _t('管理分类'), 'manage-categories.php', 'editor', false, 'category.php'),
             array(_t('新增分类'), _t('新增分类'), 'category.php', 'editor', true),
