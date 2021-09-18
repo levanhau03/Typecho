@@ -621,27 +621,27 @@ Typecho_Db::set(\$db);
                             <li>
                             <label class="typecho-label" for="userUrl"><?php _e('Địa chỉ trang web'); ?></label>
                             <input type="text" name="userUrl" id="userUrl" class="text" value="<?php _v('userUrl', _u()); ?>" />
-                            <p class="description"><?php _e('这是程序自动匹配的网站路径, 如果不正确请修改它'); ?></p>
+                            <p class="description"><?php _e('Đây là đường dẫn được chương trình tự động tạo, vui lòng sửa đổi nếu nó không chính xác'); ?></p>
                             </li>
                             <li>
-                            <label class="typecho-label" for="userName"><?php _e('用户名'); ?></label>
+                            <label class="typecho-label" for="userName"><?php _e('Tên tài khoản'); ?></label>
                             <input type="text" name="userName" id="userName" class="text" value="<?php _v('userName', 'admin'); ?>" />
-                            <p class="description"><?php _e('请填写您的用户名'); ?></p>
+                            <p class="description"><?php _e('Vui lòng điền vào tên người dùng của bạn'); ?></p>
                             </li>
                             <li>
-                            <label class="typecho-label" for="userPassword"><?php _e('登录密码'); ?></label>
+                            <label class="typecho-label" for="userPassword"><?php _e('Mật khẩu đăng nhập'); ?></label>
                             <input type="password" name="userPassword" id="userPassword" class="text" value="<?php _v('userPassword'); ?>" />
-                            <p class="description"><?php _e('请填写您的登录密码, 如果留空系统将为您随机生成一个'); ?></p>
+                            <p class="description"><?php _e('Vui lòng điền mật khẩu đăng nhập của bạn, nếu bạn để trống hệ thống sẽ tạo ngẫu nhiên cho bạn'); ?></p>
                             </li>
                             <li>
-                            <label class="typecho-label" for="userMail"><?php _e('邮件地址'); ?></label>
+                            <label class="typecho-label" for="userMail"><?php _e('Địa chỉ thư điện tử'); ?></label>
                             <input type="text" name="userMail" id="userMail" class="text" value="<?php _v('userMail', 'webmaster@yourdomain.com'); ?>" />
-                            <p class="description"><?php _e('请填写一个您的常用邮箱'); ?></p>
+                            <p class="description"><?php _e('Vui lòng điền vào một địa chỉ email chung'); ?></p>
                             </li>
                         </ul>
                     </div>
                     <input type="hidden" name="action" value="config" />
-                    <p class="submit"><button type="submit" class="btn primary"><?php _e('确认, 开始安装 &raquo;'); ?></button></p>
+                    <p class="submit"><button type="submit" class="btn primary"><?php _e('Xác nhận, bắt đầu cài đặt &raquo;'); ?></button></p>
                 </form>
             <?php  else: ?>
                 <form method="post" action="?config">
