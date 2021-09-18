@@ -404,7 +404,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                         $success = false;
                                         $code = $e->getCode();
 ?>
-<h1 class="typecho-install-title"><?php _e('安装失败!'); ?></h1>
+<h1 class="typecho-install-title"><?php _e('Cài đặt thất bại!'); ?></h1>
                 <div class="typecho-install-body">
                     <form method="post" action="?start" name="check">
 <?php
@@ -412,7 +412,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                         ('SQLite' == $type && ('HY000' == $code || 1 == $code)) ||
                                         ('Pgsql' == $type && '42P07' == $code)) {
                                             if(_r('delete')) {
-                                                //删除原有数据
+                                                //Xóa dữ liệu gốc
                                                 $dbPrefix = $config['prefix'];
                                                 $tableArray = array($dbPrefix . 'comments', $dbPrefix . 'contents', $dbPrefix . 'fields', $dbPrefix . 'metas', $dbPrefix . 'options', $dbPrefix . 'relationships', $dbPrefix . 'users',);
                                                 foreach($tableArray as $table) {
@@ -424,22 +424,22 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                                         $installDb->query("DROP TABLE {$table}");
                                                     }
                                                 }
-                                                echo '<p class="message success">' . _t('已经删除完原有数据') . '<br /><br /><button class="btn primary" type="submit" class="primary">'
-                                                    . _t('继续安装 &raquo;') . '</button></p>';
+                                                echo '<p class="message success">' . _t('Dữ liệu gốc đã bị xóa') . '<br /><br /><button class="btn primary" type="submit" class="primary">'
+                                                    . _t('Tiếp tục cài đặt &raquo;') . '</button></p>';
                                             } elseif (_r('goahead')) {
-                                                //使用原有数据
-                                                //但是要更新用户网站
+                                                //Sử dụng dữ liệu gốc
+                                                //Nhưng để cập nhật trang web của người dùng
                                                 $installDb->query($installDb->update('table.options')->rows(array('value' => $config['siteUrl']))->where('name = ?', 'siteUrl'));
                                                 unset($_SESSION['typecho']);
                                                 header('Location: ./install.php?finish&use_old');
                                                 exit;
                                             } else {
-                                                 echo '<p class="message error">' . _t('安装程序检查到原有数据表已经存在.')
-                                                    . '<br /><br />' . '<button type="submit" name="delete" value="1" class="btn btn-warn">' . _t('删除原有数据') . '</button> '
-                                                    . _t('或者') . ' <button type="submit" name="goahead" value="1" class="btn primary">' . _t('使用原有数据') . '</button></p>';
+                                                 echo '<p class="message error">' . _t('Trình cài đặt kiểm tra xem bảng dữ liệu gốc đã tồn tại chưa.')
+                                                    . '<br /><br />' . '<button type="submit" name="delete" value="1" class="btn btn-warn">' . _t('Xóa dữ liệu gốc') . '</button> '
+                                                    . _t('hoặc') . ' <button type="submit" name="goahead" value="1" class="btn primary">' . _t('Sử dụng dữ liệu gốc') . '</button></p>';
                                             }
                                         } else {
-                                            echo '<p class="message error">' . _t('安装程序捕捉到以下错误: "%s". 程序被终止, 请检查您的配置信息.',$e->getMessage()) . '</p>';
+                                            echo '<p class="message error">' . _t('Trình cài đặt gặp lỗi sau: "%s". Chương trình đã bị chấm dứt, vui lòng kiểm tra thông tin cấu hình của bạn.',$e->getMessage()) . '</p>';
                                         }
                                         ?>
                     </form>
@@ -481,13 +481,13 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                         echo '<p class="message error">' . _t('Vui lòng điền vào tên người dùng của bạn') . '</p>';
                                     } else if (NULL == _r('userMail')) {
                                         $success = false;
-                                        echo '<p class="message error">' . _t('请填写您的邮箱地址') . '</p>';
+                                        echo '<p class="message error">' . _t('Vui lòng điền địa chỉ email của bạn') . '</p>';
                                     } else if (32 < strlen(_r('userName'))) {
                                         $success = false;
-                                        echo '<p class="message error">' . _t('用户名长度超过限制, 请不要超过 32 个字符') . '</p>';
+                                        echo '<p class="message error">' . _t('Độ dài của tên người dùng vượt quá giới hạn, vui lòng không vượt quá 32 ký tự') . '</p>';
                                     } else if (200 < strlen(_r('userMail'))) {
                                         $success = false;
-                                        echo '<p class="message error">' . _t('邮箱长度超过限制, 请不要超过 200 个字符') . '</p>';
+                                        echo '<p class="message error">' . _t('Độ dài của hộp thư vượt quá giới hạn, vui lòng không vượt quá 200 ký tự') . '</p>';
                                     }
                                 }
 
@@ -523,16 +523,16 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                     } catch (Typecho_Db_Adapter_Exception $e) {
                                         $success = false;
                                         echo '<p class="message error">'
-                                        . _t('对不起，无法连接数据库，请先检查数据库配置再继续进行安装') . '</p>';
+                                        . _t('Xin lỗi, không thể kết nối với cơ sở dữ liệu, vui lòng kiểm tra cấu hình cơ sở dữ liệu trước khi tiến hành cài đặt') . '</p>';
                                     } catch (Typecho_Db_Exception $e) {
                                         $success = false;
                                         echo '<p class="message error">'
-                                        . _t('安装程序捕捉到以下错误: " %s ". 程序被终止, 请检查您的配置信息.',$e->getMessage()) . '</p>';
+                                        . _t('Trình cài đặt gặp lỗi sau: " %s ". Chương trình đã bị chấm dứt, vui lòng kiểm tra thông tin cấu hình của bạn.',$e->getMessage()) . '</p>';
                                     }
                                 }
 
                                 if($success) {
-                                    // 重置原有数据库状态
+                                    // Đặt lại trạng thái cơ sở dữ liệu ban đầu
                                     if (isset($installDb)) {
                                         try {
                                             $installDb->query($installDb->update('table.options')
@@ -571,8 +571,8 @@ Typecho_Db::set(\$db);
 
                                     if (!file_exists('./config.inc.php')) {
                                     ?>
-<div class="message notice"><p><?php _e('安装程序无法自动创建 <strong>config.inc.php</strong> 文件'); ?><br />
-<?php _e('您可以在网站根目录下手动创建 <strong>config.inc.php</strong> 文件, 并复制如下代码至其中'); ?></p>
+<div class="message notice"><p><?php _e('Trình cài đặt không thể tự động tạo tệp <strong>config.inc.php</strong>'); ?><br />
+<?php _e('Bạn có thể tạo thủ công tệp <strong>config.inc.php</strong> trong thư mục gốc của trang web và sao chép mã sau vào đó'); ?></p>
 <p><textarea rows="5" onmouseover="this.select();" class="w-100 mono" readonly><?php echo htmlspecialchars($contents); ?></textarea></p>
 <p><button name="created" value="1" type="submit" class="btn primary">Đã tạo, tiếp tục cài đặt &raquo;</button></p></div>
                                     <?php
