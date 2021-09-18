@@ -111,12 +111,12 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
 
         /** 用户密码 */
         $password = new Typecho_Widget_Helper_Form_Element_Password('password', NULL, NULL, _t('Mật khẩu người dùng'), _t('Gán mật khẩu cho người dùng này.')
-            . '<br />' . _t('建议使用特殊字符与字母、数字的混编样式,以增加系统安全性.'));
+            . '<br />' . _t('Nên sử dụng kiểu hỗn hợp các ký tự đặc biệt, chữ cái và số để tăng tính bảo mật cho hệ thống.'));
         $password->input->setAttribute('class', 'w-60');
         $form->addInput($password);
 
         /** 用户密码确认 */
-        $confirm = new Typecho_Widget_Helper_Form_Element_Password('confirm', NULL, NULL, _t('用户密码确认'), _t('请确认你的密码, 与上面输入的密码保持一致.'));
+        $confirm = new Typecho_Widget_Helper_Form_Element_Password('confirm', NULL, NULL, _t('Xác nhận mật khẩu người dùng'), _t('Vui lòng xác nhận mật khẩu của bạn, mật khẩu này phù hợp với mật khẩu đã nhập ở trên.'));
         $confirm->input->setAttribute('class', 'w-60');
         $form->addInput($confirm);
 
