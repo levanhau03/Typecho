@@ -106,13 +106,13 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $xmlrpcMarkdown = new Typecho_Widget_Helper_Form_Element_Radio('xmlrpcMarkdown',
         array('0' => _t('Đóng'), '1' => _t('Mở')),
         $this->options->xmlrpcMarkdown, _t('Sử dụng cú pháp Markdown trong giao diện XMLRPC'), 
-            _t('对于完全支持 <a href="http://daringfireball.net/projects/markdown/">Markdown</a> 语法写作的离线编辑器, 打开此选项后将避免内容被转换为 HTML.'));
+            _t('Đối với các trình chỉnh sửa ngoại tuyến hỗ trợ đầy đủ tính năng viết ngữ pháp <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, việc bật tùy chọn này sẽ ngăn nội dung được chuyển đổi sang HTML.'));
         $form->addInput($xmlrpcMarkdown);
 
         /** 自动保存 */
         $autoSave = new Typecho_Widget_Helper_Form_Element_Radio('autoSave',
         array('0' => _t('Đóng'), '1' => _t('Mở')),
-        $this->options->autoSave, _t('自动保存'), _t('自动保存功能可以更好地保护你的文章不会丢失.'));
+        $this->options->autoSave, _t('Tự động lưu'), _t('Chức năng tự động lưu có thể bảo vệ tốt hơn các bài viết của bạn khỏi bị mất.'));
         $form->addInput($autoSave);
 
         /** 默认允许 */
@@ -130,8 +130,8 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         }
 
         $defaultAllow = new Typecho_Widget_Helper_Form_Element_Checkbox('defaultAllow',
-        array('comment' => _t('可以被评论'), 'ping' => _t('可以被引用'), 'feed' => _t('出现在聚合中')),
-        $allow, _t('默认允许'), _t('设置你经常使用的默认允许权限'));
+        array('comment' => _t('Có thể được nhận xét'), 'ping' => _t('Có thể được trích dẫn'), 'feed' => _t('Xuất hiện trong feed')),
+        $allow, _t('Được phép theo mặc định'), _t('Đặt các quyền mặc định mà bạn sử dụng thường xuyên'));
         $form->addInput($defaultAllow);
 
         /** 用户动作 */
@@ -139,23 +139,13 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $form->addInput($do);
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
         return $form;
     }
 
-    /**
-     * 输出自定义设置选项
-     *
-     * @access public
-     * @param string $pluginName 插件名称
-     * @param string $className 类名称
-     * @param string $pluginFileName 插件文件名
-     * @param string $group 用户组
-     * @return Typecho_Widget_Helper_Form
-     */
     public function personalForm($pluginName, $className, $pluginFileName, &$group)
     {
         /** 构建表格 */
@@ -178,7 +168,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
 
         $form->addItem(new Typecho_Widget_Helper_Form_Element_Hidden('do', NULL, 'personal'));
         $form->addItem(new Typecho_Widget_Helper_Form_Element_Hidden('plugin', NULL, $pluginName));
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
         return $form;
@@ -223,9 +213,9 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $form = new Typecho_Widget_Helper_Form($this->security->getIndex('/action/users-profile'),
         Typecho_Widget_Helper_Form::POST_METHOD);
 
-        /** 用户密码 */
-        $password = new Typecho_Widget_Helper_Form_Element_Password('password', NULL, NULL, _t('用户密码'), _t('为此用户分配一个密码.')
-            . '<br />' . _t('建议使用特殊字符与字母、数字的混编样式,以增加系统安全性.'));
+        /** Mật khẩu người dùng */
+        $password = new Typecho_Widget_Helper_Form_Element_Password('password', NULL, NULL, _t('Mật khẩu người dùng'), _t('Gán mật khẩu cho người dùng này.')
+            . '<br />' . _t('Nên sử dụng kiểu hỗn hợp các ký tự đặc biệt, chữ cái và số để tăng tính bảo mật cho hệ thống.'));
         $password->input->setAttribute('class', 'w-60');
         $form->addInput($password);
 
