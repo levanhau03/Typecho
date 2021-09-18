@@ -18,27 +18,27 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                     <?php if($user->pass('contributor', true)): ?>
                     <li><a href="<?php $options->adminUrl('write-post.php'); ?>"><?php _e('Đăng bài viết mới'); ?></a></li>
                     <?php if($user->pass('editor', true) && 'on' == $request->get('__typecho_all_comments') && $stat->waitingCommentsNum > 0): ?>
-                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'); ?>"><?php _e('待审核的评论'); ?></a>
+                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'); ?>"><?php _e('Nhận xét đang chờ xử lý'); ?></a>
                         <span class="balloon"><?php $stat->waitingCommentsNum(); ?></span>
                         </li>
                     <?php elseif($stat->myWaitingCommentsNum > 0): ?>
-                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'); ?>"><?php _e('待审核评论'); ?></a>
+                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'); ?>"><?php _e('Đang chờ phê duyệt'); ?></a>
                         <span class="balloon"><?php $stat->myWaitingCommentsNum(); ?></span>
                         </li>
                     <?php endif; ?>
                     <?php if($user->pass('editor', true) && 'on' == $request->get('__typecho_all_comments') && $stat->spamCommentsNum > 0): ?>
-                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=spam'); ?>"><?php _e('垃圾评论'); ?></a>
+                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=spam'); ?>"><?php _e('Bình luận spam'); ?></a>
                         <span class="balloon"><?php $stat->spamCommentsNum(); ?></span>
                         </li>
                     <?php elseif($stat->mySpamCommentsNum > 0): ?>
-                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=spam'); ?>"><?php _e('垃圾评论'); ?></a>
+                        <li><a href="<?php $options->adminUrl('manage-comments.php?status=spam'); ?>"><?php _e('Bình luận spam'); ?></a>
                         <span class="balloon"><?php $stat->mySpamCommentsNum(); ?></span>
                         </li>
                     <?php endif; ?>
                     <?php if($user->pass('administrator', true)): ?>
-                    <li><a href="<?php $options->adminUrl('themes.php'); ?>"><?php _e('更换外观'); ?></a></li>
-                    <li><a href="<?php $options->adminUrl('plugins.php'); ?>"><?php _e('插件管理'); ?></a></li>
-                    <li><a href="<?php $options->adminUrl('options-general.php'); ?>"><?php _e('系统设置'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('themes.php'); ?>"><?php _e('Thay đổi giao diện'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('plugins.php'); ?>"><?php _e('Quản lý plugin'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('options-general.php'); ?>"><?php _e('Cài đặt hệ thống'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
                     <!--<li><a href="<?php $options->adminUrl('profile.php'); ?>"><?php _e('更新我的资料'); ?></a></li>-->
