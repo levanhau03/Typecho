@@ -64,7 +64,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $form->addInput($do);
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('更新我的档案'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Cập nhật hồ sơ của tôi'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
@@ -73,8 +73,8 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $mail->value($this->user->mail);
 
         /** 给表单增加规则 */
-        $screenName->addRule(array($this, 'screenNameExists'), _t('昵称已经存在'));
-        $screenName->addRule('xssCheck', _t('请不要在昵称中使用特殊字符'));
+        $screenName->addRule(array($this, 'screenNameExists'), _t('Biệt hiệu đã tồn tại'));
+        $screenName->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong biệt hiệu của bạn'));
         $url->addRule('url', _t('个人主页地址格式错误'));
         $mail->addRule('required', _t('必须填写电子邮箱'));
         $mail->addRule(array($this, 'mailExists'), _t('电子邮箱地址已经存在'));
