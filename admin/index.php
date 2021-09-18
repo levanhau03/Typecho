@@ -41,14 +41,14 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                     <li><a href="<?php $options->adminUrl('options-general.php'); ?>"><?php _e('Cài đặt hệ thống'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
-                    <!--<li><a href="<?php $options->adminUrl('profile.php'); ?>"><?php _e('更新我的资料'); ?></a></li>-->
+                    <!--<li><a href="<?php $options->adminUrl('profile.php'); ?>"><?php _e('Cập nhật hồ sơ của tôi'); ?></a></li>-->
                 </ul>
                 <?php $version = Typecho_Cookie::get('__typecho_check_version'); ?>
                 <?php if ($version && $version['available']): ?>
                 <div class="update-check">
                     <p class="message notice">
-                        <?php _e('您当前使用的版本是'); ?> <?php echo $version['current']; ?> &rarr;
-                        <strong><a href="<?php echo $version['link']; ?>"><?php _e('官方最新版本是'); ?> <?php echo $version['latest']; ?></a></strong>
+                        <?php _e('Phiên bản bạn hiện đang sử dụng là'); ?> <?php echo $version['current']; ?> &rarr;
+                        <strong><a href="<?php echo $version['link']; ?>"><?php _e('Phiên bản chính thức mới nhất là'); ?> <?php echo $version['latest']; ?></a></strong>
                     </p>
                 </div>
                 <?php endif; ?>
@@ -56,7 +56,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
 
             <div class="col-mb-12 col-tb-4" role="complementary">
                 <section class="latest-link">
-                    <h3><?php _e('最近发布的文章'); ?></h3>
+                    <h3><?php _e('Các bài viết đã xuất bản gần đây'); ?></h3>
                     <?php Typecho_Widget::widget('Widget_Contents_Post_Recent', 'pageSize=10')->to($posts); ?>
                     <ul>
                     <?php if($posts->have()): ?>
@@ -67,7 +67,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                         </li>
                     <?php endwhile; ?>
                     <?php else: ?>
-                        <li><em><?php _e('暂时没有文章'); ?></em></li>
+                        <li><em><?php _e('Không có bài viết nào vào lúc này'); ?></em></li>
                     <?php endif; ?>
                     </ul>
                 </section>
@@ -75,7 +75,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
 
             <div class="col-mb-12 col-tb-4" role="complementary">
                 <section class="latest-link">
-                    <h3><?php _e('最近得到的回复'); ?></h3>
+                    <h3><?php _e('Câu trả lời gần đây'); ?></h3>
                     <ul>
                         <?php Typecho_Widget::widget('Widget_Comments_Recent', 'pageSize=10')->to($comments); ?>
                         <?php if($comments->have()): ?>
@@ -87,7 +87,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                         </li>
                         <?php endwhile; ?>
                         <?php else: ?>
-                        <li><?php _e('暂时没有回复'); ?></li>
+                        <li><?php _e('Chưa có trả lời'); ?></li>
                         <?php endif; ?>
                     </ul>
                 </section>
@@ -95,10 +95,10 @@ $stat = Typecho_Widget::widget('Widget_Stat');
 
             <div class="col-mb-12 col-tb-4" role="complementary">
                 <section class="latest-link">
-                    <h3><?php _e('官方最新日志'); ?></h3>
+                    <h3><?php _e('Nhật ký mới nhất chính thức'); ?></h3>
                     <div id="typecho-message">
                         <ul>
-                            <li><?php _e('读取中...'); ?></li>
+                            <li><?php _e('Đang tải...'); ?></li>
                         </ul>
                     </div>
                 </section>
@@ -137,9 +137,9 @@ $(document).ready(function () {
     function applyUpdate(update) {
         if (update.available) {
             $('<div class="update-check message error"><p>'
-                + '<?php _e('您当前使用的版本是 %s'); ?>'.replace('%s', update.current) + '<br />'
+                + '<?php _e('Phiên bản bạn hiện đang sử dụng là %s'); ?>'.replace('%s', update.current) + '<br />'
                 + '<strong><a href="' + update.link + '" target="_blank">'
-                + '<?php _e('官方最新版本是 %s'); ?>'.replace('%s', update.latest) + '</a></strong></p></div>')
+                + '<?php _e('Phiên bản chính thức mới nhất là %s'); ?>'.replace('%s', update.latest) + '</a></strong></p></div>')
             .insertAfter('.typecho-page-title').effect('highlight');
         }
     }
