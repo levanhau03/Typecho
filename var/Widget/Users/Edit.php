@@ -49,7 +49,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
             ->where('uid = ?', $this->request->uid)->limit(1), array($this, 'push'));
 
             if (!$this->have()) {
-                throw new Typecho_Widget_Exception(_t('用户不存在'), 404);
+                throw new Typecho_Widget_Exception(_t('Người dùng không tồn tại'), 404);
             }
         }
     }
@@ -62,7 +62,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
      */
     public function getMenuTitle()
     {
-        return _t('编辑用户 %s', $this->name);
+        return _t('Chỉnh sửa người dùng %s', $this->name);
     }
 
     /**
