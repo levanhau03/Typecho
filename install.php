@@ -276,10 +276,10 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                 <?php endif;?>
             <?php elseif (isset($_GET['start'])): ?>
                 <?php if (!isset($db)) : ?>
-                <h1 class="typecho-install-title"><?php _e('安装失败!'); ?></h1>
+                <h1 class="typecho-install-title"><?php _e('Cài đặt thất bại!'); ?></h1>
                 <div class="typecho-install-body">
                     <form method="post" action="?config" name="config">
-                    <p class="message error"><?php _e('您没有上传 config.inc.php 文件，请您重新安装！'); ?> <button class="btn primary" type="submit"><?php _e('Cài đặt lại &raquo;'); ?></button></p>
+                    <p class="message error"><?php _e('Bạn không tải lên tệp config.inc.php, vui lòng cài đặt lại nó!'); ?> <button class="btn primary" type="submit"><?php _e('Cài đặt lại &raquo;'); ?></button></p>
                     </form>
                 </div>
                 <?php else : ?>
@@ -371,7 +371,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                         $installDb->query($installDb->insert('table.options')->rows(array('name' => 'allowXmlRpc', 'user' => 0, 'value' => 2)));
 
                                         /** 初始分类 */
-                                        $installDb->query($installDb->insert('table.metas')->rows(array('name' => _t('默认分类'), 'slug' => 'default', 'type' => 'category', 'description' => _t('只是一个默认分类'),
+                                        $installDb->query($installDb->insert('table.metas')->rows(array('name' => _t('Mặc định'), 'slug' => 'default', 'type' => 'category', 'description' => _t('Chỉ là một danh mục mặc định'),
                                         'count' => 1, 'order' => 1)));
 
                                         /** 初始关系 */
@@ -379,16 +379,16 @@ Typecho_Cookie::set('__typecho_lang', $lang);
 
                                         /** 初始内容 */
                                         $installDb->query($installDb->insert('table.contents')->rows(array('title' => _t('Chào mừng đến với'), 'slug' => 'start', 'created' => Typecho_Date::time(), 'modified' => Typecho_Date::time(),
-                                        'text' => '<!--markdown-->' . _t('如果您看到这篇文章,表示您的 blog 已经安装成功.'), 'authorId' => 1, 'type' => 'post', 'status' => 'publish', 'commentsNum' => 1, 'allowComment' => 1,
+                                        'text' => '<!--markdown-->' . _t('Nếu bạn thấy bài viết này, có nghĩa là blog của bạn đã được cài đặt thành công.'), 'authorId' => 1, 'type' => 'post', 'status' => 'publish', 'commentsNum' => 1, 'allowComment' => 1,
                                         'allowPing' => 1, 'allowFeed' => 1, 'parent' => 0)));
 
-                                        $installDb->query($installDb->insert('table.contents')->rows(array('title' => _t('关于'), 'slug' => 'start-page', 'created' => Typecho_Date::time(), 'modified' => Typecho_Date::time(),
-                                        'text' => '<!--markdown-->' . _t('本页面由 Typecho 创建, 这只是个测试页面.'), 'authorId' => 1, 'order' => 0, 'type' => 'page', 'status' => 'publish', 'commentsNum' => 0, 'allowComment' => 1,
+                                        $installDb->query($installDb->insert('table.contents')->rows(array('title' => _t('About'), 'slug' => 'start-page', 'created' => Typecho_Date::time(), 'modified' => Typecho_Date::time(),
+                                        'text' => '<!--markdown-->' . _t('Trang này được tạo bởi Typecho, đây chỉ là một trang thử nghiệm.'), 'authorId' => 1, 'order' => 0, 'type' => 'page', 'status' => 'publish', 'commentsNum' => 0, 'allowComment' => 1,
                                         'allowPing' => 1, 'allowFeed' => 1, 'parent' => 0)));
 
                                         /** 初始评论 */
                                         $installDb->query($installDb->insert('table.comments')->rows(array('cid' => 1, 'created' => Typecho_Date::time(), 'author' => 'Typecho', 'ownerId' => 1, 'url' => 'http://typecho.org',
-                                        'ip' => '127.0.0.1', 'agent' => $options->generator, 'text' => '欢迎加入 Typecho 大家族', 'type' => 'comment', 'status' => 'approved', 'parent' => 0)));
+                                        'ip' => '127.0.0.1', 'agent' => $options->generator, 'text' => 'Chào mừng đến với gia đình Typecho', 'type' => 'comment', 'status' => 'approved', 'parent' => 0)));
 
                                         /** 初始用户 */
                                         $password = empty($config['userPassword']) ? substr(uniqid(), 7) : $config['userPassword'];
@@ -647,9 +647,9 @@ Typecho_Db::set(\$db);
                 <form method="post" action="?config">
                 <h1 class="typecho-install-title"><?php _e('Chào mừng đến với'); ?></h1>
                 <div class="typecho-install-body">
-                <h2><?php _e('安装说明'); ?></h2>
-                <p><strong><?php _e('本安装程序将自动检测服务器环境是否符合最低配置需求. 如果不符合, 将在上方出现提示信息, 请按照提示信息检查您的主机配置. 如果服务器环境符合要求, 将在下方出现 "开始下一步" 的按钮, 点击此按钮即可一步完成安装.'); ?></strong></p>
-                <h2><?php _e('许可及协议'); ?></h2>
+                <h2><?php _e('Ghi chú cài đặt'); ?></h2>
+                <p><strong><?php _e('Chương trình cài đặt này sẽ tự động phát hiện xem môi trường máy chủ có đáp ứng các yêu cầu cấu hình tối thiểu hay không. Nếu nó không đáp ứng các yêu cầu cấu hình tối thiểu, một thông báo nhắc nhở sẽ xuất hiện ở trên, vui lòng làm theo thông tin nhắc để kiểm tra cấu hình máy chủ của bạn.'); ?></strong></p>
+                <h2><?php _e('Giấy phép và thỏa thuận'); ?></h2>
                 <p><?php _e('Typecho 基于 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> 协议发布, 我们允许用户在 GPL 协议许可的范围内使用, 拷贝, 修改和分发此程序.'); ?>
                 <?php _e('在GPL许可的范围内，您可以自由地将其用于商业以及非商业用途.'); ?></p>
                 <p><?php _e('Typecho 软件由其社区提供支持, 核心开发团队负责维护程序日常开发工作以及新特性的制定.'); ?>
