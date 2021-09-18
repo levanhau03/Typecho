@@ -109,16 +109,16 @@ class Widget_Menu extends Typecho_Widget
             array(_t('注册'), _t('注册到%s', $this->options->title), 'register.php', 'visitor')
         ),
         array(
-            array(_t('概要'), _t('网站概要'), 'index.php', 'subscriber'),
-            array(_t('个人设置'), _t('个人设置'), 'profile.php', 'subscriber'),
-            array(_t('插件'), _t('插件管理'), 'plugins.php', 'administrator'),
+            array(_t('Tổng quát'), _t('Tóm tắt trang web'), 'index.php', 'subscriber'),
+            array(_t('Thiết lập cá nhân'), _t('Thiết lập cá nhân'), 'profile.php', 'subscriber'),
+            array(_t('Plugin'), _t('Quản lý plugin'), 'plugins.php', 'administrator'),
             array(array('Widget_Plugins_Config', 'getMenuTitle'), array('Widget_Plugins_Config', 'getMenuTitle'), 'options-plugin.php?config=', 'administrator', true),
-            array(_t('外观'), _t('网站外观'), 'themes.php', 'administrator'),
+            array(_t('Giao diện'), _t('Giao diện trang web'), 'themes.php', 'administrator'),
             array(array('Widget_Themes_Files', 'getMenuTitle'), array('Widget_Themes_Files', 'getMenuTitle'), 'theme-editor.php', 'administrator', true),
-            array(_t('设置外观'), _t('设置外观'), 'options-theme.php', 'administrator', true),
-            array(_t('备份'), _t('备份'), 'backup.php', 'administrator'),
-            array(_t('升级'), _t('升级程序'), 'upgrade.php', 'administrator', true),
-            array(_t('欢迎'), _t('欢迎使用'), 'welcome.php', 'subscriber', true)
+            array(_t('Đặt giao diện'), _t('Đặt giao diện'), 'options-theme.php', 'administrator', true),
+            array(_t('Sao lưu'), _t('Sao lưu'), 'backup.php', 'administrator'),
+            array(_t('Nâng cấp'), _t('Quy trình nâng cấp'), 'upgrade.php', 'administrator', true),
+            array(_t('Chào mừng'), _t('Chào mừng'), 'welcome.php', 'subscriber', true)
         ),
         array(
             array(_t('撰写文章'), _t('撰写新文章'), 'write-post.php', 'contributor'),
