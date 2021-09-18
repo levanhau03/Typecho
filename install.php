@@ -475,10 +475,10 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                 } else {
                                     if (NULL == _r('userUrl')) {
                                         $success = false;
-                                        echo '<p class="message error">' . _t('请填写您的网站地址') . '</p>';
+                                        echo '<p class="message error">' . _t('Vui lòng điền vào địa chỉ trang web của bạn') . '</p>';
                                     } else if (NULL == _r('userName')) {
                                         $success = false;
-                                        echo '<p class="message error">' . _t('请填写您的用户名') . '</p>';
+                                        echo '<p class="message error">' . _t('Vui lòng điền vào tên người dùng của bạn') . '</p>';
                                     } else if (NULL == _r('userMail')) {
                                         $success = false;
                                         echo '<p class="message error">' . _t('请填写您的邮箱地址') . '</p>';
