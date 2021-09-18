@@ -1,89 +1,15 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-/**
- * Typecho Blog Platform
- *
- * @copyright  Copyright (c) 2008 Typecho team (http://www.typecho.org)
- * @license    GNU General Public License 2.0
- * @version    $Id$
- */
-
-/**
- * 后台菜单显示
- *
- * @package Widget
- */
 class Widget_Menu extends Typecho_Widget
 {
-    /**
-     * 父菜单列表
-     *
-     * @access private
-     * @var array
-     */
     private $_menu = array();
-
-    /**
-     * 当前父菜单
-     *
-     * @access private
-     * @var integer
-     */
     private $_currentParent = 1;
-
-    /**
-     * 当前子菜单
-     *
-     * @access private
-     * @var integer
-     */
     private $_currentChild = 0;
-
-    /**
-     * 当前页面
-     *
-     * @access private
-     * @var string
-     */
     private $_currentUrl;
-
-    /**
-     * 全局选项
-     *
-     * @access protected
-     * @var Widget_Options
-     */
     protected $options;
-
-    /**
-     * 用户对象
-     *
-     * @access protected
-     * @var Widget_User
-     */
     protected $user;
-
-    /**
-     * 当前菜单标题
-     * @var string
-     */
     public $title;
-    
-    /**
-     * 当前增加项目链接
-     * @var string
-     */
     public $addLink;
-
-    /**
-     * 构造函数,初始化组件
-     *
-     * @access public
-     * @param mixed $request request对象
-     * @param mixed $response response对象
-     * @param mixed $params 参数列表
-     * @return void
-     */
     public function __construct($request, $response, $params = NULL)
     {
         parent::__construct($request, $response, $params);
@@ -93,12 +19,6 @@ class Widget_Menu extends Typecho_Widget
         $this->user = $this->widget('Widget_User');
     }
 
-    /**
-     * 执行函数,初始化菜单
-     *
-     * @access public
-     * @return void
-     */
     public function execute()
     {
         $parentNodes = array(NULL, _t('Bảng điều khiển'), _t('Khởi tạo'), _t('Quản lý'), _t('Thiết lập'));
@@ -282,23 +202,11 @@ class Widget_Menu extends Typecho_Widget
         $this->_currentUrl = $currentUrl;
     }
 
-    /**
-     * 获取当前菜单
-     *
-     * @access public
-     * @return array
-     */
     public function getCurrentMenu()
     {
         return $this->_currentParent > 0 ? $this->_menu[$this->_currentParent][3][$this->_currentChild] : NULL;
     }
 
-    /**
-     * 输出父级菜单
-     *
-     * @access public
-     * @return string
-     */
     public function output($class = 'focus', $childClass = 'focus')
     {
         foreach ($this->_menu as $key => $node) {
