@@ -462,15 +462,15 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                     $type = $adapter == 'Mysqli' ? 'Mysql' : array_pop($parts);
             ?>
                 <form method="post" action="?config" name="config">
-                    <h1 class="typecho-install-title"><?php _e('确认您的配置'); ?></h1>
+                    <h1 class="typecho-install-title"><?php _e('Xác nhận cấu hình của bạn'); ?></h1>
                     <div class="typecho-install-body">
-                        <h2><?php _e('数据库配置'); ?></h2>
+                        <h2><?php _e('Cấu hình cơ sở dữ liệu'); ?></h2>
                         <?php
                             if ('config' == _r('action')) {
                                 $success = true;
 
                                 if (_r('created') && !file_exists('./config.inc.php')) {
-                                    echo '<p class="message error">' . _t('没有检测到您手动创建的配置文件, 请检查后再次创建') . '</p>';
+                                    echo '<p class="message error">' . _t('Tệp cấu hình bạn đã tạo theo cách thủ công không được phát hiện, vui lòng kiểm tra và tạo lại') . '</p>';
                                     $success = false;
                                 } else {
                                     if (NULL == _r('userUrl')) {
@@ -650,14 +650,14 @@ Typecho_Db::set(\$db);
                 <h2><?php _e('Ghi chú cài đặt'); ?></h2>
                 <p><strong><?php _e('Chương trình cài đặt này sẽ tự động phát hiện xem môi trường máy chủ có đáp ứng các yêu cầu cấu hình tối thiểu hay không. Nếu nó không đáp ứng các yêu cầu cấu hình tối thiểu, một thông báo nhắc nhở sẽ xuất hiện ở trên, vui lòng làm theo thông tin nhắc để kiểm tra cấu hình máy chủ của bạn.'); ?></strong></p>
                 <h2><?php _e('Giấy phép và thỏa thuận'); ?></h2>
-                <p><?php _e('Typecho 基于 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> 协议发布, 我们允许用户在 GPL 协议许可的范围内使用, 拷贝, 修改和分发此程序.'); ?>
-                <?php _e('在GPL许可的范围内，您可以自由地将其用于商业以及非商业用途.'); ?></p>
-                <p><?php _e('Typecho 软件由其社区提供支持, 核心开发团队负责维护程序日常开发工作以及新特性的制定.'); ?>
-                <?php _e('如果您遇到使用上的问题, 程序中的 BUG, 以及期许的新功能, 欢迎您在社区中交流或者直接向我们贡献代码.'); ?>
-                <?php _e('对于贡献突出者, 他的名字将出现在贡献者名单中.'); ?></p>
+                <p><?php _e('Typecho được phát hành theo thỏa thuận <a href="http://www.gnu.org/copyleft/gpl.html">GPL.</a> Chúng tôi cho phép người dùng sử dụng, sao chép, sửa đổi và phân phối chương trình này trong phạm vi của thỏa thuận GPL.'); ?>
+                <?php _e('Trong phạm vi của giấy phép GPL, bạn có thể tự do sử dụng nó cho các mục đích thương mại và phi thương mại.'); ?></p>
+                <p><?php _e('Phần mềm Typecho được hỗ trợ bởi cộng đồng của nó và nhóm phát triển cốt lõi chịu trách nhiệm phát triển hàng ngày của chương trình bảo trì và xây dựng các tính năng mới.'); ?>
+                <?php _e('Nếu bạn gặp sự cố khi sử dụng, lỗi trong chương trình và các tính năng mới dự kiến, bạn có thể giao tiếp trong cộng đồng hoặc trực tiếp đóng góp mã cho chúng tôi.'); ?>
+                <?php _e('Đối với những người đóng góp xuất sắc, tên của anh ấy sẽ xuất hiện trong danh sách những người đóng góp.'); ?></p>
                 </div>
                 <p class="submit">
-                    <button type="submit" class="btn primary"><?php _e('我准备好了, 开始下一步 &raquo;'); ?></button>
+                    <button type="submit" class="btn primary"><?php _e('Tôi đã sẵn sàng &raquo;'); ?></button>
 
                     <?php if (count($langs) > 1): ?>
                     <select style="float: right" onchange="window.location.href='install.php?lang=' + this.value">
