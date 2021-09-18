@@ -11,20 +11,20 @@ include 'menu.php';
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a lang="<?php _e('你确认要删除这些用户吗?'); ?>" href="<?php $security->index('/action/users-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a lang="<?php _e('你确认要删除这些用户吗?'); ?>" href="<?php $security->index('/action/users-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
                             </div>  
                         </div>
                         <div class="search" role="search">
                             <?php if ('' != $request->keywords): ?>
-                            <a href="<?php $options->adminUrl('manage-users.php'); ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+                            <a href="<?php $options->adminUrl('manage-users.php'); ?>"><?php _e('&laquo; Hủy bộ lọc'); ?></a>
                             <?php endif; ?>
-                            <input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>" name="keywords" />
-                            <button type="submit" class="btn btn-s"><?php _e('筛选'); ?></button>
+                            <input type="text" class="text-s" placeholder="<?php _e('Vui lòng nhập các từ khóa'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>" name="keywords" />
+                            <button type="submit" class="btn btn-s"><?php _e('Lọc'); ?></button>
                         </div>
                     </form>
                 </div><!-- end .typecho-list-operate -->
@@ -44,10 +44,10 @@ include 'menu.php';
                             <tr>
                                 <th> </th>
                                 <th> </th>
-                                <th><?php _e('用户名'); ?></th>
-                                <th><?php _e('昵称'); ?></th>
-                                <th><?php _e('电子邮件'); ?></th>
-                                <th><?php _e('用户组'); ?></th>
+                                <th><?php _e('Tên tài khoản'); ?></th>
+                                <th><?php _e('Biệt hiệu'); ?></th>
+                                <th><?php _e('Email'); ?></th>
+                                <th><?php _e('Nhóm người dùng'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,25 +57,25 @@ include 'menu.php';
                                 <td><input type="checkbox" value="<?php $users->uid(); ?>" name="uid[]"/></td>
                                 <td><a href="<?php $options->adminUrl('manage-posts.php?uid=' . $users->uid); ?>" class="balloon-button left size-<?php echo Typecho_Common::splitByCount($users->postsNum, 1, 10, 20, 50, 100); ?>"><?php $users->postsNum(); ?></a></td>
                                 <td><a href="<?php $options->adminUrl('user.php?uid=' . $users->uid); ?>"><?php $users->name(); ?></a>
-                                <a href="<?php $users->permalink(); ?>" title="<?php _e('浏览 %s', $users->screenName); ?>"><i class="i-exlink"></i></a>
+                                <a href="<?php $users->permalink(); ?>" title="<?php _e('Duyệt qua %s', $users->screenName); ?>"><i class="i-exlink"></i></a>
                                 </td>
                                 <td><?php $users->screenName(); ?></td>
-                                <td><?php if($users->mail): ?><a href="mailto:<?php $users->mail(); ?>"><?php $users->mail(); ?></a><?php else: _e('暂无'); endif; ?></td>
+                                <td><?php if($users->mail): ?><a href="mailto:<?php $users->mail(); ?>"><?php $users->mail(); ?></a><?php else: _e('Không'); endif; ?></td>
                                 <td><?php switch ($users->group) {
                                     case 'administrator':
-                                        _e('管理员');
+                                        _e('Quản lý');
                                         break;
                                     case 'editor':
-                                        _e('编辑');
+                                        _e('Biên tập');
                                         break;
                                     case 'contributor':
-                                        _e('贡献者');
+                                        _e('Người đóng góp');
                                         break;
                                     case 'subscriber':
-                                        _e('关注者');
+                                        _e('Người theo dõi');
                                         break;
                                     case 'visitor':
-                                        _e('访问者');
+                                        _e('Khách thăm quan');
                                         break;
                                     default:
                                         break;
@@ -90,11 +90,11 @@ include 'menu.php';
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a lang="<?php _e('你确认要删除这些用户吗?'); ?>" href="<?php $security->index('/action/users-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa những người dùng này không?'); ?>" href="<?php $security->index('/action/users-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
                             </div>  
                         </div>

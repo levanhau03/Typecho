@@ -45,7 +45,7 @@ class Widget_Metas_Category_List extends Widget_Abstract_Metas
     private $_top = array();
 
     /**
-     * 所有分类哈希表 
+     * Tất cả danh mục哈希表 
      * 
      * @var array
      * @access private

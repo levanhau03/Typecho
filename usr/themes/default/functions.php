@@ -2,16 +2,16 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {
-    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('站点 LOGO 地址'), _t('在这里填入一个图片 URL 地址, 以在网站标题前加上一个 LOGO'));
+    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('Địa chỉ LOGO trang web'), _t('Điền vào địa chỉ URL hình ảnh tại đây để thêm LOGO phía trước tiêu đề trang web'));
     $form->addInput($logoUrl);
     
     $sidebarBlock = new Typecho_Widget_Helper_Form_Element_Checkbox('sidebarBlock', 
-    array('ShowRecentPosts' => _t('显示最新文章'),
-    'ShowRecentComments' => _t('显示最近回复'),
-    'ShowCategory' => _t('显示分类'),
-    'ShowArchive' => _t('显示归档'),
-    'ShowOther' => _t('显示其它杂项')),
-    array('ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'), _t('侧边栏显示'));
+    array('ShowRecentPosts' => _t('Hiển thị các bài viết mới nhất'),
+    'ShowRecentComments' => _t('Hiển thị các câu trả lời gần đây'),
+    'ShowCategory' => _t('Hiển thị danh mục'),
+    'ShowArchive' => _t('Hiển thị kho lưu trữ'),
+    'ShowOther' => _t('Hiển thị các mục khác')),
+    array('ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'), _t('Màn hình thanh bên'));
     
     $form->addInput($sidebarBlock->multiMode());
 }

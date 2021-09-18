@@ -28,14 +28,14 @@ $(document).ready(function () {
     });
 
     $('#custom-field button.operate-add').click(function () {
-        var html = '<tr><td><input type="text" name="fieldNames[]" placeholder="<?php _e('字段名称'); ?>" class="text-s w-100"></td>'
+        var html = '<tr><td><input type="text" name="fieldNames[]" placeholder="<?php _e('Tên trường'); ?>" class="text-s w-100"></td>'
                 + '<td><select name="fieldTypes[]" id="">'
-                + '<option value="str"><?php _e('字符'); ?></option>'
-                + '<option value="int"><?php _e('整数'); ?></option>'
-                + '<option value="float"><?php _e('小数'); ?></option>'
+                + '<option value="str"><?php _e('ký tự'); ?></option>'
+                + '<option value="int"><?php _e('số nguyên'); ?></option>'
+                + '<option value="float"><?php _e('thập phân'); ?></option>'
                 + '</select></td>'
-                + '<td><textarea name="fieldValues[]" placeholder="<?php _e('字段值'); ?>" class="text-s w-100" rows="2"></textarea></td>'
-                + '<td><button type="button" class="btn btn-xs"><?php _e('删除'); ?></button></td></tr>',
+                + '<td><textarea name="fieldValues[]" placeholder="<?php _e('Giá trị trường'); ?>" class="text-s w-100" rows="2"></textarea></td>'
+                + '<td><button type="button" class="btn btn-xs"><?php _e('Xóa'); ?></button></td></tr>',
             el = $(html).hide().appendTo('#custom-field table tbody').fadeIn();
 
         attachDeleteEvent(el);

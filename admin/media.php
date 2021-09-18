@@ -33,7 +33,7 @@ Typecho_Widget::widget('Widget_Contents_Attachment_Edit')->to($attachment);
                 </p>
 
                 <div id="upload-panel" class="p">
-                    <div class="upload-area" draggable="true"><?php _e('拖放文件到这里<br>或者 %s选择文件上传%s', '<a href="###" class="upload-file">', '</a>'); ?></div>
+                    <div class="upload-area" draggable="true"><?php _e('Kéo và thả tệp vào đây<br>Hoặc %schọn tệp để tải lên%s', '<a href="###" class="upload-file">', '</a>'); ?></div>
                     <ul id="file-list"></ul>
                 </div>
             </div>
@@ -99,21 +99,21 @@ $(document).ready(function() {
         
         switch (code) {
             case plupload.FILE_SIZE_ERROR:
-                word = '<?php _e('文件大小超过限制'); ?>';
+                word = '<?php _e('Kích thước tệp vượt quá giới hạn'); ?>';
                 break;
             case plupload.FILE_EXTENSION_ERROR:
-                word = '<?php _e('文件扩展名不被支持'); ?>';
+                word = '<?php _e('Phần mở rộng tệp không được hỗ trợ'); ?>';
                 break;
             case plupload.FILE_DUPLICATE_ERROR:
-                word = '<?php _e('文件已经上传过'); ?>';
+                word = '<?php _e('Tệp đã được tải lên'); ?>';
                 break;
             case plupload.HTTP_ERROR:
             default:
-                word = '<?php _e('上传出现错误'); ?>';
+                word = '<?php _e('Lỗi tải lên'); ?>';
                 break;
         }
 
-        var fileError = '<?php _e('%s 上传失败'); ?>'.replace('%s', file.name),
+        var fileError = '<?php _e('%s không tải lên được'); ?>'.replace('%s', file.name),
             li, exist = $('#' + file.id);
 
         if (exist.length > 0) {
@@ -135,7 +135,7 @@ $(document).ready(function() {
             img.get(0).src = '<?php $attachment->attachment->url(); ?>?' + Math.random();
         }
         
-        $('#' + id).html('<?php _e('文件 %s 已经替换'); ?>'.replace('%s', data.title))
+        $('#' + id).html('<?php _e('Tệp %s đã được thay thế'); ?>'.replace('%s', data.title))
         .effect('highlight', 1000, function () {
             $(this).remove();
             $('#file-list').remove();
@@ -150,7 +150,7 @@ $(document).ready(function() {
         drop_element    :   $('.upload-area').get(0),
         filters         :   {
             max_file_size       :   '<?php echo $phpMaxFilesize ?>',
-            mime_types          :   [{'title' : '<?php _e('允许上传的文件'); ?>', 'extensions' : '<?php $attachment->attachment->type(); ?>'}],
+            mime_types          :   [{'title' : '<?php _e('Các tệp được phép tải lên'); ?>', 'extensions' : '<?php $attachment->attachment->type(); ?>'}],
             prevent_duplicates  :   true
         },
         multi_selection :   false,

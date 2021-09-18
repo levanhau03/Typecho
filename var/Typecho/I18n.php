@@ -128,18 +128,18 @@ class Typecho_I18n
                 /** 如果是一分钟 */
                 if ($between < 60) {
                     if (0 == $between) {
-                        return _t('刚刚');
+                        return _t('vừa xong');
                     } else {
-                        return str_replace('%d', $between, _n('一秒前', '%d秒前', $between));
+                        return str_replace('%d', $between, _n('1 giây trước', '%d giây trước', $between));
                     }
                 }
 
                 $min = floor($between / 60);
-                return str_replace('%d', $min, _n('一分钟前', '%d分钟前', $min));
+                return str_replace('%d', $min, _n('1 phút trước', '%d phút trước', $min));
             }
 
             $hour = floor($between / 3600);
-            return str_replace('%d', $hour, _n('一小时前', '%d小时前', $hour));
+            return str_replace('%d', $hour, _n('1 tiếng trước', '%d tiếng trước', $hour));
         }
 
         /** 如果是昨天 */
@@ -152,15 +152,15 @@ class Typecho_I18n
         /** 如果是一个星期 */
         if ($between > 0 && $between < 604800) {
             $day = floor($between / 86400);
-            return str_replace('%d', $day, _n('一天前', '%d天前', $day));
+            return str_replace('%d', $day, _n('1 ngày trước', '%d ngày trước', $day));
         }
 
         /** 如果是 */
         if (date('Y', $from) == date('Y', $now)) {
-            return date(_t('n月j日'), $from);
+            return date(_t('n/j'), $from);
         }
 
-        return date(_t('Y年m月d日'), $from);
+        return date(_t('Y/m/d'), $from);
     }
 
     /**

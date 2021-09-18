@@ -10,12 +10,12 @@ include 'menu.php';
         <div class="row typecho-page-main" role="main">
             <div class="col-mb-12">
                 <ul class="typecho-option-tabs fix-tabs clearfix">
-                    <li class="current"><a href="<?php $options->adminUrl('themes.php'); ?>"><?php _e('可以使用的外观'); ?></a></li>
+                    <li class="current"><a href="<?php $options->adminUrl('themes.php'); ?>"><?php _e('Giao diện có thể được sử dụng'); ?></a></li>
                     <?php if (!defined('__TYPECHO_THEME_WRITEABLE__') || __TYPECHO_THEME_WRITEABLE__): ?>
-                    <li><a href="<?php $options->adminUrl('theme-editor.php'); ?>"><?php _e('编辑当前外观'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('theme-editor.php'); ?>"><?php _e('Chỉnh sửa giao diện hiện tại'); ?></a></li>
                     <?php endif; ?>
                     <?php if (Widget_Themes_Config::isExists()): ?>
-                    <li><a href="<?php $options->adminUrl('options-theme.php'); ?>"><?php _e('设置外观'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('options-theme.php'); ?>"><?php _e('Đặt giao diện'); ?></a></li>
                     <?php endif; ?>
                 </ul>
                 
@@ -27,8 +27,8 @@ include 'menu.php';
                         </colgroup>
                         
                         <thead>
-                            <th><?php _e('截图'); ?></th>
-                            <th><?php _e('详情'); ?></th>
+                            <th><?php _e('Ảnh chụp màn hình'); ?></th>
+                            <th><?php _e('Thông tin chi tiết'); ?></th>
                         </thead>
 
                         <tbody>
@@ -39,16 +39,16 @@ include 'menu.php';
                                 <td valign="top">
                                     <h3><?php '' != $themes->title ? $themes->title() : $themes->name(); ?></h3>
                                     <cite>
-                                        <?php if($themes->author): ?><?php _e('作者'); ?>: <?php if($themes->homepage): ?><a href="<?php $themes->homepage() ?>"><?php endif; ?><?php $themes->author(); ?><?php if($themes->homepage): ?></a><?php endif; ?> &nbsp;&nbsp;<?php endif; ?>
-                                        <?php if($themes->version): ?><?php _e('版本'); ?>: <?php $themes->version() ?><?php endif; ?>
+                                        <?php if($themes->author): ?><?php _e('Tác giả'); ?>: <?php if($themes->homepage): ?><a href="<?php $themes->homepage() ?>"><?php endif; ?><?php $themes->author(); ?><?php if($themes->homepage): ?></a><?php endif; ?> &nbsp;&nbsp;<?php endif; ?>
+                                        <?php if($themes->version): ?><?php _e('Phiên bản'); ?>: <?php $themes->version() ?><?php endif; ?>
                                     </cite>
                                     <p><?php echo nl2br($themes->description); ?></p>
                                     <?php if($options->theme != $themes->name): ?>
                                         <p>
                                             <?php if (!defined('__TYPECHO_THEME_WRITEABLE__') || __TYPECHO_THEME_WRITEABLE__): ?>
-                                            <a class="edit" href="<?php $options->adminUrl('theme-editor.php?theme=' . $themes->name); ?>"><?php _e('编辑'); ?></a> &nbsp;
+                                            <a class="edit" href="<?php $options->adminUrl('theme-editor.php?theme=' . $themes->name); ?>"><?php _e('Chỉnh sửa'); ?></a> &nbsp;
                                             <?php endif; ?>
-                                            <a class="activate" href="<?php $security->index('/action/themes-edit?change=' . $themes->name); ?>"><?php _e('启用'); ?></a>
+                                            <a class="activate" href="<?php $security->index('/action/themes-edit?change=' . $themes->name); ?>"><?php _e('Cho phép'); ?></a>
                                         </p>
                                     <?php endif; ?>
                                 </td>

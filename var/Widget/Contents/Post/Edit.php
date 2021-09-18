@@ -1,40 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-/**
- * 编辑文章
- *
- * @category typecho
- * @package Widget
- * @copyright Copyright (c) 2008 Typecho team (http://www.typecho.org)
- * @license GNU General Public License 2.0
- * @version $Id$
- */
-
-/**
- * 编辑文章组件
- *
- * @author qining
- * @category typecho
- * @package Widget
- * @copyright Copyright (c) 2008 Typecho team (http://www.typecho.org)
- * @license GNU General Public License 2.0
- */
 class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widget_Interface_Do
 {
-    /**
-     * 自定义字段的hook名称 
-     * 
-     * @var string
-     * @access protected
-     */
     protected $themeCustomFieldsHook = 'themePostFields';
 
-    /**
-     * 将tags取出
-     *
-     * @access protected
-     * @return array
-     */
     protected function ___tags()
     {
         if ($this->have()) {
@@ -48,23 +17,11 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return array();
     }
 
-    /**
-     * 获取当前时间
-     *
-     * @access protected
-     * @return Typecho_Date
-     */
     protected function ___date()
     {
         return new Typecho_Date();
     }
 
-    /**
-     * 当前文章的草稿
-     *
-     * @access protected
-     * @return array
-     */
     protected function ___draft()
     {
         if ($this->have()) {
@@ -371,7 +328,7 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         /** 必须为贡献者以上权限 */
         $this->user->pass('contributor');
 
-        /** 获取文章内容 */
+        /** 获取Nội dung bài viết */
         if (!empty($this->request->cid) && 'delete' != $this->request->do) {
             $this->db->fetchRow($this->select()
             ->where('table.contents.type = ? OR table.contents.type = ?', 'post', 'post_draft')
@@ -474,7 +431,7 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
      */
     public function getMenuTitle()
     {
-        return _t('编辑 %s', $this->title);
+        return _t('Chỉnh sửa %s', $this->title);
     }
 
     /**

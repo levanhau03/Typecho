@@ -40,7 +40,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
         /** 必须为编辑以上权限 */
         $this->user->pass('editor');
 
-        /** 获取文章内容 */
+        /** 获取Nội dung bài viết */
         if (!empty($this->request->cid) && 'delete' != $this->request->do 
             && 'sort' != $this->request->do) {
             $this->db->fetchRow($this->select()

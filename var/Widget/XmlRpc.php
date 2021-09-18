@@ -333,7 +333,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             return new IXR_Error($e->getCode(), $e->getMessage());
         }
 
-        /** 对文章内容做截取处理，以获得description和text_more*/
+        /** 对Nội dung bài viết做截取处理，以获得description和text_more*/
         list($excerpt, $more) = $this->getPostExtended($page);
 
         $pageStruct = array(
@@ -389,7 +389,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $pageStructs = array();
 
         while ($pages->next()) {
-            /** 对文章内容做截取处理，以获得description和text_more*/
+            /** 对Nội dung bài viết做截取处理，以获得description和text_more*/
             list($excerpt, $more) = $this->getPostExtended($pages);
             $pageStructs[] = array(
                 'dateCreated'            => new IXR_Date($this->options->timezone + $pages->created),
@@ -840,9 +840,9 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         }
         
         return array(
-            'draft'     =>  _t('草稿'),
-            'pending'   =>  _t('待审核'),
-            'publish'   =>  _t('已发布')
+            'draft'     =>  _t('Bản thảo'),
+            'pending'   =>  _t('Chờ xem xét'),
+            'publish'   =>  _t('Phát hành')
         );
     }
     
@@ -863,8 +863,8 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         }
         
         return array(
-            'draft'     =>  _t('草稿'),
-            'publish'   =>  _t('已发布')
+            'draft'     =>  _t('Bản thảo'),
+            'publish'   =>  _t('Phát hành')
         );
     }
 
@@ -887,7 +887,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         }
         
         return array(
-            'hold'      =>  _t('待审核'),
+            'hold'      =>  _t('Chờ xem xét'),
             'approve'   =>  _t('显示'),
             'spam'      =>  _t('垃圾')
         );
@@ -1521,7 +1521,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             return new IXR_Error($e->getCode(), $e->getMessage());
         }
 
-        /** 对文章内容做截取处理，以获得description和text_more*/
+        /** 对Nội dung bài viết做截取处理，以获得description和text_more*/
         list($excerpt, $more) = $this->getPostExtended($post);
         /** 只需要分类的name*/
         $categories = Typecho_Common::arrayFlatten($post->categories, 'name');
@@ -1576,7 +1576,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $postStructs = array();
         /** 如果这个post存在则输出，否则输出错误 */
         while ($posts->next()) {
-            /** 对文章内容做截取处理，以获得description和text_more*/
+            /** 对Nội dung bài viết做截取处理，以获得description和text_more*/
             list($excerpt, $more) = $this->getPostExtended($posts);
 
             /** 只需要分类的name*/

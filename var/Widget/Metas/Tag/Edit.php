@@ -130,12 +130,12 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
 
         /** 标签名称 */
         $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, NULL,
-        _t('标签名称 *'), _t('这是标签在站点中显示的名称.可以使用中文,如 "地球".'));
+        _t('Tên nhãn *'), _t('Đây là tên của nhãn được hiển thị trên trang web.'));
         $form->addInput($name);
 
         /** 标签缩略名 */
         $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, NULL,
-        _t('标签缩略名'), _t('标签缩略名用于创建友好的链接形式, 如果留空则默认使用标签名称.'));
+        _t('Tên viết tắt của nhãn'), _t('Tên viết tắt của nhãn được sử dụng để tạo một biểu mẫu liên kết thân thiện, nếu để trống, tên nhãn được sử dụng theo mặc định.'));
         $form->addInput($slug);
 
         /** 标签动作 */
@@ -165,11 +165,11 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
             $slug->value($meta['slug']);
             $do->value('update');
             $mid->value($meta['mid']);
-            $submit->value(_t('编辑标签'));
+            $submit->value(_t('Chỉnh sửa nhãn'));
             $_action = 'update';
         } else {
             $do->value('insert');
-            $submit->value(_t('增加标签'));
+            $submit->value(_t('Thêm nhãn'));
             $_action = 'insert';
         }
 
@@ -179,17 +179,17 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
 
         /** 给表单增加规则 */
         if ('insert' == $action || 'update' == $action) {
-            $name->addRule('required', _t('必须填写标签名称'));
-            $name->addRule(array($this, 'nameExists'), _t('标签名称已经存在'));
-            $name->addRule(array($this, 'nameToSlug'), _t('标签名称无法被转换为缩略名'));
-            $name->addRule('xssCheck', _t('请不要标签名称中使用特殊字符'));
-            $slug->addRule(array($this, 'slugExists'), _t('缩略名已经存在'));
-            $slug->addRule('xssCheck', _t('请不要在缩略名中使用特殊字符'));
+            $name->addRule('required', _t('Phải điền vào tên nhãn'));
+            $name->addRule(array($this, 'nameExists'), _t('Tên nhãn đã tồn tại'));
+            $name->addRule(array($this, 'nameToSlug'), _t('Tên nhãn không thể chuyển đổi thành tên viết tắt'));
+            $name->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên nhãn'));
+            $slug->addRule(array($this, 'slugExists'), _t('Chữ viết tắt đã tồn tại'));
+            $slug->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên viết tắt'));
         }
 
         if ('update' == $action) {
-            $mid->addRule('required', _t('标签主键不存在'));
-            $mid->addRule(array($this, 'tagExists'), _t('标签不存在'));
+            $mid->addRule('required', _t('Khóa chính của nhãn không tồn tại'));
+            $mid->addRule(array($this, 'tagExists'), _t('Nhãn không tồn tại'));
         }
 
         return $form;
@@ -220,7 +220,7 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
         $this->widget('Widget_Notice')->highlight($this->theId);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('标签 <a href="%s">%s</a> 已经被增加',
+        $this->widget('Widget_Notice')->set(_t('Nhãn <a href="%s">%s</a> đã được thêm vào',
         $this->permalink, $this->name), 'success');
 
         /** 转向原页 */
@@ -252,7 +252,7 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
         $this->widget('Widget_Notice')->highlight($this->theId);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('标签 <a href="%s">%s</a> 已经被更新',
+        $this->widget('Widget_Notice')->set(_t('Nhãn <a href="%s">%s</a> đã được cập nhật',
         $this->permalink, $this->name), 'success');
 
         /** 转向原页 */
@@ -280,7 +280,7 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
         }
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('标签已经删除') : _t('没有标签被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Nhãn đã bị xóa') : _t('Không có nhãn nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
 
         /** 转向原页 */
@@ -296,13 +296,13 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
     public function mergeTag()
     {
         if (empty($this->request->merge)) {
-            $this->widget('Widget_Notice')->set(_t('请填写需要合并到的标签'), 'notice');
+            $this->widget('Widget_Notice')->set(_t('Vui lòng điền vào nhãn để được hợp nhất vào'), 'notice');
             $this->response->goBack();
         }
 
         $merge = $this->scanTags($this->request->merge);
         if (empty($merge)) {
-            $this->widget('Widget_Notice')->set(_t('合并到的标签名不合法'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Tên nhãn đã hợp nhất không hợp lệ'), 'error');
             $this->response->goBack();
         }
 
@@ -312,9 +312,9 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
             $this->merge($merge, 'tag', $tags);
 
             /** 提示信息 */
-            $this->widget('Widget_Notice')->set(_t('标签已经合并'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Các nhãn đã được hợp nhất'), 'success');
         } else {
-            $this->widget('Widget_Notice')->set(_t('没有选择任何标签'), 'notice');
+            $this->widget('Widget_Notice')->set(_t('Không có nhãn nào được chọn'), 'notice');
         }
 
         /** 转向原页 */
@@ -338,9 +338,9 @@ class Widget_Metas_Tag_Edit extends Widget_Abstract_Metas implements Widget_Inte
             // 自动清理标签
             $this->clearTags();
 
-            $this->widget('Widget_Notice')->set(_t('标签刷新已经完成'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Làm mới nhãn đã hoàn thành'), 'success');
         } else {
-            $this->widget('Widget_Notice')->set(_t('没有选择任何标签'), 'notice');
+            $this->widget('Widget_Notice')->set(_t('Không có nhãn nào được chọn'), 'notice');
         }
 
         /** 转向原页 */

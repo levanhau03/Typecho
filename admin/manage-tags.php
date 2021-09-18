@@ -16,14 +16,14 @@ Typecho_Widget::widget('Widget_Metas_Tag_Admin')->to($tags);
                     <form method="post" name="manage_tags" class="operate-form">
                     <div class="typecho-list-operate clearfix">
                         <div class="operate">
-                        <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                        <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                         <div class="btn-group btn-drop">
-                        <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                        <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                         <ul class="dropdown-menu">
-                            <li><a lang="<?php _e('你确认要删除这些标签吗?'); ?>" href="<?php $security->index('/action/metas-tag-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
-                            <li><a lang="<?php _e('刷新标签可能需要等待较长时间, 你确认要刷新这些标签吗?'); ?>" href="<?php $security->index('/action/metas-tag-edit?do=refresh'); ?>"><?php _e('刷新'); ?></a></li>
+                            <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa các nhãn này không?'); ?>" href="<?php $security->index('/action/metas-tag-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
+                            <li><a lang="<?php _e('Việc làm mới nhãn có thể mất nhiều thời gian. Bạn có chắc chắn muốn làm mới các nhãn này không?'); ?>" href="<?php $security->index('/action/metas-tag-edit?do=refresh'); ?>"><?php _e('Làm mới'); ?></a></li>
                             <li class="multiline">
-                                <button type="button" class="btn btn-s merge" rel="<?php $security->index('/action/metas-tag-edit?do=merge'); ?>"><?php _e('合并到'); ?></button>
+                                <button type="button" class="btn btn-s merge" rel="<?php $security->index('/action/metas-tag-edit?do=merge'); ?>"><?php _e('Hợp nhất với'); ?></button>
                                 <input type="text" name="merge" class="text-s" />
                             </li>
                         </ul>
@@ -41,7 +41,7 @@ Typecho_Widget::widget('Widget_Metas_Tag_Admin')->to($tags);
                         </li>
                         <?php endwhile; ?>
                         <?php else: ?>
-                        <h6 class="typecho-list-table-title"><?php _e('没有任何标签'); ?></h6>
+                        <h6 class="typecho-list-table-title"><?php _e('Không có nhãn'); ?></h6>
                         <?php endif; ?>
                     </ul>
                     <input type="hidden" name="do" value="delete" />

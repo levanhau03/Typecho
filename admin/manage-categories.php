@@ -16,14 +16,14 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
                     <form method="post" name="manage_categories" class="operate-form">
                     <div class="typecho-list-operate clearfix">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                                <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                                <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                                 <ul class="dropdown-menu">
-                                    <li><a lang="<?php _e('此分类下的所有内容将被删除, 你确认要删除这些分类吗?'); ?>" href="<?php $security->index('/action/metas-category-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
-                                    <li><a lang="<?php _e('刷新分类可能需要等待较长时间, 你确认要刷新这些分类吗?'); ?>" href="<?php $security->index('/action/metas-category-edit?do=refresh'); ?>"><?php _e('刷新'); ?></a></li>
+                                    <li><a lang="<?php _e('Tất cả nội dung thuộc danh mục này sẽ bị xóa, bạn có chắc chắn muốn xóa các danh mục này không?'); ?>" href="<?php $security->index('/action/metas-category-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
+                                    <li><a lang="<?php _e('Việc làm mới các danh mục có thể mất nhiều thời gian. Bạn có chắc chắn muốn làm mới các danh mục này không?'); ?>" href="<?php $security->index('/action/metas-category-edit?do=refresh'); ?>"><?php _e('Làm mới'); ?></a></li>
                                     <li class="multiline">
-                                        <button type="button" class="btn merge btn-s" rel="<?php $security->index('/action/metas-category-edit?do=merge'); ?>"><?php _e('合并到'); ?></button>
+                                        <button type="button" class="btn merge btn-s" rel="<?php $security->index('/action/metas-category-edit?do=merge'); ?>"><?php _e('Hợp nhất với'); ?></button>
                                         <select name="merge">
                                             <?php $categories->parse('<option value="{mid}">{name}</option>'); ?>
                                         </select>
@@ -49,11 +49,11 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
                             <thead>
                                 <tr class="nodrag">
                                     <th> </th>
-                                    <th><?php _e('名称'); ?></th>
-                                    <th><?php _e('子分类'); ?></th>
-                                    <th><?php _e('缩略名'); ?></th>
+                                    <th><?php _e('Tên'); ?></th>
+                                    <th><?php _e('Danh mục phụ'); ?></th>
+                                    <th><?php _e('Tên viết tắt'); ?></th>
                                     <th> </th>
-                                    <th><?php _e('文章数'); ?></th>
+                                    <th><?php _e('Số lượng bài viết'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,22 +62,22 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
                                 <tr id="mid-<?php $categories->theId(); ?>">
                                     <td><input type="checkbox" value="<?php $categories->mid(); ?>" name="mid[]"/></td>
                                     <td><a href="<?php $options->adminUrl('category.php?mid=' . $categories->mid); ?>"><?php $categories->name(); ?></a> 
-                                    <a href="<?php $categories->permalink(); ?>" title="<?php _e('浏览 %s', $categories->name); ?>"><i class="i-exlink"></i></a>
+                                    <a href="<?php $categories->permalink(); ?>" title="<?php _e('Duyệt qua %s', $categories->name); ?>"><i class="i-exlink"></i></a>
                                     </td>
                                     <td>
                                     
                                     <?php if (count($categories->children) > 0): ?>
-                                    <a href="<?php $options->adminUrl('manage-categories.php?parent=' . $categories->mid); ?>"><?php echo _n('一个分类', '%d个分类', count($categories->children)); ?></a>
+                                    <a href="<?php $options->adminUrl('manage-categories.php?parent=' . $categories->mid); ?>"><?php echo _n('1 danh mục', '%d danh mục', count($categories->children)); ?></a>
                                     <?php else: ?>
-                                    <a href="<?php $options->adminUrl('category.php?parent=' . $categories->mid); ?>"><?php echo _e('新增'); ?></a>
+                                    <a href="<?php $options->adminUrl('category.php?parent=' . $categories->mid); ?>"><?php echo _e('Thêm'); ?></a>
                                     <?php endif; ?>
                                     </td>
                                     <td><?php $categories->slug(); ?></td>
                                     <td>
                                     <?php if ($options->defaultCategory == $categories->mid): ?>
-                                    <?php _e('默认'); ?>
+                                    <?php _e('Mặc định'); ?>
                                     <?php else: ?>
-                                    <a class="hidden-by-mouse" href="<?php $security->index('/action/metas-category-edit?do=default&mid=' . $categories->mid); ?>" title="<?php _e('设为默认'); ?>"><?php _e('默认'); ?></a>
+                                    <a class="hidden-by-mouse" href="<?php $security->index('/action/metas-category-edit?do=default&mid=' . $categories->mid); ?>" title="<?php _e('Đặt làm mặc định'); ?>"><?php _e('Mặc định'); ?></a>
                                     <?php endif; ?>
                                     </td>
                                     <td><a class="balloon-button left size-<?php echo Typecho_Common::splitByCount($categories->count, 1, 10, 20, 50, 100); ?>" href="<?php $options->adminUrl('manage-posts.php?category=' . $categories->mid); ?>"><?php $categories->count(); ?></a></td>
@@ -85,7 +85,7 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
                                 <?php endwhile; ?>
                                 <?php else: ?>
                                 <tr>
-                                    <td colspan="6"><h6 class="typecho-list-table-title"><?php _e('没有任何分类'); ?></h6></td>
+                                    <td colspan="6"><h6 class="typecho-list-table-title"><?php _e('Không có phân loại'); ?></h6></td>
                                 </tr>
                                 <?php endif; ?>
                             </tbody>

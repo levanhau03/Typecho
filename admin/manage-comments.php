@@ -15,15 +15,15 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                 <div class="clearfix">
                     <ul class="typecho-option-tabs right">
                     <?php if($user->pass('editor', true) && !isset($request->cid)): ?>
-                        <li class="<?php if($isAllComments): ?> current<?php endif; ?>"><a href="<?php echo $request->makeUriByRequest('__typecho_all_comments=on'); ?>"><?php _e('所有'); ?></a></li>
-                        <li class="<?php if(!$isAllComments): ?> current<?php endif; ?>"><a href="<?php echo $request->makeUriByRequest('__typecho_all_comments=off'); ?>"><?php _e('我的'); ?></a></li>
+                        <li class="<?php if($isAllComments): ?> current<?php endif; ?>"><a href="<?php echo $request->makeUriByRequest('__typecho_all_comments=on'); ?>"><?php _e('Tất cả'); ?></a></li>
+                        <li class="<?php if(!$isAllComments): ?> current<?php endif; ?>"><a href="<?php echo $request->makeUriByRequest('__typecho_all_comments=off'); ?>"><?php _e('Của tôi'); ?></a></li>
                     <?php endif; ?>
                     </ul>
                     <ul class="typecho-option-tabs">
                         <li<?php if(!isset($request->status) || 'approved' == $request->get('status')): ?> class="current"<?php endif; ?>><a href="<?php $options->adminUrl('manage-comments.php'
-                        . (isset($request->cid) ? '?cid=' . $request->cid : '')); ?>"><?php _e('已通过'); ?></a></li>
+                        . (isset($request->cid) ? '?cid=' . $request->cid : '')); ?>"><?php _e('Đã kiểm'); ?></a></li>
                         <li<?php if('waiting' == $request->get('status')): ?> class="current"<?php endif; ?>><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'
-                        . (isset($request->cid) ? '&cid=' . $request->cid : '')); ?>"><?php _e('待审核'); ?>
+                        . (isset($request->cid) ? '&cid=' . $request->cid : '')); ?>"><?php _e('Chờ xem xét'); ?>
                         <?php if(!$isAllComments && $stat->myWaitingCommentsNum > 0 && !isset($request->cid)): ?> 
                             <span class="balloon"><?php $stat->myWaitingCommentsNum(); ?></span>
                         <?php elseif($isAllComments && $stat->waitingCommentsNum > 0 && !isset($request->cid)): ?>
@@ -33,7 +33,7 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                         <?php endif; ?>
                         </a></li>
                         <li<?php if('spam' == $request->get('status')): ?> class="current"<?php endif; ?>><a href="<?php $options->adminUrl('manage-comments.php?status=spam'
-                        . (isset($request->cid) ? '&cid=' . $request->cid : '')); ?>"><?php _e('垃圾'); ?>
+                        . (isset($request->cid) ? '&cid=' . $request->cid : '')); ?>"><?php _e('Spam'); ?>
                         <?php if(!$isAllComments && $stat->mySpamCommentsNum > 0 && !isset($request->cid)): ?> 
                             <span class="balloon"><?php $stat->mySpamCommentsNum(); ?></span>
                         <?php elseif($isAllComments && $stat->spamCommentsNum > 0 && !isset($request->cid)): ?>
@@ -48,17 +48,17 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php $security->index('/action/comments-edit?do=approved'); ?>"><?php _e('通过'); ?></a></li>
-                                <li><a href="<?php $security->index('/action/comments-edit?do=waiting'); ?>"><?php _e('待审核'); ?></a></li>
-                                <li><a href="<?php $security->index('/action/comments-edit?do=spam'); ?>"><?php _e('标记垃圾'); ?></a></li>
-                                <li><a lang="<?php _e('你确认要删除这些评论吗?'); ?>" href="<?php $security->index('/action/comments-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=approved'); ?>"><?php _e('Đã kiểm'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=waiting'); ?>"><?php _e('Chờ xem xét'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=spam'); ?>"><?php _e('Đánh dấu thùng rác'); ?></a></li>
+                                <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa những bình luận này không?'); ?>" href="<?php $security->index('/action/comments-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
                             <?php if('spam' == $request->get('status')): ?>
-                                <button lang="<?php _e('你确认要删除所有垃圾评论吗?'); ?>" class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/comments-edit?do=delete-spam'); ?>"><?php _e('删除所有垃圾评论'); ?></button>
+                                <button lang="<?php _e('Bạn có chắc chắn muốn xóa tất cả các bình luận spam không?'); ?>" class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/comments-edit?do=delete-spam'); ?>"><?php _e('Xóa tất cả các bình luận spam'); ?></button>
                             <?php endif; ?>
                             </div>
                         </div>
@@ -67,16 +67,16 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                             <a href="<?php $options->adminUrl('manage-comments.php' 
                             . (isset($request->status) || isset($request->cid) ? '?' .
                             (isset($request->status) ? 'status=' . htmlspecialchars($request->get('status')) : '') .
-                            (isset($request->cid) ? (isset($request->status) ? '&' : '') . 'cid=' . htmlspecialchars($request->get('cid')) : '') : '')); ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+                            (isset($request->cid) ? (isset($request->status) ? '&' : '') . 'cid=' . htmlspecialchars($request->get('cid')) : '') : '')); ?>"><?php _e('&laquo; Hủy bộ lọc'); ?></a>
                             <?php endif; ?>
-                            <input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>"<?php if ('' == $request->keywords): ?> onclick="value='';name='keywords';" <?php else: ?> name="keywords"<?php endif; ?>/>
+                            <input type="text" class="text-s" placeholder="<?php _e('Vui lòng nhập các từ khóa'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>"<?php if ('' == $request->keywords): ?> onclick="value='';name='keywords';" <?php else: ?> name="keywords"<?php endif; ?>/>
                             <?php if(isset($request->status)): ?>
                                 <input type="hidden" value="<?php echo htmlspecialchars($request->get('status')); ?>" name="status" />
                             <?php endif; ?>
                             <?php if(isset($request->cid)): ?>
                                 <input type="hidden" value="<?php echo htmlspecialchars($request->get('cid')); ?>" name="cid" />
                             <?php endif; ?>
-                            <button type="submit" class="btn btn-s"><?php _e('筛选'); ?></button>
+                            <button type="submit" class="btn btn-s"><?php _e('Lọc'); ?></button>
                         </div>
                     </form>
                 </div><!-- end .typecho-list-operate -->
@@ -93,9 +93,9 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                         <thead>
                             <tr>
                                 <th> </th>
-                                <th><?php _e('作者'); ?></th>
+                                <th><?php _e('Tác giả'); ?></th>
                                 <th> </th>
-                                <th><?php _e('内容'); ?></th>
+                                <th><?php _e('Nội dung'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +123,7 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                                     <?php $comments->gravatar(40); ?>
                                     <?php endif; ?>
                                     <?php if ('comment' != $comments->type): ?>
-                                    <?php _e('引用'); ?>
+                                    <?php _e('Nội dung'); ?>
                                     <?php endif; ?>
                                 </div>
                             </td>
@@ -139,43 +139,43 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                                 </div>
                             </td>
                             <td valign="top" class="comment-body">
-                                <div class="comment-date"><?php $comments->dateWord(); ?> 于 <a href="<?php $comments->permalink(); ?>"><?php $comments->title(); ?></a></div>
+                                <div class="comment-date"><?php $comments->dateWord(); ?> tại <a href="<?php $comments->permalink(); ?>"><?php $comments->title(); ?></a></div>
                                 <div class="comment-content">
                                     <?php $comments->content(); ?>
                                 </div> 
                                 <div class="comment-action hidden-by-mouse">
                                     <?php if('approved' == $comments->status): ?>
-                                    <span class="weak"><?php _e('通过'); ?></span>
+                                    <span class="weak"><?php _e('Đã kiểm'); ?></span>
                                     <?php else: ?>
-                                    <a href="<?php $security->index('/action/comments-edit?do=approved&coid=' . $comments->coid); ?>" class="operate-approved"><?php _e('通过'); ?></a>
+                                    <a href="<?php $security->index('/action/comments-edit?do=approved&coid=' . $comments->coid); ?>" class="operate-approved"><?php _e('Đã kiểm'); ?></a>
                                     <?php endif; ?>
                                     
                                     <?php if('waiting' == $comments->status): ?>
-                                    <span class="weak"><?php _e('待审核'); ?></span>
+                                    <span class="weak"><?php _e('Chờ xem xét'); ?></span>
                                     <?php else: ?>
-                                    <a href="<?php $security->index('/action/comments-edit?do=waiting&coid=' . $comments->coid); ?>" class="operate-waiting"><?php _e('待审核'); ?></a>
+                                    <a href="<?php $security->index('/action/comments-edit?do=waiting&coid=' . $comments->coid); ?>" class="operate-waiting"><?php _e('Chờ xem xét'); ?></a>
                                     <?php endif; ?>
                                     
                                     <?php if('spam' == $comments->status): ?>
-                                    <span class="weak"><?php _e('垃圾'); ?></span>
+                                    <span class="weak"><?php _e('Spam'); ?></span>
                                     <?php else: ?>
-                                    <a href="<?php $security->index('/action/comments-edit?do=spam&coid=' . $comments->coid); ?>" class="operate-spam"><?php _e('垃圾'); ?></a>
+                                    <a href="<?php $security->index('/action/comments-edit?do=spam&coid=' . $comments->coid); ?>" class="operate-spam"><?php _e('Spam'); ?></a>
                                     <?php endif; ?>
                                     
-                                    <a href="#<?php $comments->theId(); ?>" rel="<?php $security->index('/action/comments-edit?do=edit&coid=' . $comments->coid); ?>" class="operate-edit"><?php _e('编辑'); ?></a>
+                                    <a href="#<?php $comments->theId(); ?>" rel="<?php $security->index('/action/comments-edit?do=edit&coid=' . $comments->coid); ?>" class="operate-edit"><?php _e('Chỉnh sửa'); ?></a>
 
                                     <?php if('approved' == $comments->status && 'comment' == $comments->type): ?>
-                                    <a href="#<?php $comments->theId(); ?>" rel="<?php $security->index('/action/comments-edit?do=reply&coid=' . $comments->coid); ?>" class="operate-reply"><?php _e('回复'); ?></a>
+                                    <a href="#<?php $comments->theId(); ?>" rel="<?php $security->index('/action/comments-edit?do=reply&coid=' . $comments->coid); ?>" class="operate-reply"><?php _e('Trả lời'); ?></a>
                                     <?php endif; ?>
                                     
-                                    <a lang="<?php _e('你确认要删除%s的评论吗?', htmlspecialchars($comments->author)); ?>" href="<?php $security->index('/action/comments-edit?do=delete&coid=' . $comments->coid); ?>" class="operate-delete"><?php _e('删除'); ?></a>
+                                    <a lang="<?php _e('Bạn có chắc chắn muốn xóa nhận xét của %s không?', htmlspecialchars($comments->author)); ?>" href="<?php $security->index('/action/comments-edit?do=delete&coid=' . $comments->coid); ?>" class="operate-delete"><?php _e('Xóa'); ?></a>
                                 </div>
                             </td>
                         </tr>
                         <?php endwhile; ?>
                         <?php else: ?>
                         <tr>
-                            <td colspan="4"><h6 class="typecho-list-table-title"><?php _e('没有评论') ?></h6></td>
+                            <td colspan="4"><h6 class="typecho-list-table-title"><?php _e('Miễn bình luận') ?></h6></td>
                         </tr>
                         <?php endif; ?>
                         </tbody>
@@ -190,17 +190,17 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == Typ
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php $security->index('/action/comments-edit?do=approved'); ?>"><?php _e('通过'); ?></a></li>
-                                <li><a href="<?php $security->index('/action/comments-edit?do=waiting'); ?>"><?php _e('待审核'); ?></a></li>
-                                <li><a href="<?php $security->index('/action/comments-edit?do=spam'); ?>"><?php _e('标记垃圾'); ?></a></li>
-                                <li><a lang="<?php _e('你确认要删除这些评论吗?'); ?>" href="<?php $security->index('/action/comments-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=approved'); ?>"><?php _e('Đã kiểm'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=waiting'); ?>"><?php _e('Chờ xem xét'); ?></a></li>
+                                <li><a href="<?php $security->index('/action/comments-edit?do=spam'); ?>"><?php _e('Đánh dấu thùng rác'); ?></a></li>
+                                <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa những bình luận này không?'); ?>" href="<?php $security->index('/action/comments-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
                             <?php if('spam' == $request->get('status')): ?>
-                                <button lang="<?php _e('你确认要删除所有垃圾评论吗?'); ?>" class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/comments-edit?do=delete-spam'); ?>"><?php _e('删除所有垃圾评论'); ?></button>
+                                <button lang="<?php _e('Bạn có chắc chắn muốn xóa tất cả các bình luận spam không?'); ?>" class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/comments-edit?do=delete-spam'); ?>"><?php _e('Xóa tất cả các bình luận spam'); ?></button>
                             <?php endif; ?>
                             </div>
                         </div>
@@ -266,8 +266,8 @@ $(document).ready(function () {
         } else {
             var form = $('<form method="post" action="'
                 + t.attr('rel') + '" class="comment-reply">'
-                + '<p><label for="text" class="sr-only"><?php _e('内容'); ?></label><textarea id="text" name="text" class="w-90 mono" rows="3"></textarea></p>'
-                + '<p><button type="submit" class="btn btn-s primary"><?php _e('回复'); ?></button> <button type="button" class="btn btn-s cancel"><?php _e('取消'); ?></button></p>'
+                + '<p><label for="text" class="sr-only"><?php _e('Nội dung'); ?></label><textarea id="text" name="text" class="w-90 mono" rows="3"></textarea></p>'
+                + '<p><button type="submit" class="btn btn-s primary"><?php _e('Trả lời'); ?></button> <button type="button" class="btn btn-s cancel"><?php _e('Hủy bỏ'); ?></button></p>'
                 + '</form>').insertBefore($('.comment-action', td));
 
             $('.cancel', form).click(function () {
@@ -301,17 +301,17 @@ $(document).ready(function () {
         var edit = $('<tr class="comment-edit"><td> </td>'
                         + '<td colspan="2" valign="top"><form method="post" action="'
                         + t.attr('rel') + '" class="comment-edit-info">'
-                        + '<p><label for="' + id + '-author"><?php _e('用户名'); ?></label><input class="text-s w-100" id="'
+                        + '<p><label for="' + id + '-author"><?php _e('Biệt hiệu'); ?></label><input class="text-s w-100" id="'
                         + id + '-author" name="author" type="text"></p>'
-                        + '<p><label for="' + id + '-mail"><?php _e('电子邮箱'); ?></label>'
+                        + '<p><label for="' + id + '-mail"><?php _e('Email'); ?></label>'
                         + '<input class="text-s w-100" type="email" name="mail" id="' + id + '-mail"></p>'
-                        + '<p><label for="' + id + '-url"><?php _e('个人主页'); ?></label>'
+                        + '<p><label for="' + id + '-url"><?php _e('Trang chủ'); ?></label>'
                         + '<input class="text-s w-100" type="text" name="url" id="' + id + '-url"></p></form></td>'
                         + '<td valign="top"><form method="post" action="'
-                        + t.attr('rel') + '" class="comment-edit-content"><p><label for="' + id + '-text"><?php _e('内容'); ?></label>'
+                        + t.attr('rel') + '" class="comment-edit-content"><p><label for="' + id + '-text"><?php _e('Nội dung'); ?></label>'
                         + '<textarea name="text" id="' + id + '-text" rows="6" class="w-90 mono"></textarea></p>'
-                        + '<p><button type="submit" class="btn btn-s primary"><?php _e('提交'); ?></button> '
-                        + '<button type="button" class="btn btn-s cancel"><?php _e('取消'); ?></button></p></form></td></tr>')
+                        + '<p><button type="submit" class="btn btn-s primary"><?php _e('Gửi đi'); ?></button> '
+                        + '<button type="button" class="btn btn-s cancel"><?php _e('Hủy bỏ'); ?></button></p></form></td></tr>')
                         .data('id', id).data('comment', comment).insertAfter(tr);
 
         $('input[name=author]', edit).val(comment.author);
@@ -343,7 +343,7 @@ $(document).ready(function () {
             var html = '<strong class="comment-author">'
                 + (comment.url ? '<a target="_blank" href="' + comment.url + '">'
                 + comment.author + '</a>' : comment.author) + '</strong>'
-                + ('comment' != comment.type ? '<small><?php _e('引用'); ?></small>' : '')
+                + ('comment' != comment.type ? '<small><?php _e('Nội dung'); ?></small>' : '')
                 + (comment.mail ? '<br /><span><a href="mailto:' + comment.mail + '">'
                 + comment.mail + '</a></span>' : '')
                 + (comment.ip ? '<br /><span>' + comment.ip + '</span>' : '');

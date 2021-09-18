@@ -16,21 +16,21 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a lang="<?php _e('你确认要删除这些文件吗?'); ?>" href="<?php $security->index('/action/contents-attachment-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa các tệp này không?'); ?>" href="<?php $security->index('/action/contents-attachment-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
-                            <button class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/contents-attachment-edit?do=clear'); ?>" lang="<?php _e('您确认要清理未归档的文件吗?'); ?>"><?php _e('清理未归档文件'); ?></button>
+                            <button class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/contents-attachment-edit?do=clear'); ?>" lang="<?php _e('Bạn có chắc chắn muốn xóa các tệp chưa được lưu trữ không?'); ?>"><?php _e('Dọn dẹp các tệp chưa được lưu trữ'); ?></button>
                             </div>
                         </div>
                         <div class="search" role="search">
                             <?php if ('' != $request->keywords): ?>
-                            <a href="<?php $options->adminUrl('manage-medias.php'); ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+                            <a href="<?php $options->adminUrl('manage-medias.php'); ?>"><?php _e('&laquo; Hủy bộ lọc'); ?></a>
                             <?php endif; ?>
-                            <input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>"<?php if ('' == $request->keywords): ?> onclick="value='';name='keywords';" <?php else: ?> name="keywords"<?php endif; ?>/>
-                            <button type="submit" class="btn btn-s"><?php _e('筛选'); ?></button>
+                            <input type="text" class="text-s" placeholder="<?php _e('Vui lòng nhập các từ khóa'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>"<?php if ('' == $request->keywords): ?> onclick="value='';name='keywords';" <?php else: ?> name="keywords"<?php endif; ?>/>
+                            <button type="submit" class="btn btn-s"><?php _e('Lọc'); ?></button>
                         </div>
                     </form>
                 </div><!-- end .typecho-list-operate -->
@@ -50,10 +50,10 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                             <tr>
                                 <th> </th>
                                 <th> </th>
-                                <th><?php _e('文件名'); ?></th>
-                                <th><?php _e('上传者'); ?></th>
-                                <th><?php _e('所属文章'); ?></th>
-                                <th><?php _e('发布日期'); ?></th>
+                                <th><?php _e('Tên tập tin'); ?></th>
+                                <th><?php _e('Được tải lên bởi'); ?></th>
+                                <th><?php _e('Văn bản liên kết'); ?></th>
+                                <th><?php _e('Ngày phát hành'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,14 +66,14 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                                 <td>
                                 <i class="mime-<?php echo $mime; ?>"></i>
                                 <a href="<?php $options->adminUrl('media.php?cid=' . $attachments->cid); ?>"><?php $attachments->title(); ?></a>
-                                <a href="<?php $attachments->permalink(); ?>" title="<?php _e('浏览 %s', $attachments->title); ?>"><i class="i-exlink"></i></a>
+                                <a href="<?php $attachments->permalink(); ?>" title="<?php _e('Duyệt qua %s', $attachments->title); ?>"><i class="i-exlink"></i></a>
                                 </td>
                                 <td><?php $attachments->author(); ?></td>
                                 <td>
                                 <?php if ($attachments->parentPost->cid): ?>
                                 <a href="<?php $options->adminUrl('write-' . (0 === strpos($attachments->parentPost->type, 'post') ? 'post' : 'page') . '.php?cid=' . $attachments->parentPost->cid); ?>"><?php $attachments->parentPost->title(); ?></a>
                                 <?php else: ?>
-                                <span class="description"><?php _e('未归档'); ?></span>
+                                <span class="description"><?php _e('Không được lưu trữ'); ?></span>
                                 <?php endif; ?>
                                 </td>
                                 <td><?php $attachments->dateWord(); ?></td>
@@ -81,7 +81,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                             <?php endwhile; ?>
                             <?php else: ?>
                             <tr>
-                            	<td colspan="6"><h6 class="typecho-list-table-title"><?php _e('没有任何文件'); ?></h6></td>
+                            	<td colspan="6"><h6 class="typecho-list-table-title"><?php _e('Không có tệp'); ?></h6></td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
@@ -92,14 +92,14 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                                <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                                <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                                 <ul class="dropdown-menu">
-                                    <li><a lang="<?php _e('你确认要删除这些文件吗?'); ?>" href="<?php $security->index('/action/contents-attachment-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                    <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa các tệp này không?'); ?>" href="<?php $security->index('/action/contents-attachment-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                                 </ul>
                             </div>
-                            <button class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/contents-attachment-edit?do=clear'); ?>" lang="<?php _e('您确认要清理未归档的文件吗?'); ?>"><?php _e('清理未归档文件'); ?></button>
+                            <button class="btn btn-s btn-warn btn-operate" href="<?php $security->index('/action/contents-attachment-edit?do=clear'); ?>" lang="<?php _e('Bạn có chắc chắn muốn xóa các tệp chưa được lưu trữ không?'); ?>"><?php _e('Dọn dẹp các tệp chưa được lưu trữ'); ?></button>
                         </div>
                         <?php if($attachments->have()): ?>
                         <ul class="typecho-pager">

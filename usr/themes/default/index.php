@@ -1,6 +1,6 @@
 <?php
 /**
- * 这是 Typecho 0.9 系统的一套默认皮肤
+ * Giao diện mặc định Typecho 0.9
  * 
  * @package Typecho Replica Theme 
  * @author Typecho Team
@@ -17,18 +17,18 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 			<h2 class="post-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h2>
 			<ul class="post-meta">
-				<li itemprop="author" itemscope itemtype="http://schema.org/Person"><?php _e('作者: '); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></li>
-				<li><?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
-				<li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
-				<li itemprop="interactionCount"><a itemprop="discussionUrl" href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?></a></li>
+				<li itemprop="author" itemscope itemtype="http://schema.org/Person"><?php _e('Tác giả: '); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></li>
+				<li><?php _e('Thời gian: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
+				<li><?php _e('Danh mục: '); ?><?php $this->category(','); ?></li>
+				<li itemprop="interactionCount"><a itemprop="discussionUrl" href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('Bình luận', '1 bình luận', '%d bình luận'); ?></a></li>
 			</ul>
             <div class="post-content" itemprop="articleBody">
-    			<?php $this->content('- 阅读剩余部分 -'); ?>
+    			<?php $this->content('- Đọc phần còn lại -'); ?>
             </div>
         </article>
 	<?php endwhile; ?>
 
-    <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+    <?php $this->pageNav('&laquo; Trang trước', 'Trang tiếp &raquo;'); ?>
 </div><!-- end #main-->
 
 <?php $this->need('sidebar.php'); ?>

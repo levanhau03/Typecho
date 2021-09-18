@@ -46,7 +46,7 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         /** 必须为贡献者以上权限 */
         $this->user->pass('contributor');
 
-        /** 获取文章内容 */
+        /** 获取Nội dung bài viết */
         if ((isset($this->request->cid) && 'delete' != $this->request->do
          && 'insert' != $this->request->do) || 'update' == $this->request->do) {
             $this->db->fetchRow($this->select()
@@ -121,7 +121,7 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         $form->addInput($name);
 
         /** 文件缩略名 */
-        $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, $this->slug, _t('缩略名'),
+        $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, $this->slug, _t('Tên viết tắt'),
         _t('文件缩略名用于创建友好的链接形式,建议使用字母,数字,下划线和横杠.'));
         $form->addInput($slug);
 

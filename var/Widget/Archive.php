@@ -1393,7 +1393,7 @@ class Widget_Archive extends Widget_Abstract_Contents
     }
 
     /**
-     * 输出文章内容
+     * 输出Nội dung bài viết
      *
      * @access public
      * @param string $more 文章截取后缀

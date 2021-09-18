@@ -17,23 +17,23 @@ $backupFiles = Typecho_Widget::widget('Widget_Backup')->listFiles();
             <div class="col-mb-12 col-tb-8">
                 <div id="typecho-welcome">
                     <form action="<?php echo $actionUrl; ?>" method="post">
-                    <h3><?php _e('备份您的数据'); ?></h3>
+                    <h3><?php _e('Sao lưu dữ liệu của bạn'); ?></h3>
                     <ul>
-                        <li><?php _e('此备份操作仅包含<strong>内容数据</strong>, 并不会涉及任何<strong>设置信息</strong>'); ?></li>
-                        <li><?php _e('如果您的数据量过大, 为了避免操作超时, 建议您直接使用数据库提供的备份工具备份数据'); ?></li>
-                        <li><strong class="warning"><?php _e('为了缩小备份文件体积, 建议您在备份前删除不必要的数据'); ?></strong></li>
+                        <li><?php _e('Thao tác sao lưu này chỉ chứa <strong>dữ liệu nội dung</strong>, không liên quan đến bất kỳ <strong>thông tin cài đặt</strong>'); ?></li>
+                        <li><?php _e('Nếu dung lượng dữ liệu của bạn quá lớn, để tránh tình trạng hết thời gian thao tác, bạn nên sử dụng trực tiếp công cụ sao lưu do cơ sở dữ liệu cung cấp để sao lưu dữ liệu'); ?></li>
+                        <li><strong class="warning"><?php _e('Để giảm dung lượng của tệp sao lưu, bạn nên xóa dữ liệu không cần thiết trước khi sao lưu.'); ?></strong></li>
                     </ul>
-                    <p><button class="btn primary" type="submit"><?php _e('开始备份 &raquo;'); ?></button></p>
+                    <p><button class="btn primary" type="submit"><?php _e('Bắt đầu sao lưu &raquo;'); ?></button></p>
                         <input tabindex="1" type="hidden" name="do" value="export">
                     </form>
                 </div>
             </div>
 
             <div id="backup-secondary" class="col-mb-12 col-tb-4" role="form">
-                <h3><?php _e('恢复数据'); ?></h3>
+                <h3><?php _e('Phục hồi dữ liệu'); ?></h3>
                 <ul class="typecho-option-tabs clearfix">
-                    <li class="active w-50"><a href="#from-upload">上传</a></li>
-                    <li class="w-50"><a href="#from-server">从服务器</a></li>
+                    <li class="active w-50"><a href="#from-upload">Tải lên</a></li>
+                    <li class="w-50"><a href="#from-server">Máy chủ nô lệ</a></li>
                 </ul>
 
                 <form action="<?php echo $actionUrl; ?>" id="from-upload" class="tab-content" method="post" enctype="multipart/form-data">
@@ -44,7 +44,7 @@ $backupFiles = Typecho_Widget::widget('Widget_Backup')->listFiles();
                     </ul>
                     <ul class="typecho-option typecho-option-submit">
                         <li>
-                            <button tabindex="3" type="submit" class="btn primary"><?php _e('上传并恢复 &raquo;'); ?></button>
+                            <button tabindex="3" type="submit" class="btn primary"><?php _e('Tải lên và khôi phục &raquo;'); ?></button>
                             <input type="hidden" name="do" value="import">
                         </li>
                     </ul>
@@ -54,9 +54,9 @@ $backupFiles = Typecho_Widget::widget('Widget_Backup')->listFiles();
                     <ul class="typecho-option">
                         <li>
                             <?php if (empty($backupFiles)): ?>
-                                <p class="description"><?php _e('将备份文件手动上传至服务器的 %s 目录下后, 这里会出现文件选项', __TYPECHO_BACKUP_DIR__); ?></p>
+                                <p class="description"><?php _e('Sau khi tải lên thủ công tệp sao lưu vào thư mục %s của máy chủ, một tùy chọn tệp sẽ xuất hiện ở đây', __TYPECHO_BACKUP_DIR__); ?></p>
                             <?php else: ?>
-                                <label class="typecho-label" for="backup-select-file"><?php _e('选择一个备份文件恢复数据'); ?></label>
+                                <label class="typecho-label" for="backup-select-file"><?php _e('Chọn một tệp sao lưu để khôi phục dữ liệu'); ?></label>
                                 <select name="file" id="backup-select-file">
                                     <?php foreach ($backupFiles as $file): ?>
                                         <option value="<?php echo $file; ?>"><?php echo $file; ?></option>
@@ -67,7 +67,7 @@ $backupFiles = Typecho_Widget::widget('Widget_Backup')->listFiles();
                     </ul>
                     <ul class="typecho-option typecho-option-submit">
                         <li>
-                            <button tabindex="5" type="submit" class="btn primary"><?php _e('选择并恢复 &raquo;'); ?></button>
+                            <button tabindex="5" type="submit" class="btn primary"><?php _e('Chọn và khôi phục &raquo;'); ?></button>
                             <input type="hidden" name="do" value="import">
                         </li>
                     </ul>
@@ -94,7 +94,7 @@ include 'common-js.php';
     });
 
     $('#backup-secondary form').submit(function (e) {
-        if (!confirm('<?php _e('恢复操作将清除所有现有数据, 是否继续?'); ?>')) {
+        if (!confirm('<?php _e('Thao tác khôi phục sẽ xóa tất cả dữ liệu hiện có, bạn có muốn tiếp tục không?'); ?>')) {
             return false;
         }
     });

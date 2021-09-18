@@ -18,8 +18,8 @@ include 'header.php';
         <h1><a href="http://typecho.org" class="i-logo">Typecho</a></h1>
         <form action="<?php $options->registerAction(); ?>" method="post" name="register" role="form">
             <p>
-                <label for="name" class="sr-only"><?php _e('用户名'); ?></label>
-                <input type="text" id="name" name="name" placeholder="<?php _e('用户名'); ?>" value="<?php echo $rememberName; ?>" class="text-l w-100" autofocus />
+                <label for="name" class="sr-only"><?php _e('Tên tài khoản'); ?></label>
+                <input type="text" id="name" name="name" placeholder="<?php _e('Tên tài khoản'); ?>" value="<?php echo $rememberName; ?>" class="text-l w-100" autofocus />
             </p>
             <p>
                 <label for="mail" class="sr-only"><?php _e('Email'); ?></label>

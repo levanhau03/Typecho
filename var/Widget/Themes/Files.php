@@ -77,7 +77,7 @@ class Widget_Themes_Files extends Typecho_Widget
             }
         }
 
-        throw new Typecho_Widget_Exception('风格文件不存在', 404);
+        throw new Typecho_Widget_Exception('Tệp kiểu không tồn tại', 404);
     }
 
     /**
@@ -88,7 +88,7 @@ class Widget_Themes_Files extends Typecho_Widget
      */
     public function getMenuTitle()
     {
-        return _t('编辑文件 %s', $this->_currentFile);
+        return _t('Chỉnh sửa tệp %s', $this->_currentFile);
     }
 
     /**

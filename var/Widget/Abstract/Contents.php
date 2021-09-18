@@ -96,7 +96,7 @@ class Widget_Abstract_Contents extends Widget_Abstract
     }
 
     /**
-     * 获取文章内容摘要
+     * 获取Nội dung bài viết摘要
      *
      * @access protected
      * @return string
@@ -120,7 +120,7 @@ class Widget_Abstract_Contents extends Widget_Abstract
     }
 
     /**
-     * 获取文章内容
+     * 获取Nội dung bài viết
      *
      * @access protected
      * @return string
@@ -632,7 +632,7 @@ class Widget_Abstract_Contents extends Widget_Abstract
      */
     public function filter(array $value)
     {
-        /** 取出所有分类 */
+        /** 取出Tất cả danh mục */
         $value['categories'] = $this->db->fetchAll($this->db
             ->select()->from('table.metas')
             ->join('table.relationships', 'table.relationships.mid = table.metas.mid')
@@ -774,7 +774,7 @@ class Widget_Abstract_Contents extends Widget_Abstract
     }
 
     /**
-     * 输出文章内容
+     * 输出Nội dung bài viết
      *
      * @access public
      * @param mixed $more 文章截取后缀

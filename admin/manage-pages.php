@@ -13,21 +13,21 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                 <div class="typecho-list-operate clearfix">
                     <form method="get">
                         <div class="operate">
-                            <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
+                            <label><i class="sr-only"><?php _e('Chọn tất cả'); ?></i><input type="checkbox" class="typecho-table-select-all" /></label>
                             <div class="btn-group btn-drop">
-                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i></button>
+                            <button class="btn dropdown-toggle btn-s" type="button"><i class="sr-only"><?php _e('Hoạt động'); ?></i><?php _e('Chọn mục'); ?> <i class="i-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a lang="<?php _e('你确认要删除这些页面吗?'); ?>" href="<?php $security->index('/action/contents-page-edit?do=delete'); ?>"><?php _e('删除'); ?></a></li>
+                                <li><a lang="<?php _e('Bạn có chắc chắn muốn xóa các trang này không?'); ?>" href="<?php $security->index('/action/contents-page-edit?do=delete'); ?>"><?php _e('Xóa'); ?></a></li>
                             </ul>
                             </div>
                         </div>
 
                         <div class="search" role="search">
                             <?php if ('' != $request->keywords): ?>
-                            <a href="<?php $options->adminUrl('manage-pages.php'); ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+                            <a href="<?php $options->adminUrl('manage-pages.php'); ?>"><?php _e('&laquo; Hủy bộ lọc'); ?></a>
                             <?php endif; ?>
-                            <input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>" name="keywords" />
-                            <button type="submit" class="btn btn-s"><?php _e('筛选'); ?></button>
+                            <input type="text" class="text-s" placeholder="<?php _e('Vui lòng nhập các từ khóa'); ?>" value="<?php echo htmlspecialchars($request->keywords); ?>" name="keywords" />
+                            <button type="submit" class="btn btn-s"><?php _e('Lọc'); ?></button>
                         </div>
                     </form>
                 </div><!-- end .typecho-list-operate -->
@@ -47,10 +47,10 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                             <tr class="nodrag">
                                 <th> </th>
                                 <th> </th>
-                                <th><?php _e('标题'); ?></th>
-                                <th><?php _e('缩略名'); ?></th>
-                                <th><?php _e('作者'); ?></th>
-                                <th><?php _e('日期'); ?></th>
+                                <th><?php _e('Tiêu đề'); ?></th>
+                                <th><?php _e('Tên viết tắt'); ?></th>
+                                <th><?php _e('Tác giả'); ?></th>
+                                <th><?php _e('Ngày'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,19 +59,19 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                             <?php while($pages->next()): ?>
                             <tr id="<?php $pages->theId(); ?>">
                                 <td><input type="checkbox" value="<?php $pages->cid(); ?>" name="cid[]"/></td>
-                                <td><a href="<?php $options->adminUrl('manage-comments.php?cid=' . $pages->cid); ?>" class="balloon-button size-<?php echo Typecho_Common::splitByCount($pages->commentsNum, 1, 10, 20, 50, 100); ?>" title="<?php $pages->commentsNum(); ?> <?php _e('评论'); ?>"><?php $pages->commentsNum(); ?></a></td>
+                                <td><a href="<?php $options->adminUrl('manage-comments.php?cid=' . $pages->cid); ?>" class="balloon-button size-<?php echo Typecho_Common::splitByCount($pages->commentsNum, 1, 10, 20, 50, 100); ?>" title="<?php $pages->commentsNum(); ?> <?php _e('Bình luận'); ?>"><?php $pages->commentsNum(); ?></a></td>
                                 <td>
                                 <a href="<?php $options->adminUrl('write-page.php?cid=' . $pages->cid); ?>"><?php $pages->title(); ?></a>
                                 <?php 
                                 if ($pages->hasSaved || 'page_draft' == $pages->type) {
-                                    echo '<em class="status">' . _t('草稿') . '</em>';
+                                    echo '<em class="status">' . _t('Bản thảo') . '</em>';
                                 } else if ('hidden' == $pages->status) {
-                                    echo '<em class="status">' . _t('隐藏') . '</em>';
+                                    echo '<em class="status">' . _t('Ẩn') . '</em>';
                                 }
                                 ?>
-                                <a href="<?php $options->adminUrl('write-page.php?cid=' . $pages->cid); ?>" title="<?php _e('编辑 %s', htmlspecialchars($pages->title)); ?>"><i class="i-edit"></i></a>
+                                <a href="<?php $options->adminUrl('write-page.php?cid=' . $pages->cid); ?>" title="<?php _e('Chỉnh sửa %s', htmlspecialchars($pages->title)); ?>"><i class="i-edit"></i></a>
                                 <?php if ('page_draft' != $pages->type): ?>
-                                <a href="<?php $pages->permalink(); ?>" title="<?php _e('浏览 %s', htmlspecialchars($pages->title)); ?>"><i class="i-exlink"></i></a>
+                                <a href="<?php $pages->permalink(); ?>" title="<?php _e('Duyệt qua %s', htmlspecialchars($pages->title)); ?>"><i class="i-exlink"></i></a>
                                 <?php endif; ?>
                                 </td>
                                 <td><?php $pages->slug(); ?></td>
@@ -80,7 +80,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                                 <?php if ($pages->hasSaved): ?>
                                 <span class="description">
                                 <?php $modifyDate = new Typecho_Date($pages->modified); ?>
-                                <?php _e('保存于 %s', $modifyDate->word()); ?>
+                                <?php _e('Đã lưu trong %s', $modifyDate->word()); ?>
                                 </span>
                                 <?php else: ?>
                                 <?php $pages->dateWord(); ?>
@@ -90,7 +90,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                             <?php endwhile; ?>
                             <?php else: ?>
                             <tr>
-                            	<td colspan="6"><h6 class="typecho-list-table-title"><?php _e('没有任何页面'); ?></h6></td>
+                            	<td colspan="6"><h6 class="typecho-list-table-title"><?php _e('Không có trang'); ?></h6></td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
