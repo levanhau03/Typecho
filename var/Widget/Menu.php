@@ -101,12 +101,12 @@ class Widget_Menu extends Typecho_Widget
      */
     public function execute()
     {
-        $parentNodes = array(NULL, _t('控制台'), _t('撰写'), _t('管理'), _t('设置'));
+        $parentNodes = array(NULL, _t('Bảng điều khiển'), _t('Đăng'), _t('Quản lý'), _t('Thiết lập'));
 
         $childNodes =  array(
         array(
-            array(_t('登录'), _t('登录到%s', $this->options->title), 'login.php', 'visitor'),
-            array(_t('注册'), _t('注册到%s', $this->options->title), 'register.php', 'visitor')
+            array(_t('Đăng nhập'), _t('Đăng nhập %s', $this->options->title), 'login.php', 'visitor'),
+            array(_t('Đăng ký'), _t('Đăng ký %s', $this->options->title), 'register.php', 'visitor')
         ),
         array(
             array(_t('Tổng quát'), _t('Tóm tắt trang web'), 'index.php', 'subscriber'),
