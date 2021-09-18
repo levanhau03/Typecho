@@ -95,13 +95,13 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         Typecho_Widget_Helper_Form::POST_METHOD);
 
         /** 用户名称 */
-        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, NULL, _t('用户名 *'), _t('此用户名将作为用户登录时所用的名称.')
-            . '<br />' . _t('请不要与系统中现有的用户名重复.'));
+        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, NULL, _t('Tên tài khoản *'), _t('Tên người dùng này sẽ là tên được sử dụng khi người dùng đăng nhập.')
+            . '<br />' . _t('Vui lòng không trùng lặp tên người dùng hiện có trong hệ thống.'));
         $form->addInput($name);
 
         /** 电子邮箱地址 */
-        $mail = new Typecho_Widget_Helper_Form_Element_Text('mail', NULL, NULL, _t('电子邮箱地址 *'), _t('电子邮箱地址将作为此用户的主要联系方式.')
-            . '<br />' . _t('请不要与系统中现有的电子邮箱地址重复.'));
+        $mail = new Typecho_Widget_Helper_Form_Element_Text('mail', NULL, NULL, _t('Địa chỉ email *'), _t('Địa chỉ email sẽ là phương thức liên hệ chính của người dùng này.')
+            . '<br />' . _t('Vui lòng không trùng lặp địa chỉ email hiện có trong hệ thống.'));
         $form->addInput($mail);
 
         /** 用户昵称 */
