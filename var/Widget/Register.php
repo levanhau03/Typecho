@@ -28,22 +28,22 @@ class Widget_Register extends Widget_Abstract_Users implements Widget_Interface_
 
         /** 初始化验证类 */
         $validator = new Typecho_Validate();
-        $validator->addRule('name', 'required', _t('必须填写用户名称'));
-        $validator->addRule('name', 'minLength', _t('用户名至少包含2个字符'), 2);
-        $validator->addRule('name', 'maxLength', _t('用户名最多包含32个字符'), 32);
-        $validator->addRule('name', 'xssCheck', _t('请不要在用户名中使用特殊字符'));
-        $validator->addRule('name', array($this, 'nameExists'), _t('用户名已经存在'));
-        $validator->addRule('mail', 'required', _t('必须填写电子邮箱'));
-        $validator->addRule('mail', array($this, 'mailExists'), _t('电子邮箱地址已经存在'));
-        $validator->addRule('mail', 'email', _t('电子邮箱格式错误'));
-        $validator->addRule('mail', 'maxLength', _t('电子邮箱最多包含200个字符'), 200);
+        $validator->addRule('name', 'required', _t('Tên người dùng phải được điền vào'));
+        $validator->addRule('name', 'minLength', _t('Tên người dùng có ít nhất 2 ký tự'), 2);
+        $validator->addRule('name', 'maxLength', _t('Tên người dùng có thể chứa tối đa 32 ký tự'), 32);
+        $validator->addRule('name', 'xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên người dùng'));
+        $validator->addRule('name', array($this, 'nameExists'), _t('Tên đăng kí đã được sử dụng'));
+        $validator->addRule('mail', 'required', _t('Email phải được điền vào'));
+        $validator->addRule('mail', array($this, 'mailExists'), _t('Địa chỉ email đã tồn tại'));
+        $validator->addRule('mail', 'email', _t('Lỗi định dạng email'));
+        $validator->addRule('mail', 'maxLength', _t('Địa chỉ email có thể chứa tối đa 200 ký tự'), 200);
 
         /** 如果请求中有password */
         if (array_key_exists('password', $_REQUEST)) {
-            $validator->addRule('password', 'required', _t('必须填写密码'));
-            $validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
-            $validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
-            $validator->addRule('confirm', 'confirm', _t('两次输入的密码不一致'), 'password');
+            $validator->addRule('password', 'required', _t('Mật khẩu phải được điền vào'));
+            $validator->addRule('password', 'minLength', _t('Để đảm bảo bảo mật tài khoản, vui lòng nhập mật khẩu có ít nhất sáu chữ số'), 6);
+            $validator->addRule('password', 'maxLength', _t('Để dễ nhớ hơn, độ dài mật khẩu không được vượt quá mười tám chữ số'), 18);
+            $validator->addRule('confirm', 'confirm', _t('Hai mật khẩu đã nhập không nhất quán'), 'password');
         }
 
         /** 截获验证异常 */
@@ -82,7 +82,7 @@ class Widget_Register extends Widget_Abstract_Users implements Widget_Interface_
         Typecho_Cookie::delete('__typecho_remember_name');
         Typecho_Cookie::delete('__typecho_remember_mail');
 
-        $this->widget('Widget_Notice')->set(_t('用户 <strong>%s</strong> 已经成功注册, 密码为 <strong>%s</strong>', $this->screenName, $generatedPassword), 'success');
+        $this->widget('Widget_Notice')->set(_t('Người dùng <strong>%s</strong> đã đăng ký thành công và mật khẩu là <strong>%s</strong>', $this->screenName, $generatedPassword), 'success');
         $this->response->redirect($this->options->adminUrl);
     }
 }

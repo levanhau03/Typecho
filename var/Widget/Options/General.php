@@ -73,36 +73,36 @@ class Widget_Options_General extends Widget_Abstract_Options implements Widget_I
         Typecho_Widget_Helper_Form::POST_METHOD);
 
         /** 站点名称 */
-        $title = new Typecho_Widget_Helper_Form_Element_Text('title', NULL, $this->options->title, _t('站点名称'), _t('站点的名称将显示在网页的标题处.'));
+        $title = new Typecho_Widget_Helper_Form_Element_Text('title', NULL, $this->options->title, _t('Tên trang web'), _t('Tên của trang web sẽ được hiển thị trong tiêu đề của trang web.'));
         $title->input->setAttribute('class', 'w-100');
-        $form->addInput($title->addRule('required', _t('请填写站点名称'))
-            ->addRule('xssCheck', _t('请不要在站点名称中使用特殊字符')));
+        $form->addInput($title->addRule('required', _t('Vui lòng điền vào tên trang web'))
+            ->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên trang web')));
 
         /** 站点地址 */
         if (!defined('__TYPECHO_SITE_URL__')) {
-            $siteUrl = new Typecho_Widget_Helper_Form_Element_Text('siteUrl', NULL, $this->options->originalSiteUrl, _t('站点地址'), _t('站点地址主要用于生成内容的永久链接.') . ($this->options->originalSiteUrl == $this->options->rootUrl ? 
-                    '' : '</p><p class="message notice mono">' . _t('当前地址 <strong>%s</strong> 与上述设定值不一致',
+            $siteUrl = new Typecho_Widget_Helper_Form_Element_Text('siteUrl', NULL, $this->options->originalSiteUrl, _t('Địa chỉ trang web'), _t('Địa chỉ trang web chủ yếu được sử dụng để tạo liên kết vĩnh viễn đến nội dung.') . ($this->options->originalSiteUrl == $this->options->rootUrl ? 
+                    '' : '</p><p class="message notice mono">' . _t('Địa chỉ hiện tại <strong>%s</strong> không phù hợp với cài đặt ở trên',
                     $this->options->rootUrl)));
             $siteUrl->input->setAttribute('class', 'w-100 mono');
-            $form->addInput($siteUrl->addRule('required', _t('请填写站点地址'))
-                ->addRule('url', _t('请填写一个合法的URL地址')));
+            $form->addInput($siteUrl->addRule('required', _t('Vui lòng điền vào địa chỉ trang web'))
+                ->addRule('url', _t('Vui lòng điền vào một địa chỉ URL hợp pháp')));
         }
 
         /** 站点描述 */
-        $description = new Typecho_Widget_Helper_Form_Element_Text('description', NULL, $this->options->description, _t('站点描述'), _t('站点描述将显示在网页代码的头部.'));
-        $form->addInput($description->addRule('xssCheck', _t('请不要在站点描述中使用特殊字符')));
+        $description = new Typecho_Widget_Helper_Form_Element_Text('description', NULL, $this->options->description, _t('Mô tả trang web'), _t('Mô tả trang web sẽ được hiển thị ở phần đầu của mã trang web.'));
+        $form->addInput($description->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong mô tả trang web')));
 
         /** 关键词 */
-        $keywords = new Typecho_Widget_Helper_Form_Element_Text('keywords', NULL, $this->options->keywords, _t('关键词'), _t('请以半角逗号 "," 分割多个关键字.'));
-        $form->addInput($keywords->addRule('xssCheck', _t('请不要在关键词中使用特殊字符')));
+        $keywords = new Typecho_Widget_Helper_Form_Element_Text('keywords', NULL, $this->options->keywords, _t('Từ khóa'), _t('Vui lòng phân tách nhiều từ khóa bằng dấu phẩy.'));
+        $form->addInput($keywords->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong từ khóa')));
 
         /** 注册 */
-        $allowRegister = new Typecho_Widget_Helper_Form_Element_Radio('allowRegister', array('0' => _t('不允许'), '1' => _t('允许')), $this->options->allowRegister, _t('是否允许注册'),
-        _t('允许访问者注册到你的网站, 默认的注册用户不享有任何写入权限.'));
+        $allowRegister = new Typecho_Widget_Helper_Form_Element_Radio('allowRegister', array('0' => _t('Không cho phép'), '1' => _t('Cho phép')), $this->options->allowRegister, _t('Có cho phép đăng ký hay không'),
+        _t('Cho phép khách truy cập đăng ký vào trang web của bạn, người dùng đã đăng ký mặc định không có bất kỳ quyền ghi nào.'));
         $form->addInput($allowRegister);
  
         /** XMLRPC */
-        $allowXmlRpc = new Typecho_Widget_Helper_Form_Element_Radio('allowXmlRpc', array('0' => _t('关闭'), '1' => _t('仅关闭 Pingback 接口'), '2' => _t('打开')), $this->options->allowXmlRpc, _t('XMLRPC 接口'));
+        $allowXmlRpc = new Typecho_Widget_Helper_Form_Element_Radio('allowXmlRpc', array('0' => _t('Đóng'), '1' => _t('Chỉ đóng giao diện Pingback'), '2' => _t('Mở')), $this->options->allowXmlRpc, _t('Giao diện XMLRPC'));
         $form->addInput($allowXmlRpc);
 
         /** 语言项 */
@@ -112,8 +112,8 @@ class Widget_Options_General extends Widget_Abstract_Options implements Widget_I
         $langs = self::getLangs();
 
         if (count($langs) > 1) {
-            $lang = new Typecho_Widget_Helper_Form_Element_Select('lang', $langs, $this->options->lang, _t('语言'));
-            $form->addInput($lang->addRule(array($this, 'checkLang'), _t('所选择的语言包不存在')));
+            $lang = new Typecho_Widget_Helper_Form_Element_Select('lang', $langs, $this->options->lang, _t('Ngôn ngữ'));
+            $form->addInput($lang->addRule(array($this, 'checkLang'), _t('Gói ngôn ngữ đã chọn không tồn tại')));
         }
 
         /** 时区 */
@@ -145,7 +145,7 @@ class Widget_Options_General extends Widget_Abstract_Options implements Widget_I
             "-43200"    => _t('艾尼威托克岛 (GMT -12)')
         );
 
-        $timezone = new Typecho_Widget_Helper_Form_Element_Select('timezone', $timezoneList, $this->options->timezone, _t('时区'));
+        $timezone = new Typecho_Widget_Helper_Form_Element_Select('timezone', $timezoneList, $this->options->timezone, _t('Múi giờ'));
         $form->addInput($timezone);
 
         /** 扩展名 */
@@ -173,18 +173,18 @@ class Widget_Options_General extends Widget_Abstract_Options implements Widget_I
         }
         
         $attachmentTypesOptions = array(
-            '@image@'    =>  _t('图片文件') . ' <code>(gif jpg jpeg png tiff bmp)</code>',
-            '@media@'    =>  _t('多媒体文件') . ' <code>(mp3 wmv wma rmvb rm avi flv)</code>',
-            '@doc@'      =>  _t('常用档案文件') . ' <code>(txt doc docx xls xlsx ppt pptx zip rar pdf)</code>',
-            '@other@'    =>  _t('其他格式 %s', ' <input type="text" class="w-50 text-s mono" name="attachmentTypesOther" value="' . htmlspecialchars($attachmentTypesOtherValue) . '" />'),
+            '@image@'    =>  _t('Tệp hình ảnh') . ' <code>(gif jpg jpeg png tiff bmp)</code>',
+            '@media@'    =>  _t('Tệp đa phương tiện') . ' <code>(mp3 wmv wma rmvb rm avi flv)</code>',
+            '@doc@'      =>  _t('Các tệp lưu trữ phổ biến') . ' <code>(txt doc docx xls xlsx ppt pptx zip rar pdf)</code>',
+            '@other@'    =>  _t('Định dạng khác %s', ' <input type="text" class="w-50 text-s mono" name="attachmentTypesOther" value="' . htmlspecialchars($attachmentTypesOtherValue) . '" />'),
         );
         
         $attachmentTypes = new Typecho_Widget_Helper_Form_Element_Checkbox('attachmentTypes', $attachmentTypesOptions,
-        $attachmentTypesOptionsValue, _t('允许上传的文件类型'), _t('用逗号 "," 将后缀名隔开, 例如: %s', '<code>cpp, h, mak</code>'));
+        $attachmentTypesOptionsValue, _t('Các loại tệp được phép tải lên'), _t('Phân tách các tên hậu tố bằng dấu phẩy, ví dụ: %s', '<code>cpp, h, mak</code>'));
         $form->addInput($attachmentTypes->multiMode());
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
@@ -250,7 +250,7 @@ class Widget_Options_General extends Widget_Abstract_Options implements Widget_I
             $this->update(array('value' => $value), $this->db->sql()->where('name = ?', $name));
         }
 
-        $this->widget('Widget_Notice')->set(_t("设置已经保存"), 'success');
+        $this->widget('Widget_Notice')->set(_t("Các cài đặt đã được lưu"), 'success');
         $this->response->goBack();
     }
 

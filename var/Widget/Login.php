@@ -39,8 +39,8 @@ class Widget_Login extends Widget_Abstract_Users implements Widget_Interface_Do
 
         /** 初始化验证类 */
         $validator = new Typecho_Validate();
-        $validator->addRule('name', 'required', _t('请输入用户名'));
-        $validator->addRule('password', 'required', _t('请输入密码'));
+        $validator->addRule('name', 'required', _t('Vui lòng nhập tên người dùng'));
+        $validator->addRule('password', 'required', _t('Xin vui lòng nhập mật khẩu'));
 
         /** 截获验证异常 */
         if ($error = $validator->run($this->request->from('name', 'password'))) {
@@ -64,7 +64,7 @@ class Widget_Login extends Widget_Abstract_Users implements Widget_Interface_Do
             $this->request->password, 1 == $this->request->remember);
 
             Typecho_Cookie::set('__typecho_remember_name', $this->request->name);
-            $this->widget('Widget_Notice')->set(_t('用户名或密码无效'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Sai username hoặc password'), 'error');
             $this->response->goBack('?referer=' . urlencode($this->request->referer));
         }
 

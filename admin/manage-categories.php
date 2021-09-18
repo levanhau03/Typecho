@@ -85,7 +85,7 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
                                 <?php endwhile; ?>
                                 <?php else: ?>
                                 <tr>
-                                    <td colspan="6"><h6 class="typecho-list-table-title"><?php _e('Không có phân loại'); ?></h6></td>
+                                    <td colspan="6"><h6 class="typecho-list-table-title"><?php _e('Không có danh mục'); ?></h6></td>
                                 </tr>
                                 <?php endif; ?>
                             </tbody>

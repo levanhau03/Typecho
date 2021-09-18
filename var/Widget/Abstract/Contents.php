@@ -726,7 +726,7 @@ class Widget_Abstract_Contents extends Widget_Abstract
 
             /** 抛出错误 */
             if ($this->request->isPost() && isset($this->request->protectPassword)) {
-                throw new Typecho_Widget_Exception(_t('对不起,您输入的密码错误'), 403);
+                throw new Typecho_Widget_Exception(_t('Xin lỗi, mật khẩu bạn đã nhập sai'), 403);
             }
         }
 
@@ -736,12 +736,12 @@ class Widget_Abstract_Contents extends Widget_Abstract
         if ($value['hidden']) {
             $value['text'] = '<form class="protected" action="' . $this->security->getTokenUrl($value['permalink'])
                 . '" method="post">' .
-            '<p class="word">' . _t('请输入密码访问') . '</p>' .
+            '<p class="word">' . _t('Vui lòng nhập mật khẩu để truy cập') . '</p>' .
             '<p><input type="password" class="text" name="protectPassword" />
-            <input type="submit" class="submit" value="' . _t('提交') . '" /></p>' .
+            <input type="submit" class="submit" value="' . _t('Gửi đi') . '" /></p>' .
             '</form>';
 
-            $value['title'] = _t('此内容被密码保护');
+            $value['title'] = _t('Nội dung này được bảo vệ bằng mật khẩu');
             $value['tags'] = array();
             $value['commentsNum'] = 0;
         }

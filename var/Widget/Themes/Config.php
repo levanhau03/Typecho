@@ -31,7 +31,7 @@ class Widget_Themes_Config extends Widget_Abstract_Options
         $this->user->pass('administrator');
         
         if (!self::isExists()) {
-            throw new Typecho_Widget_Exception(_t('外观配置功能不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Chức năng cấu hình giao diện không tồn tại'), 404);
         }
     }
 
@@ -76,7 +76,7 @@ class Widget_Themes_Config extends Widget_Abstract_Options
             }
         }
 
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
         return $form;

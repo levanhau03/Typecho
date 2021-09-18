@@ -128,16 +128,16 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             Typecho_Widget_Helper_Form::POST_METHOD);
 
         /** 分类名称 */
-        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, NULL, _t('分类名称 *'));
+        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, NULL, _t('Tên danh mục *'));
         $form->addInput($name);
 
         /** 分类缩略名 */
-        $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, NULL, _t('分类缩略名'),
-        _t('分类缩略名用于创建友好的链接形式, 建议使用字母, 数字, 下划线和横杠.'));
+        $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, NULL, _t('Viết tắt danh mục'),
+        _t('Các từ viết tắt của danh mục được sử dụng để tạo một biểu mẫu liên kết thân thiện. Bạn nên sử dụng các chữ cái, số, dấu gạch dưới và thanh ngang.'));
         $form->addInput($slug);
 
         /** 父级分类 */
-        $options = array(0 => _t('不选择'));
+        $options = array(0 => _t('Đừng chọn'));
         $parents = $this->widget('Widget_Metas_Category_List@options', 
             (isset($this->request->mid) ? 'ignore=' . $this->request->mid : ''));
 
@@ -145,13 +145,13 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             $options[$parents->mid] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $parents->levels) . $parents->name;
         }
 
-        $parent = new Typecho_Widget_Helper_Form_Element_Select('parent', $options, $this->request->parent, _t('父级分类'),
-        _t('此分类将归档在您选择的父级分类下.'));
+        $parent = new Typecho_Widget_Helper_Form_Element_Select('parent', $options, $this->request->parent, _t('Gia phả'),
+        _t('Danh mục này sẽ được nộp theo danh mục mẹ mà bạn đã chọn.'));
         $form->addInput($parent);
 
         /** 分类描述 */
         $description =  new Typecho_Widget_Helper_Form_Element_Textarea('description', NULL, NULL,
-        _t('分类描述'), _t('此文字用于描述分类, 在有的主题中它会被显示.'));
+        _t('Mô tả danh mục'), _t('Văn bản này được sử dụng để mô tả danh mục và nó sẽ được hiển thị trong một số chủ đề.'));
         $form->addInput($description);
 
         /** 分类动作 */
@@ -183,11 +183,11 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             $description->value($meta['description']);
             $do->value('update');
             $mid->value($meta['mid']);
-            $submit->value(_t('编辑分类'));
+            $submit->value(_t('Chỉnh sửa danh mục'));
             $_action = 'update';
         } else {
             $do->value('insert');
-            $submit->value(_t('增加分类'));
+            $submit->value(_t('Thêm danh mục'));
             $_action = 'insert';
         }
 
@@ -197,17 +197,17 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
 
         /** 给表单增加规则 */
         if ('insert' == $action || 'update' == $action) {
-            $name->addRule('required', _t('必须填写分类名称'));
-            $name->addRule(array($this, 'nameExists'), _t('分类名称已经存在'));
-            $name->addRule(array($this, 'nameToSlug'), _t('分类名称无法被转换为缩略名'));
-            $name->addRule('xssCheck', _t('请不要在分类名称中使用特殊字符'));
-            $slug->addRule(array($this, 'slugExists'), _t('缩略名已经存在'));
-            $slug->addRule('xssCheck', _t('请不要在缩略名中使用特殊字符'));
+            $name->addRule('required', _t('Phải điền vào tên danh mục'));
+            $name->addRule(array($this, 'nameExists'), _t('Tên danh mục đã tồn tại'));
+            $name->addRule(array($this, 'nameToSlug'), _t('Không thể chuyển đổi tên danh mục thành tên viết tắt'));
+            $name->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên danh mục'));
+            $slug->addRule(array($this, 'slugExists'), _t('Chữ viết tắt đã tồn tại'));
+            $slug->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên viết tắt'));
         }
 
         if ('update' == $action) {
-            $mid->addRule('required', _t('分类主键不存在'));
-            $mid->addRule(array($this, 'categoryExists'), _t('分类不存在'));
+            $mid->addRule('required', _t('Khóa chính danh mục không tồn tại'));
+            $mid->addRule(array($this, 'categoryExists'), _t('Danh mục không tồn tại'));
         }
 
         return $form;
@@ -240,7 +240,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
         $this->widget('Widget_Notice')->highlight($this->theId);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('分类 <a href="%s">%s</a> 已经被增加',
+        $this->widget('Widget_Notice')->set(_t('Danh mục <a href="%s">%s</a> đã được thêm',
         $this->permalink, $this->name), 'success');
 
         /** 转向原页 */
@@ -289,7 +289,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
         $this->widget('Widget_Notice')->highlight($this->theId);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('分类 <a href="%s">%s</a> 已经被更新',
+        $this->widget('Widget_Notice')->set(_t('Danh mục <a href="%s">%s</a> đã được cập nhật',
         $this->permalink, $this->name), 'success');
 
         /** 转向原页 */
@@ -319,7 +319,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
         }
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('分类已经删除') : _t('没有分类被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Danh mục đã bị xóa') : _t('Không có danh mục nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
 
         /** 转向原页 */
@@ -336,8 +336,8 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
     {
         /** 验证数据 */
         $validator = new Typecho_Validate();
-        $validator->addRule('merge', 'required', _t('分类主键不存在'));
-        $validator->addRule('merge', array($this, 'categoryExists'), _t('请选择需要合并的分类'));
+        $validator->addRule('merge', 'required', _t('Khóa chính danh mục không tồn tại'));
+        $validator->addRule('merge', array($this, 'categoryExists'), _t('Vui lòng chọn danh mục để hợp nhất'));
 
         if ($error = $validator->run($this->request->from('merge'))) {
             $this->widget('Widget_Notice')->set($error, 'error');
@@ -351,9 +351,9 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             $this->merge($merge, 'category', $categories);
 
             /** 提示信息 */
-            $this->widget('Widget_Notice')->set(_t('分类已经合并'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Danh mục đã được hợp nhất'), 'success');
         } else {
-            $this->widget('Widget_Notice')->set(_t('没有选择任何分类'), 'notice');
+            $this->widget('Widget_Notice')->set(_t('Không có danh mục nào được chọn'), 'notice');
         }
 
         /** 转向原页 */
@@ -377,7 +377,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             /** 转向原页 */
             $this->response->redirect(Typecho_Common::url('manage-categories.php', $this->options->adminUrl));
         } else {
-            $this->response->throwJson(array('success' => 1, 'message' => _t('分类排序已经完成')));
+            $this->response->throwJson(array('success' => 1, 'message' => _t('Sắp xếp đã hoàn thành')));
         }
     }
 
@@ -395,9 +395,9 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
                 $this->refreshCountByTypeAndStatus($category, 'post', 'publish');
             }
 
-            $this->widget('Widget_Notice')->set(_t('分类刷新已经完成'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Làm mới danh mục đã hoàn thành'), 'success');
         } else {
-            $this->widget('Widget_Notice')->set(_t('没有选择任何分类'), 'notice');
+            $this->widget('Widget_Notice')->set(_t('Không có danh mục nào được chọn'), 'notice');
         }
 
         /** 转向原页 */
@@ -414,8 +414,8 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
     {
         /** 验证数据 */
         $validator = new Typecho_Validate();
-        $validator->addRule('mid', 'required', _t('分类主键不存在'));
-        $validator->addRule('mid', array($this, 'categoryExists'), _t('分类不存在'));
+        $validator->addRule('mid', 'required', _t('Khóa chính danh mục không tồn tại'));
+        $validator->addRule('mid', array($this, 'categoryExists'), _t('Danh mục không tồn tại'));
 
         if ($error = $validator->run($this->request->from('mid'))) {
             $this->widget('Widget_Notice')->set($error, 'error');
@@ -432,7 +432,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
             $this->widget('Widget_Notice')->highlight($this->theId);
 
             /** 提示信息 */
-            $this->widget('Widget_Notice')->set(_t('<a href="%s">%s</a> 已经被设为默认分类',
+            $this->widget('Widget_Notice')->set(_t('<a href="%s">%s</a> Đã được đặt làm danh mục mặc định',
             $this->permalink, $this->name), 'success');
         }
 
@@ -453,7 +453,7 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
                 ->where('type = ? AND mid = ?', 'category', $this->request->mid));
 
             if (!empty($category)) {
-                return _t('编辑分类 %s', $category['name']);
+                return _t('Chỉnh sửa danh mục %s', $category['name']);
             }
         
         } if (isset($this->request->parent)) {
@@ -461,14 +461,14 @@ class Widget_Metas_Category_Edit extends Widget_Abstract_Metas implements Widget
                 ->where('type = ? AND mid = ?', 'category', $this->request->parent));
 
             if (!empty($category)) {
-                return _t('新增 %s 的子分类', $category['name']);
+                return _t('Thêm danh mục con của %s', $category['name']);
             }
         
         } else {
             return;
         }
 
-        throw new Typecho_Widget_Exception(_t('分类不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Danh mục không tồn tại'), 404);
     }
 
     /**

@@ -276,7 +276,7 @@ class Widget_Archive extends Widget_Abstract_Contents
                 if ($matched && $matched instanceof Widget_Archive) {
                     $this->import($matched);
                 } else {
-                    throw new Typecho_Widget_Exception(_t('聚合页不存在'), 404);
+                    throw new Typecho_Widget_Exception(_t('Trang tổng hợp không tồn tại'), 404);
                 }
             }
 
@@ -697,7 +697,7 @@ class Widget_Archive extends Widget_Abstract_Contents
      */
     private function archiveEmptyHandle(Typecho_Db_Query $select, &$hasPushed)
     {
-        throw new Typecho_Widget_Exception(_t('请求的地址不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Địa chỉ được yêu cầu không tồn tại'), 404);
     }
 
     /**
@@ -714,7 +714,7 @@ class Widget_Archive extends Widget_Abstract_Contents
         $this->response->setStatus(404);
 
         /** 设置标题 */
-        $this->_archiveTitle = _t('页面没找到');
+        $this->_archiveTitle = _t('Không tìm thấy trang');
 
         /** 设置归档类型 */
         $this->_archiveType = 'archive';
@@ -823,7 +823,7 @@ class Widget_Archive extends Widget_Abstract_Contents
             || (isset($this->request->directory) && $this->request->directory != implode('/', $this->directory))) {
             if (!$this->_invokeFromOutside) {
                 /** 对没有索引情况下的判断 */
-                throw new Typecho_Widget_Exception(_t('请求的地址不存在'), 404);
+                throw new Typecho_Widget_Exception(_t('Địa chỉ được yêu cầu không tồn tại'), 404);
             } else {
                 $hasPushed = true;
                 return;
@@ -908,14 +908,14 @@ class Widget_Archive extends Widget_Abstract_Contents
 
         $category = $this->db->fetchRow($categorySelect);
         if (empty($category)) {
-            throw new Typecho_Widget_Exception(_t('分类不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Danh mục không tồn tại'), 404);
         }
 
         $categoryListWidget = $this->widget('Widget_Metas_Category_List', 'current=' . $category['mid']);
         $category = $categoryListWidget->filter($category);
 
         if (isset($directory) && ($this->request->directory != implode('/', $category['directory']))) {
-            throw new Typecho_Widget_Exception(_t('父级分类不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Danh mục chính không tồn tại'), 404);
         }
 
         $children = $categoryListWidget->getAllChildren($category['mid']);
@@ -989,7 +989,7 @@ class Widget_Archive extends Widget_Abstract_Contents
         array($this->widget('Widget_Abstract_Metas'), 'filter'));
 
         if (!$tag) {
-            throw new Typecho_Widget_Exception(_t('标签不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Nhãn không tồn tại'), 404);
         }
 
         /** fix sql92 by 70 */
@@ -1049,7 +1049,7 @@ class Widget_Archive extends Widget_Abstract_Contents
         array($this->widget('Widget_Abstract_Users'), 'filter'));
 
         if (!$author) {
-            throw new Typecho_Widget_Exception(_t('作者不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Tác giả không tồn tại'), 404);
         }
 
         $select->where('table.contents.authorId = ?', $uid)
@@ -1112,7 +1112,7 @@ class Widget_Archive extends Widget_Abstract_Contents
             $this->_archiveSlug = 'day';
 
             /** 设置标题 */
-            $this->_archiveTitle = _t('%d年%d月%d日', $year, $month, $day);
+            $this->_archiveTitle = _t('%d/%d/%d', $day, $month, $year);
         } else if (!empty($year) && !empty($month)) {
 
             /** 如果按月归档 */
@@ -1123,7 +1123,7 @@ class Widget_Archive extends Widget_Abstract_Contents
             $this->_archiveSlug = 'month';
 
             /** 设置标题 */
-            $this->_archiveTitle = _t('%d年%d月', $year, $month);
+            $this->_archiveTitle = _t('%d/%d', $month, $year);
         } else if (!empty($year)) {
 
             /** 如果按年归档 */
@@ -1134,7 +1134,7 @@ class Widget_Archive extends Widget_Abstract_Contents
             $this->_archiveSlug = 'year';
 
             /** 设置标题 */
-            $this->_archiveTitle = _t('%d年', $year);
+            $this->_archiveTitle = _t('%d', $year);
         }
 
         $select->where('table.contents.created >= ?', $from - $this->options->timezone + $this->options->serverTimezone)
@@ -1392,29 +1392,11 @@ class Widget_Archive extends Widget_Abstract_Contents
         $this->query($select);
     }
 
-    /**
-     * 输出Nội dung bài viết
-     *
-     * @access public
-     * @param string $more 文章截取后缀
-     * @return void
-     */
     public function content($more = NULL)
     {
         parent::content($this->is('single') ? false : $more);
     }
 
-    /**
-     * 输出分页
-     *
-     * @access public
-     * @param string $prev 上一页文字
-     * @param string $next 下一页文字
-     * @param int $splitPage 分割范围
-     * @param string $splitWord 分割字符
-     * @param string $template 展现配置信息
-     * @return void
-     */
     public function pageNav($prev = '&laquo;', $next = '&raquo;', $splitPage = 3, $splitWord = '...', $template = '')
     {
         if ($this->have()) {
@@ -1453,14 +1435,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 前一页
-     *
-     * @access public
-     * @param string $word 链接标题
-     * @param string $page 页面链接
-     * @return void
-     */
     public function pageLink($word = '&laquo; Previous Entries', $page = 'prev')
     {
         if ($this->have()) {
@@ -1478,12 +1452,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 获取评论归档对象
-     *
-     * @access public
-     * @return Widget_Abstract_Comments
-     */
     public function comments()
     {
         $parameter = array(
@@ -1497,12 +1465,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         return $this->widget('Widget_Comments_Archive', $parameter);
     }
 
-    /**
-     * 获取回响归档对象 
-     * 
-     * @access public
-     * @return Widget_Comments_Ping
-     */
     public function pings()
     {
         return $this->widget('Widget_Comments_Ping', array(
@@ -1512,14 +1474,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         ));
     }
 
-    /**
-     * 获取附件对象
-     *
-     * @access public
-     * @param integer $limit 最大个数
-     * @param integer $offset 重新
-     * @return Widget_Contents_Attachment_Related
-     */
     public function attachments($limit = 0, $offset = 0)
     {
         return $this->widget('Widget_Contents_Attachment_Related@' . $this->cid . '-' . uniqid(), array(
@@ -1529,15 +1483,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         ));
     }
 
-    /**
-     * 显示下一个内容的标题链接
-     *
-     * @access public
-     * @param string $format 格式
-     * @param string $default 如果没有下一篇,显示的默认文字
-     * @param array $custom 定制化样式
-     * @return void
-     */
     public function theNext($format = '%s', $default = NULL, $custom = array())
     {
         $content = $this->db->fetchRow($this->select()->where('table.contents.created > ? AND table.contents.created < ?',
@@ -1567,15 +1512,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 显示上一个内容的标题链接
-     *
-     * @access public
-     * @param string $format 格式
-     * @param string $default 如果没有上一篇,显示的默认文字
-     * @param array $custom 定制化样式
-     * @return void
-     */
     public function thePrev($format = '%s', $default = NULL, $custom = array())
     {
         $content = $this->db->fetchRow($this->select()->where('table.contents.created < ?', $this->created)
@@ -1604,14 +1540,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 获取关联内容组件
-     *
-     * @access public
-     * @param integer $limit 输出数量
-     * @param string $type 关联类型
-     * @return Typecho_Widget
-     */
     public function related($limit = 5, $type = NULL)
     {
         $type = strtolower($type);
@@ -1844,25 +1772,11 @@ class Widget_Archive extends Widget_Abstract_Contents
         $this->pluginHandle()->header($header, $this);
     }
 
-    /**
-     * 支持页脚自定义
-     *
-     * @access public
-     * @return void
-     */
     public function footer()
     {
         $this->pluginHandle()->footer($this);
     }
 
-    /**
-     * 输出cookie记忆别名
-     *
-     * @access public
-     * @param string $cookieName 已经记忆的cookie名称
-     * @param boolean $return 是否返回
-     * @return string
-     */
     public function remember($cookieName, $return = false)
     {
         $cookieName = strtolower($cookieName);
@@ -1878,15 +1792,6 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 输出归档标题
-     * 
-     * @param mixed $defines 
-     * @param string $before 
-     * @param string $end 
-     * @access public
-     * @return void
-     */
     public function archiveTitle($defines = NULL, $before = ' &raquo; ', $end = '')
     {
         if ($this->_archiveTitle) {
@@ -1899,24 +1804,11 @@ class Widget_Archive extends Widget_Abstract_Contents
         }
     }
 
-    /**
-     * 输出关键字
-     *
-     * @access public
-     */
     public function keywords($split = ',', $default = '')
     {
         echo empty($this->_keywords) ? $default : str_replace(',', $split, htmlspecialchars($this->_keywords));
     }
 
-    /**
-     * 判断归档类型和名称
-     *
-     * @access public
-     * @param string $archiveType 归档类型
-     * @param string $archiveSlug 归档名称
-     * @return boolean
-     */
     public function is($archiveType, $archiveSlug = NULL)
     {
         return ($archiveType == $this->_archiveType ||
@@ -1925,24 +1817,11 @@ class Widget_Archive extends Widget_Abstract_Contents
         && (empty($archiveSlug) ? true : $archiveSlug == $this->_archiveSlug);
     }
 
-    /**
-     * 获取主题文件
-     *
-     * @access public
-     * @param string $fileName 主题文件
-     * @return void
-     */
     public function need($fileName)
     {
         require $this->_themeDir . $fileName;
     }
 
-    /**
-     * 输出视图
-     *
-     * @access public
-     * @return void
-     */
     public function render()
     {
         /** 处理静态链接跳转 */
@@ -2042,7 +1921,7 @@ class Widget_Archive extends Widget_Abstract_Contents
         $this->_feed->setFeedUrl($this->request->makeUriByRequest());
 
         if ($this->is('single') || 'comments' == $this->parameter->type) {
-            $this->_feed->setTitle(_t('%s 的评论',
+            $this->_feed->setTitle(_t('Bình luận của %s',
             $this->options->title . ($this->_archiveTitle ? ' - ' . $this->_archiveTitle : NULL)));
 
             if ('comments' == $this->parameter->type) {

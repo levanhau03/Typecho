@@ -53,7 +53,7 @@ class Widget_Plugins_Config extends Widget_Abstract_Options
         $this->user->pass('administrator');
         $config = $this->request->filter('slug')->config;
         if (empty($config)) {
-            throw new Typecho_Widget_Exception(_t('插件不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Plugin không tồn tại'), 404);
         }
 
         /** 获取插件入口 */
@@ -70,7 +70,7 @@ class Widget_Plugins_Config extends Widget_Abstract_Options
      */
     public function getMenuTitle()
     {
-        return _t('设置插件 %s', $this->info['title']);
+        return _t('Đặt plugin %s', $this->info['title']);
     }
 
     /**
@@ -91,7 +91,7 @@ class Widget_Plugins_Config extends Widget_Abstract_Options
 
         /** 判断实例化是否成功 */
         if (!$this->info['config'] || !isset($activatedPlugins[$pluginName])) {
-            throw new Typecho_Widget_Exception(_t('无法配置插件'), 500);
+            throw new Typecho_Widget_Exception(_t('Không thể định cấu hình plugin'), 500);
         }
 
         /** 载入插件 */
@@ -108,7 +108,7 @@ class Widget_Plugins_Config extends Widget_Abstract_Options
             }
         }
 
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
         return $form;

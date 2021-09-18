@@ -72,7 +72,7 @@ class Widget_Ajax extends Widget_Abstract_Options implements Widget_Interface_Do
             return;
         }
 
-        throw new Typecho_Widget_Exception(_t('禁止访问'), 403);
+        throw new Typecho_Widget_Exception(_t('Không truy cập'), 403);
     }
 
     /**
@@ -113,7 +113,7 @@ class Widget_Ajax extends Widget_Abstract_Options implements Widget_Interface_Do
             return;
         }
 
-        throw new Typecho_Widget_Exception(_t('禁止访问'), 403);
+        throw new Typecho_Widget_Exception(_t('Không truy cập'), 403);
     }
 
     /**

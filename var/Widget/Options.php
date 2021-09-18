@@ -557,7 +557,7 @@ class Widget_Options extends Typecho_Widget
             && false !== ($options = unserialize($this->row['plugin:' . $pluginName]))) {
                 $this->_pluginConfig[$pluginName] = new Typecho_Config($options);
             } else {
-                throw new Typecho_Plugin_Exception(_t('插件%s的配置信息没有找到', $pluginName), 500);
+                throw new Typecho_Plugin_Exception(_t('Không tìm thấy thông tin cấu hình của plugin %s', $pluginName), 500);
             }
         }
 
@@ -578,7 +578,7 @@ class Widget_Options extends Typecho_Widget
             && false !== ($options = unserialize($this->row['_plugin:' . $pluginName]))) {
                 $this->_personalPluginConfig[$pluginName] = new Typecho_Config($options);
             } else {
-                throw new Typecho_Plugin_Exception(_t('插件%s的配置信息没有找到', $pluginName), 500);
+                throw new Typecho_Plugin_Exception(_t('Không tìm thấy thông tin cấu hình của plugin %s', $pluginName), 500);
             }
         }
 

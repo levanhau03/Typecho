@@ -38,12 +38,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return NULL;
     }
 
-    /**
-     * getFields  
-     * 
-     * @access protected
-     * @return array
-     */
     protected function getFields()
     {
         $fields = array();
@@ -72,12 +66,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return $fields;
     }
 
-    /**
-     * 根据提交值获取created字段值
-     *
-     * @access protected
-     * @return integer
-     */
     protected function getCreated()
     {
         $created = $this->options->time;
@@ -105,13 +93,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return $created;
     }
 
-    /**
-     * 同步附件
-     *
-     * @access protected
-     * @param integer $cid 内容id
-     * @return void
-     */
     protected function attach($cid)
     {
         $attachments = $this->request->getArray('attachment');
@@ -123,40 +104,18 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 取消附件关联
-     *
-     * @access protected
-     * @param integer $cid 内容id
-     * @return void
-     */
     protected function unAttach($cid)
     {
         $this->db->query($this->db->update('table.contents')->rows(array('parent' => 0, 'status' => 'publish'))
                 ->where('parent = ? AND type = ?', $cid, 'attachment'));
     }
 
-    /**
-     * 获取页面偏移的URL Query
-     *
-     * @access protected
-     * @param integer $created 创建时间
-     * @param string $status 状态
-     * @return string
-     */
     protected function getPageOffsetQuery($created, $status = NULL)
     {
         return 'page=' . $this->getPageOffset('created', $created, 'post', $status,
         'on' == $this->request->__typecho_all_posts ? 0 : $this->user->uid);
     }
 
-    /**
-     * 删除草稿
-     *
-     * @access protected
-     * @param integer $cid 草稿id
-     * @return void
-     */
     protected function deleteDraft($cid)
     {
         $this->delete($this->db->sql()->where('cid = ?', $cid));
@@ -168,13 +127,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         $this->setTags($cid, NULL, false, false);
     }
 
-    /**
-     * 发布内容
-     *
-     * @access protected
-     * @param array $contents 内容结构
-     * @return void
-     */
     protected function publish(array $contents)
     {
         /** 发布内容, 检查是否具有直接发布的权限 */
@@ -245,13 +197,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 保存内容
-     *
-     * @access protected
-     * @param array $contents 内容结构
-     * @return void
-     */
     protected function save(array $contents)
     {
         /** 发布内容, 检查是否具有直接发布的权限 */
@@ -318,11 +263,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 执行函数
-     *
-     * @throws Typecho_Widget_Exception
-     */
     public function execute()
     {
         /** 必须为贡献者以上权限 */
@@ -340,20 +280,13 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
             }
 
             if (!$this->have()) {
-                throw new Typecho_Widget_Exception(_t('文章不存在'), 404);
+                throw new Typecho_Widget_Exception(_t('Bài viết không tồn tại'), 404);
             } else if ($this->have() && !$this->allow('edit')) {
-                throw new Typecho_Widget_Exception(_t('没有编辑权限'), 403);
+                throw new Typecho_Widget_Exception(_t('Không có quyền chỉnh sửa'), 403);
             }
         }
     }
 
-    /**
-     * 过滤堆栈
-     *
-     * @access public
-     * @param array $value 每行的值
-     * @return array
-     */
     public function filter(array $value)
     {
         if ('post' == $value['type'] || 'page' == $value['type']) {
@@ -382,13 +315,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return parent::filter($value);
     }
 
-    /**
-     * 输出文章发布日期
-     *
-     * @access public
-     * @param string $format 日期格式
-     * @return void
-     */
     public function date($format = NULL)
     {
         if (isset($this->created)) {
@@ -398,11 +324,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 获取文章权限
-     *
-     * @return bool
-     */
     public function allow()
     {
         $permissions = func_get_args();
@@ -423,23 +344,11 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return $allow;
     }
 
-    /**
-     * 获取网页标题
-     *
-     * @access public
-     * @return string
-     */
     public function getMenuTitle()
     {
         return _t('Chỉnh sửa %s', $this->title);
     }
 
-    /**
-     * getDefaultFieldItems
-     * 
-     * @access public
-     * @return array
-     */
     public function getDefaultFieldItems()
     {
         $defaultFields = array();
@@ -501,12 +410,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return $defaultFields;
     }
 
-    /**
-     * getFieldItems
-     * 
-     * @access public
-     * @return void
-     */
     public function getFieldItems()
     {
         $fields = array();
@@ -533,16 +436,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         return $fields;
     }
 
-    /**
-     * 设置内容标签
-     *
-     * @access public
-     * @param integer $cid
-     * @param string $tags
-     * @param boolean $beforeCount 是否参与计数
-     * @param boolean $afterCount 是否参与计数
-     * @return string
-     */
     public function setTags($cid, $tags, $beforeCount = true, $afterCount = true)
     {
         $tags = str_replace('，', ',', $tags);
@@ -601,16 +494,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 设置分类
-     *
-     * @access public
-     * @param integer $cid 内容id
-     * @param array $categories 分类id的集合数组
-     * @param boolean $beforeCount 是否参与计数
-     * @param boolean $afterCount 是否参与计数
-     * @return integer
-     */
     public function setCategories($cid, array $categories, $beforeCount = true, $afterCount = true)
     {
         $categories = array_unique(array_map('trim', $categories));
@@ -664,19 +547,13 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 发布文章
-     *
-     * @access public
-     * @return void
-     */
     public function writePost()
     {
         $contents = $this->request->from('password', 'allowComment',
             'allowPing', 'allowFeed', 'slug', 'tags', 'text', 'visibility');
 
         $contents['category'] = $this->request->getArray('category');
-        $contents['title'] = $this->request->get('title', _t('未命名文档'));
+        $contents['title'] = $this->request->get('title', _t('Tài liệu không có tiêu đề'));
         $contents['created'] = $this->getCreated();
 
         if ($this->request->markdown && $this->options->markdown) {
@@ -699,8 +576,8 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
 
             /** 设置提示信息 */
             $this->widget('Widget_Notice')->set('post' == $this->type ?
-            _t('文章 "<a href="%s">%s</a>" 已经发布', $this->permalink, $this->title) :
-            _t('文章 "%s" 等待审核', $this->title), 'success');
+            _t('Bài viết "<a href="%s">%s</a>" đã được xuất bản', $this->permalink, $this->title) :
+            _t('Bài viết "%s" đang chờ xem xét', $this->title), 'success');
 
             /** 设置高亮 */
             $this->widget('Widget_Notice')->highlight($this->theId);
@@ -727,7 +604,7 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
                 ));
             } else {
                 /** 设置提示信息 */
-                $this->widget('Widget_Notice')->set(_t('草稿 "%s" 已经被保存', $this->title), 'success');
+                $this->widget('Widget_Notice')->set(_t('Bản nháp "%s" đã được lưu', $this->title), 'success');
 
                 /** 返回原页面 */
                 $this->response->redirect(Typecho_Common::url('write-post.php?cid=' . $this->cid, $this->options->adminUrl));
@@ -735,12 +612,6 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
     }
 
-    /**
-     * 删除文章
-     *
-     * @access public
-     * @return void
-     */
     public function deletePost()
     {
         $posts = $this->request->filter('int')->getArray('cid');
@@ -803,19 +674,13 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('文章已经被删除') : _t('没有文章被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Bài viết đã bị xóa') : _t('Không có bài viết nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
         $this->response->goBack();
     }
     
-    /**
-     * 删除文章所属草稿
-     * 
-     * @access public
-     * @return void
-     */
     public function deletePostDraft()
     {
         $posts = $this->request->filter('int')->getArray('cid');
@@ -837,30 +702,18 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('草稿已经被删除') : _t('没有草稿被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Bản nháp đã bị xóa') : _t('Không có bản nháp nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
         
         /** 返回原网页 */
         $this->response->goBack();
     }
 
-    /**
-     * 输出Markdown预览 
-     * 
-     * @access public
-     * @return void
-     */
     public function preview()
     {
         $this->response->throwJson($this->markdown($this->request->text));
     }
 
-    /**
-     * 绑定动作
-     *
-     * @access public
-     * @return void
-     */
     public function action()
     {
         $this->security->protect();

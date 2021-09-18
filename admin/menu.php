@@ -8,9 +8,9 @@
         <a title="<?php
                     if ($user->logged > 0) {
                         $logged = new Typecho_Date($user->logged);
-                        _e('最后登录: %s', $logged->word());
+                        _e('Lần đăng nhập cuối: %s', $logged->word());
                     }
-                    ?>" href="<?php $options->adminUrl('profile.php'); ?>" class="author"><?php $user->screenName(); ?></a><a class="exit" href="<?php $options->logoutUrl(); ?>"><?php _e('登出'); ?></a><a href="<?php $options->siteUrl(); ?>"><?php _e('网站'); ?></a>
+                    ?>" href="<?php $options->adminUrl('profile.php'); ?>" class="author"><?php $user->screenName(); ?></a><a class="exit" href="<?php $options->logoutUrl(); ?>"><?php _e('Đăng xuất'); ?></a><a href="<?php $options->siteUrl(); ?>"><?php _e('Trang web'); ?></a>
     </div>
 </div>
 

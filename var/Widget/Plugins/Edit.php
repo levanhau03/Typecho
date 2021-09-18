@@ -95,7 +95,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
             /** 判断实例化是否成功 */
             if (isset($activatedPlugins[$pluginName]) || !class_exists($className)
             || !method_exists($className, 'activate')) {
-                throw new Typecho_Widget_Exception(_t('无法启用插件'), 500);
+                throw new Typecho_Widget_Exception(_t('Không thể bật plugin'), 500);
             }
 
             try {
@@ -128,7 +128,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
 
         } else {
 
-            $result = _t('<a href="%s">%s</a> 无法在此版本的typecho下正常工作', $info['link'], $info['title']);
+            $result = _t('<a href="%s">%s</a> không hoạt động bình thường trong phiên bản Typecho này', $info['link'], $info['title']);
 
         }
 
@@ -138,7 +138,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
         if (isset($result) && is_string($result)) {
             $this->widget('Widget_Notice')->set($result, 'notice');
         } else {
-            $this->widget('Widget_Notice')->set(_t('插件已经被启用'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Plugin đã được kích hoạt'), 'success');
         }
         $this->response->goBack();
     }
@@ -171,7 +171,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
 
         /** 判断实例化是否成功 */
         if (!isset($activatedPlugins[$pluginName])) {
-            throw new Typecho_Widget_Exception(_t('无法禁用插件'), 500);
+            throw new Typecho_Widget_Exception(_t('Không thể tắt plugin'), 500);
         }
 
         if ($pluginFileExist) {
@@ -182,7 +182,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
             /** 判断实例化是否成功 */
             if (!isset($activatedPlugins[$pluginName]) || !class_exists($className)
             || !method_exists($className, 'deactivate')) {
-                throw new Typecho_Widget_Exception(_t('无法禁用插件'), 500);
+                throw new Typecho_Widget_Exception(_t('Không thể tắt plugin'), 500);
             }
 
             try {
@@ -207,7 +207,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
         if (isset($result) && is_string($result)) {
             $this->widget('Widget_Notice')->set($result, 'notice');
         } else {
-            $this->widget('Widget_Notice')->set(_t('插件已经被禁用'), 'success');
+            $this->widget('Widget_Notice')->set(_t('Plugin đã bị vô hiệu hóa'), 'success');
         }
         $this->response->goBack();
     }
@@ -239,7 +239,7 @@ class Widget_Plugins_Edit extends Widget_Abstract_Options implements Widget_Inte
 
         if (!$this->_configNoticed) {
             /** 提示信息 */
-            $this->widget('Widget_Notice')->set(_t("插件设置已经保存"), 'success');
+            $this->widget('Widget_Notice')->set(_t("Cài đặt plugin đã được lưu"), 'success');
         }
 
         /** 转向原页 */

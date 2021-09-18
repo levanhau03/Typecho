@@ -79,11 +79,11 @@ class Widget_Contents_Post_Admin extends Widget_Abstract_Contents
     public function getMenuTitle()
     {
         if (isset($this->request->uid)) {
-            return _t('%s的文章', $this->db->fetchObject($this->db->select('screenName')->from('table.users')
+            return _t('Bài viết của %s', $this->db->fetchObject($this->db->select('screenName')->from('table.users')
                 ->where('uid = ?', $this->request->filter('int')->uid))->screenName);
         }
 
-        throw new Typecho_Widget_Exception(_t('用户不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Người dùng không tồn tại'), 404);
     }
 
     /**

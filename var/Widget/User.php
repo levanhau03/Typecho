@@ -270,7 +270,7 @@ class Widget_User extends Typecho_Widget
         if ($return) {
             return false;
         } else {
-            throw new Typecho_Widget_Exception(_t('禁止访问'), 403);
+            throw new Typecho_Widget_Exception(_t('Không truy cập'), 403);
         }
     }
 }

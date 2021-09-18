@@ -7,14 +7,14 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle(array(
-            'category'  =>  _t('分类 %s 下的文章'),
-            'search'    =>  _t('包含关键字 %s 的文章'),
-            'tag'       =>  _t('标签 %s 下的文章'),
-            'author'    =>  _t('%s 发布的文章')
+            'category'  =>  _t('Các bài viết thuộc danh mục %s'),
+            'search'    =>  _t('Các bài viết có chứa từ khóa %s'),
+            'tag'       =>  _t('Các bài viết dưới thẻ %s'),
+            'author'    =>  _t('Các bài viết được xuất bản bởi %s')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
 
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="//cdnjscn.b0.upaiyun.com/libs/normalize/2.1.3/normalize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.3/normalize.min.css">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
 
@@ -28,7 +28,7 @@
 </head>
 <body>
 <!--[if lt IE 8]>
-    <div class="browsehappy" role="dialog"><?php _e('当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>'); ?>.</div>
+    <div class="browsehappy" role="dialog"><?php _e('Trang hiện tại <strong>không hỗ trợ</strong> trình duyệt bạn đang sử dụng. Để truy cập bình thường, vui lòng <a href="http://browsehappy.com/">nâng cấp trình duyệt của bạn</a>'); ?>.</div>
 <![endif]-->
 
 <header id="header" class="clearfix">
@@ -46,14 +46,14 @@
             </div>
             <div class="site-search col-3 kit-hidden-tb">
                 <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-                    <label for="s" class="sr-only"><?php _e('搜索关键字'); ?></label>
-                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('输入关键字搜索'); ?>" />
-                    <button type="submit" class="submit"><?php _e('搜索'); ?></button>
+                    <label for="s" class="sr-only"><?php _e('Tìm kiếm từ khóa'); ?></label>
+                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('Nhập từ khóa để tìm kiếm'); ?>" />
+                    <button type="submit" class="submit"><?php _e('Tìm kiếm'); ?></button>
                 </form>
             </div>
             <div class="col-mb-12">
                 <nav id="nav-menu" class="clearfix" role="navigation">
-                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
+                    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php _e('Trang chủ'); ?></a>
                     <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                     <?php while($pages->next()): ?>
                     <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>

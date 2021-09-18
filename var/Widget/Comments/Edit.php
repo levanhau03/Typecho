@@ -78,7 +78,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('评论已经被标记为待审核') : _t('没有评论被标记为待审核'),
+        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('Nhận xét đã được đánh dấu là đang chờ xử lý') : _t('Không có bình luận nào được đánh dấu là đang chờ xử lý'),
         $updateRows > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
@@ -103,7 +103,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('评论已经被标记为垃圾') : _t('没有评论被标记为垃圾'),
+        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('Nhận xét đã bị đánh dấu là spam') : _t('Không có bình luận nào bị đánh dấu là spam'),
         $updateRows > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
@@ -128,7 +128,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('评论已经被通过') : _t('没有评论被通过'),
+        $this->widget('Widget_Notice')->set($updateRows > 0 ? _t('Nhận xét đã được thông qua') : _t('Không có bình luận nào được thông qua'),
         $updateRows > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
@@ -173,18 +173,18 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
             if ($deleteRows > 0) {
                 $this->response->throwJson(array(
                     'success'   => 1,
-                    'message'   => _t('删除评论成功')
+                    'message'   => _t('Đã xóa bình luận thành công')
                 ));
             } else {
                 $this->response->throwJson(array(
                     'success'   => 0,
-                    'message'   => _t('删除评论失败')
+                    'message'   => _t('Không xóa được bình luận')
                 ));
             }
             
         } else {
             /** 设置提示信息 */
-            $this->widget('Widget_Notice')->set($deleteRows > 0 ? _t('评论已经被删除') : _t('没有评论被删除'),
+            $this->widget('Widget_Notice')->set($deleteRows > 0 ? _t('Bình luận đã bị xóa') : _t('Không có bình luận nào bị xóa'),
             $deleteRows > 0 ? 'success' : 'notice');
 
             /** 返回原网页 */
@@ -213,7 +213,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
 
         /** 设置提示信息 */
         $this->widget('Widget_Notice')->set($deleteRows > 0 ?
-        _t('所有垃圾评论已经被删除') : _t('没有垃圾评论被删除'),
+        _t('Tất cả các bình luận spam đã bị xóa') : _t('Không có bình luận spam nào bị xóa'),
         $deleteRows > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
@@ -243,7 +243,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
 
             $this->response->throwJson(array(
                 'success'   => 0,
-                'message'   => _t('获取评论失败')
+                'message'   => _t('Không nhận được bình luận')
             ));
 
         }
@@ -289,7 +289,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
 
         $this->response->throwJson(array(
             'success'   => 0,
-            'message'   => _t('修评论失败')
+            'message'   => _t('Không sửa được nhận xét')
         ));
     }
     
@@ -344,7 +344,7 @@ class Widget_Comments_Edit extends Widget_Abstract_Comments implements Widget_In
 
         $this->response->throwJson(array(
             'success'   => 0,
-            'message'   => _t('回复评论失败')
+            'message'   => _t('Trả lời bình luận không thành công')
         ));
     }
 

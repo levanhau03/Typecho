@@ -67,10 +67,10 @@ class Widget_Comments_Admin extends Widget_Abstract_Comments
         $content = $this->parentContent;
 
         if ($content) {
-            return _t('%s的评论', $content['title']);
+            return _t('Bình luận của %s', $content['title']);
         }
 
-        throw new Typecho_Widget_Exception(_t('内容不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Nội dung không tồn tại'), 404);
     }
 
     /**

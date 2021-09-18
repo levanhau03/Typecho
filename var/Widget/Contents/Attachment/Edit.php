@@ -55,9 +55,9 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
             ->limit(1), array($this, 'push'));
 
             if (!$this->have()) {
-                throw new Typecho_Widget_Exception(_t('文件不存在'), 404);
+                throw new Typecho_Widget_Exception(_t('Tập tin không tồn tại'), 404);
             } else if ($this->have() && !$this->allow('edit')) {
-                throw new Typecho_Widget_Exception(_t('没有编辑权限'), 403);
+                throw new Typecho_Widget_Exception(_t('Không có quyền chỉnh sửa'), 403);
             }
         }
     }
@@ -117,17 +117,17 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         Typecho_Widget_Helper_Form::POST_METHOD);
 
         /** 文件名称 */
-        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, $this->title, _t('标题 *'));
+        $name = new Typecho_Widget_Helper_Form_Element_Text('name', NULL, $this->title, _t('Tiêu đề *'));
         $form->addInput($name);
 
         /** 文件缩略名 */
         $slug = new Typecho_Widget_Helper_Form_Element_Text('slug', NULL, $this->slug, _t('Tên viết tắt'),
-        _t('文件缩略名用于创建友好的链接形式,建议使用字母,数字,下划线和横杠.'));
+        _t('Các chữ viết tắt của tệp được sử dụng để tạo một biểu mẫu liên kết thân thiện. Nên sử dụng các chữ cái, số, dấu gạch dưới và thanh ngang.'));
         $form->addInput($slug);
 
         /** 文件描述 */
         $description =  new Typecho_Widget_Helper_Form_Element_Textarea('description', NULL, $this->attachment->description,
-        _t('描述'), _t('此文字用于描述文件,在有的主题中它会被显示.'));
+        _t('描述'), _t('Văn bản này được sử dụng để mô tả tệp và nó sẽ được hiển thị trong một số chủ đề.'));
         $form->addInput($description);
 
         /** 分类动作 */
@@ -139,19 +139,19 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         $form->addInput($cid);
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('提交修改'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit(NULL, NULL, _t('Gửi các thay đổi'));
         $submit->input->setAttribute('class', 'btn primary');
         $delete = new Typecho_Widget_Helper_Layout('a', array(
             'href'  => $this->security->getIndex('/action/contents-attachment-edit?do=delete&cid=' . $this->cid),
             'class' => 'operate-delete',
-            'lang'  => _t('你确认删除文件 %s 吗?', $this->attachment->name)
+            'lang'  => _t('Bạn có chắc chắn xóa tệp %s không?', $this->attachment->name)
         ));
-        $submit->container($delete->html(_t('删除文件')));
+        $submit->container($delete->html(_t('Xóa các tập tin')));
         $form->addItem($submit);
 
-        $name->addRule('required', _t('必须填写文件标题'));
-        $name->addRule(array($this, 'nameToSlug'), _t('文件标题无法被转换为缩略名'));
-        $slug->addRule(array($this, 'slugExists'), _t('缩略名已经存在'));
+        $name->addRule('required', _t('Tiêu đề của tài liệu phải được điền vào'));
+        $name->addRule(array($this, 'nameToSlug'), _t('Không thể chuyển đổi tiêu đề tệp thành tên viết tắt'));
+        $slug->addRule(array($this, 'slugExists'), _t('Chữ viết tắt đã tồn tại'));
 
         return $form;
     }
@@ -196,8 +196,8 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
 
             /** 提示信息 */
             $this->widget('Widget_Notice')->set('publish' == $this->status ?
-            _t('文件 <a href="%s">%s</a> 已经被更新', $this->permalink, $this->title) :
-            _t('未归档文件 %s 已经被更新', $this->title), 'success');
+            _t('Tệp <a href="%s">%s</a> đã được cập nhật', $this->permalink, $this->title) :
+            _t('Tệp không lưu trữ %s đã được cập nhật', $this->title), 'success');
 
         }
 
@@ -245,11 +245,11 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         }
 
         if ($this->request->isAjax()) {
-            $this->response->throwJson($deleteCount > 0 ? array('code' => 200, 'message' => _t('文件已经被删除'))
-            : array('code' => 500, 'message' => _t('没有文件被删除')));
+            $this->response->throwJson($deleteCount > 0 ? array('code' => 200, 'message' => _t('Tệp đã bị xóa'))
+            : array('code' => 500, 'message' => _t('Không có tệp nào bị xóa')));
         } else {
             /** 设置提示信息 */
-            $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('文件已经被删除') : _t('没有文件被删除'), 
+            $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Tệp đã bị xóa') : _t('Không có tệp nào bị xóa'), 
             $deleteCount > 0 ? 'success' : 'notice');
 
             /** 返回原网页 */
@@ -306,7 +306,7 @@ class Widget_Contents_Attachment_Edit extends Widget_Contents_Post_Edit implemen
         } while (count($posts) == 100);
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('未归档文件已经被清理') : _t('没有未归档文件被清理'), 
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Các tệp không lưu trữ đã được dọn dẹp') : _t('Không có tệp nào chưa được lưu trữ đã được dọn dẹp'), 
             $deleteCount > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */

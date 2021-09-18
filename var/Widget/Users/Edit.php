@@ -121,14 +121,14 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         $form->addInput($confirm);
 
         /** 个人主页地址 */
-        $url = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('Địa chỉ trang chủ cá nhân'), _t('此用户的个人主页地址, 请用 <code>http://</code> 开头.'));
+        $url = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('Địa chỉ trang chủ cá nhân'), _t('Địa chỉ trang chủ cá nhân của người dùng này, vui lòng bắt đầu bằng <code>http://</code>.'));
         $form->addInput($url);
 
         /** 用户组 */
-        $group =  new Typecho_Widget_Helper_Form_Element_Select('group', array('subscriber' => _t('关注者'),
-                'contributor' => _t('贡献者'), 'editor' => _t('编辑'), 'administrator' => _t('管理员')),
-                NULL, _t('用户组'), _t('不同的用户组拥有不同的权限.')
-            . '<br />' . _t('具体的权限分配表请<a href="http://docs.typecho.org/develop/acl">参考这里</a>.'));
+        $group =  new Typecho_Widget_Helper_Form_Element_Select('group', array('subscriber' => _t('Người theo dõi'),
+                'contributor' => _t('Người đóng góp'), 'editor' => _t('Biên tập'), 'administrator' => _t('Quản lý')),
+                NULL, _t('Nhóm người dùng'), _t('Các nhóm người dùng khác nhau có các quyền khác nhau.')
+            . '<br />' . _t('Vui lòng <a href="http://docs.typecho.org/develop/acl">tham khảo tại đây</a>.'));
         $form->addInput($group);
 
         /** 用户动作 */
@@ -145,7 +145,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         $form->addItem($submit);
 
         if (NULL != $this->request->uid) {
-            $submit->value(_t('编辑用户'));
+            $submit->value(_t('Sửa người dùng'));
             $name->value($this->name);
             $screenName->value($this->screenName);
             $url->value($this->url);
@@ -155,7 +155,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
             $uid->value($this->uid);
             $_action = 'update';
         } else {
-            $submit->value(_t('增加用户'));
+            $submit->value(_t('Thêm người dùng'));
             $do->value('insert');
             $_action = 'insert';
         }
@@ -166,29 +166,29 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
 
         /** 给表单增加规则 */
         if ('insert' == $action || 'update' == $action) {
-            $screenName->addRule(array($this, 'screenNameExists'), _t('昵称已经存在'));
-            $screenName->addRule('xssCheck', _t('请不要在昵称中使用特殊字符'));
-            $url->addRule('url', _t('个人主页地址格式错误'));
-            $mail->addRule('required', _t('必须填写电子邮箱'));
-            $mail->addRule(array($this, 'mailExists'), _t('电子邮箱地址已经存在'));
-            $mail->addRule('email', _t('电子邮箱格式错误'));
-            $password->addRule('minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
-            $confirm->addRule('confirm', _t('两次输入的密码不一致'), 'password');
+            $screenName->addRule(array($this, 'screenNameExists'), _t('Biệt danh đã tồn tại'));
+            $screenName->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong biệt hiệu của bạn'));
+            $url->addRule('url', _t('Lỗi định dạng địa chỉ trang chủ cá nhân'));
+            $mail->addRule('required', _t('Email phải được điền vào'));
+            $mail->addRule(array($this, 'mailExists'), _t('Địa chỉ email đã tồn tại'));
+            $mail->addRule('email', _t('Lỗi định dạng email'));
+            $password->addRule('minLength', _t('Để đảm bảo bảo mật tài khoản, vui lòng nhập mật khẩu có ít nhất sáu chữ số'), 6);
+            $confirm->addRule('confirm', _t('Hai mật khẩu đã nhập không nhất quán'), 'password');
         }
 
         if ('insert' == $action) {
-            $name->addRule('required', _t('必须填写用户名称'));
-            $name->addRule('xssCheck', _t('请不要在用户名中使用特殊字符'));
-            $name->addRule(array($this, 'nameExists'), _t('用户名已经存在'));
-            $password->label(_t('用户密码 *'));
-            $confirm->label(_t('用户密码确认 *'));
-            $password->addRule('required', _t('必须填写密码'));
+            $name->addRule('required', _t('Tên người dùng phải được điền vào'));
+            $name->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên người dùng'));
+            $name->addRule(array($this, 'nameExists'), _t('Tên đăng kí đã được sử dụng'));
+            $password->label(_t('Mật khẩu người dùng *'));
+            $confirm->label(_t('Xác nhận mật khẩu người dùng *'));
+            $password->addRule('required', _t('Mật khẩu phải được điền vào'));
         }
 
         if ('update' == $action) {
             $name->input->setAttribute('disabled', 'disabled');
-            $uid->addRule('required', _t('用户主键不存在'));
-            $uid->addRule(array($this, 'userExists'), _t('用户不存在'));
+            $uid->addRule('required', _t('Khóa chính của người dùng không tồn tại'));
+            $uid->addRule(array($this, 'userExists'), _t('Người dùng không tồn tại'));
         }
 
         return $form;
@@ -221,7 +221,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         $this->widget('Widget_Notice')->highlight('user-' . $user['uid']);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('用户 %s 已经被增加', $user['screenName']), 'success');
+        $this->widget('Widget_Notice')->set(_t('Người dùng %s đã được thêm', $user['screenName']), 'success');
 
         /** 转向原页 */
         $this->response->redirect(Typecho_Common::url('manage-users.php', $this->options->adminUrl));
@@ -256,7 +256,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         $this->widget('Widget_Notice')->highlight('user-' . $this->request->uid);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('用户 %s 已经被更新', $user['screenName']), 'success');
+        $this->widget('Widget_Notice')->set(_t('Người dùng %s đã được cập nhật', $user['screenName']), 'success');
 
         /** 转向原页 */
         $this->response->redirect(Typecho_Common::url('manage-users.php?' .
@@ -286,7 +286,7 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         }
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('用户已经删除') : _t('没有用户被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Người dùng đã bị xóa') : _t('Không có người dùng nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
 
         /** 转向原页 */

@@ -49,7 +49,7 @@ class Widget_Metas_Category_Admin extends Widget_Metas_Category_List
                 }
                 
                 echo '&laquo; ';
-                _e('返回父级分类');
+                _e('Trở lại danh mục mẹ');
                 echo '</a>';
             }
         }
@@ -68,13 +68,13 @@ class Widget_Metas_Category_Admin extends Widget_Metas_Category_List
                 ->where('type = ? AND mid = ?', 'category', $this->request->parent));
 
             if (!empty($category)) {
-                return _t('管理 %s 的子分类', $category['name']);
+                return _t('Quản lý các danh mục phụ của %s', $category['name']);
             }
         } else {
             return;
         }
 
-        throw new Typecho_Widget_Exception(_t('分类不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Danh mục không tồn tại'), 404);
     }
 
     /**

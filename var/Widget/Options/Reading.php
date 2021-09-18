@@ -35,11 +35,11 @@ class Widget_Options_Reading extends Widget_Options_Permalink
 
         /** 文章日期格式 */
         $postDateFormat = new Typecho_Widget_Helper_Form_Element_Text('postDateFormat', NULL, $this->options->postDateFormat,
-        _t('文章日期格式'), _t('此格式用于指定显示在文章归档中的日期默认显示格式.') . '<br />'
-            . _t('在某些主题中这个格式可能不会生效, 因为主题作者可以自定义日期格式.') . '<br />'
-            . _t('请参考 <a href="http://www.php.net/manual/zh/function.date.php">PHP 日期格式写法</a>.'));
+        _t('Định dạng ngày của bài viết'), _t('Định dạng này được sử dụng để chỉ định định dạng hiển thị mặc định của ngày được hiển thị trong kho lưu trữ bài viết.') . '<br />'
+            . _t('Trong một số chủ đề, định dạng này có thể không có hiệu lực, vì tác giả chủ đề có thể tùy chỉnh định dạng ngày.') . '<br />'
+            . _t('Vui lòng tham khảo <a href="http://www.php.net/manual/zh/function.date.php">định dạng ngày trong PHP</a>.'));
         $postDateFormat->input->setAttribute('class', 'w-40 mono');
-        $form->addInput($postDateFormat->addRule('xssCheck', _t('请不要在日期格式中使用特殊字符')));
+        $form->addInput($postDateFormat->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong định dạng ngày tháng')));
 
         //首页显示
         $frontPageParts = explode(':', $this->options->frontPage);
@@ -47,13 +47,13 @@ class Widget_Options_Reading extends Widget_Options_Permalink
         $frontPageValue = count($frontPageParts) > 1 ? $frontPageParts[1] : '';
 
         $frontPageOptions = array(
-            'recent'   =>  _t('显示最新发布的文章')
+            'recent'   =>  _t('Hiển thị các bài báo đã xuất bản mới nhất')
         );
 
         $frontPattern = '</label></span><span class="multiline front-archive%class%">'
             . '<input type="checkbox" id="frontArchive" name="frontArchive" value="1"'
             . ($this->options->frontArchive && 'recent' != $frontPageType ? ' checked' : '') .' />
-<label for="frontArchive">' . _t('同时将文章列表页路径更改为 %s',
+<label for="frontArchive">' . _t('Đồng thời thay đổi đường dẫn của trang danh sách bài viết thành %s',
             '<input type="text" name="archivePattern" class="w-20 mono" value="' 
             . htmlspecialchars($this->decodeRule($this->options->routingTable['archive']['url'])) . '" />') 
             . '</label>';
@@ -75,7 +75,7 @@ class Widget_Options_Reading extends Widget_Options_Permalink
                 . '>' . $page['title'] . '</option>';
             }
             $pagesSelect .= '</select>';
-            $frontPageOptions['page'] = _t('使用 %s 页面作为首页', '</label>' . $pagesSelect . '<label for="frontPage-frontPagePage">');
+            $frontPageOptions['page'] = _t('Sử dụng trang %s làm trang chủ', '</label>' . $pagesSelect . '<label for="frontPage-frontPagePage">');
             $selectedFrontPageType = 'page';
         }
 
@@ -99,7 +99,7 @@ class Widget_Options_Reading extends Widget_Options_Permalink
         }
 
         if (!empty($filesSelect)) {
-            $frontPageOptions['file'] = _t('直接调用 %s 模板文件',
+            $frontPageOptions['file'] = _t('Gọi trực tiếp tệp mẫu %s',
              '</label><select name="frontPageFile" id="frontPage-frontPageFile">'
             . $filesSelect . '</select><label for="frontPage-frontPageFile">');
             $selectedFrontPageType = 'file';
@@ -116,29 +116,29 @@ class Widget_Options_Reading extends Widget_Options_Permalink
         }
 
         $frontPage = new Typecho_Widget_Helper_Form_Element_Radio('frontPage', $frontPageOptions,
-        $frontPageType, _t('站点首页'));
+        $frontPageType, _t('Trang chủ'));
         $form->addInput($frontPage->multiMode());
 
         /** 文章列表数目 */
         $postsListSize = new Typecho_Widget_Helper_Form_Element_Text('postsListSize', NULL, $this->options->postsListSize,
-        _t('文章列表数目'), _t('此数目用于指定显示在侧边栏中的文章列表数目.'));
+        _t('Số lượng danh sách bài viết'), _t('Con số này được sử dụng để chỉ định số lượng danh sách bài viết được hiển thị trong thanh bên.'));
         $postsListSize->input->setAttribute('class', 'w-20');
-        $form->addInput($postsListSize->addRule('isInteger', _t('请填入一个数字')));
+        $form->addInput($postsListSize->addRule('isInteger', _t('Vui lòng điền vào một số')));
 
         /** 每页文章数目 */
         $pageSize = new Typecho_Widget_Helper_Form_Element_Text('pageSize', NULL, $this->options->pageSize,
-        _t('每页文章数目'), _t('此数目用于指定文章归档输出时每页显示的文章数目.'));
+        _t('Số lượng bài viết trên mỗi trang'), _t('Con số này được sử dụng để chỉ định số lượng bài viết hiển thị trên mỗi trang khi bài viết lưu trữ xuất ra.'));
         $pageSize->input->setAttribute('class', 'w-20');
-        $form->addInput($pageSize->addRule('isInteger', _t('请填入一个数字')));
+        $form->addInput($pageSize->addRule('isInteger', _t('Vui lòng điền vào một số')));
 
         /** FEED全文输出 */
-        $feedFullText = new Typecho_Widget_Helper_Form_Element_Radio('feedFullText', array('0' => _t('仅输出摘要'), '1' => _t('全文输出')),
-        $this->options->feedFullText, _t('聚合全文输出'), _t('如果你不希望在聚合中输出文章全文,请使用仅输出摘要选项.') . '<br />'
-            . _t('摘要的文字取决于你在文章中使用分隔符的位置.'));
+        $feedFullText = new Typecho_Widget_Helper_Form_Element_Radio('feedFullText', array('0' => _t('Chỉ tóm tắt đầu ra'), '1' => _t('Toàn bộ văn bản đầu ra')),
+        $this->options->feedFullText, _t('Tổng hợp đầu ra văn bản đầy đủ'), _t('Nếu bạn không muốn xuất toàn bộ văn bản của bài viết trong tập hợp, vui lòng sử dụng tùy chọn chỉ tóm tắt đầu ra.') . '<br />'
+            . _t('Văn bản của phần tóm tắt phụ thuộc vào vị trí bạn sử dụng dấu phân tách trong bài viết.'));
         $form->addInput($feedFullText);
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
@@ -199,7 +199,7 @@ class Widget_Options_Reading extends Widget_Options_Permalink
             $this->update(array('value' => $value), $this->db->sql()->where('name = ?', $name));
         }
 
-        $this->widget('Widget_Notice')->set(_t("设置已经保存"), 'success');
+        $this->widget('Widget_Notice')->set(_t("Các cài đặt đã được lưu"), 'success');
         $this->response->goBack();
     }
 

@@ -64,10 +64,10 @@ class Widget_Themes_Edit extends Widget_Abstract_Options implements Widget_Inter
             }
 
             $this->widget('Widget_Notice')->highlight('theme-' . $theme);
-            $this->widget('Widget_Notice')->set(_t("外观已经改变"), 'success');
+            $this->widget('Widget_Notice')->set(_t("Diện mạo đã thay đổi"), 'success');
             $this->response->goBack();
         } else {
-            throw new Typecho_Widget_Exception(_t('您选择的风格不存在'));
+            throw new Typecho_Widget_Exception(_t('Kiểu bạn đã chọn không tồn tại'));
         }
     }
 
@@ -89,13 +89,13 @@ class Widget_Themes_Edit extends Widget_Abstract_Options implements Widget_Inter
             $handle = fopen($path, 'wb');
             if ($handle && fwrite($handle, $this->request->content)) {
                 fclose($handle);
-                $this->widget('Widget_Notice')->set(_t("文件 %s 的更改已经保存", $file), 'success');
+                $this->widget('Widget_Notice')->set(_t("Các thay đổi đối với tệp %s đã được lưu", $file), 'success');
             } else {
-                $this->widget('Widget_Notice')->set(_t("文件 %s 无法被写入", $file), 'error');
+                $this->widget('Widget_Notice')->set(_t("Không thể ghi tệp %s", $file), 'error');
             }
             $this->response->goBack();
         } else {
-            throw new Typecho_Widget_Exception(_t('您编辑的文件不存在'));
+            throw new Typecho_Widget_Exception(_t('Tệp bạn đã chỉnh sửa không tồn tại'));
         }
     }
     
@@ -135,7 +135,7 @@ class Widget_Themes_Edit extends Widget_Abstract_Options implements Widget_Inter
         $this->widget('Widget_Notice')->highlight('theme-' . $theme);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t("外观设置已经保存"), 'success');
+        $this->widget('Widget_Notice')->set(_t("Cài đặt giao diện đã được lưu"), 'success');
 
         /** 转向原页 */
         $this->response->redirect(Typecho_Common::url('options-theme.php', $this->options->adminUrl));

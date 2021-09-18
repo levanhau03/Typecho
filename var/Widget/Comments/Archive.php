@@ -408,8 +408,8 @@ class Widget_Comments_Archive extends Widget_Abstract_Comments
             'beforeDate'    =>  '',
             'afterDate'     =>  '',
             'dateFormat'    =>  $this->options->commentDateFormat,
-            'replyWord'     =>  _t('回复'),
-            'commentStatus' =>  _t('您的评论正等待审核！'),
+            'replyWord'     =>  _t('Trả lời'),
+            'commentStatus' =>  _t('Bình luận của bạn đang chờ xem xét!'),
             'avatarSize'    =>  32,
             'defaultAvatar' =>  NULL
         ));
@@ -491,7 +491,7 @@ class Widget_Comments_Archive extends Widget_Abstract_Comments
     public function cancelReply($word = '')
     {
         if ($this->options->commentsThreaded) {
-            $word = empty($word) ? _t('取消回复') : $word;
+            $word = empty($word) ? _t('Hủy trả lời') : $word;
             $this->pluginHandle()->trigger($plugged)->cancelReply($word, $this);
             
             if (!$plugged) {

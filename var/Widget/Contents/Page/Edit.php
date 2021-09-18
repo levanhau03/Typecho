@@ -53,9 +53,9 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
             }
 
             if (!$this->have()) {
-                throw new Typecho_Widget_Exception(_t('页面不存在'), 404);
+                throw new Typecho_Widget_Exception(_t('Trang không tồn tại'), 404);
             } else if ($this->have() && !$this->allow('edit')) {
-                throw new Typecho_Widget_Exception(_t('没有编辑权限'), 403);
+                throw new Typecho_Widget_Exception(_t('Không có quyền chỉnh sửa'), 403);
             }
         }
     }
@@ -71,7 +71,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
         $contents = $this->request->from('text', 'template', 'allowComment',
             'allowPing', 'allowFeed', 'slug', 'order', 'visibility');
 
-        $contents['title'] = $this->request->get('title', _t('未命名页面'));
+        $contents['title'] = $this->request->get('title', _t('Trang không có tiêu đề'));
         $contents['created'] = $this->getCreated();
         $contents['visibility'] = ('hidden' == $contents['visibility'] ? 'hidden' : 'publish');
 
@@ -93,7 +93,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
             $this->widget('Widget_Service')->sendPing($this->cid);
 
             /** 设置提示信息 */
-            $this->widget('Widget_Notice')->set(_t('页面 "<a href="%s">%s</a>" 已经发布', $this->permalink, $this->title), 'success');
+            $this->widget('Widget_Notice')->set(_t('Trang "<a href="%s">%s</a>" đã được xuất bản', $this->permalink, $this->title), 'success');
 
             /** 设置高亮 */
             $this->widget('Widget_Notice')->highlight($this->theId);
@@ -117,7 +117,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
                 ));
             } else {
                 /** 设置提示信息 */
-                $this->widget('Widget_Notice')->set(_t('草稿 "%s" 已经被保存', $this->title), 'success');
+                $this->widget('Widget_Notice')->set(_t('Bản nháp "%s" đã được lưu', $this->title), 'success');
 
                 /** 返回原页面 */
                 $this->response->redirect(Typecho_Common::url('write-page.php?cid=' . $this->cid, $this->options->adminUrl));
@@ -178,7 +178,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('页面已经被删除') : _t('没有页面被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Trang đã bị xóa') : _t('Không có trang nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
 
         /** 返回原网页 */
@@ -212,7 +212,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
         }
 
         /** 设置提示信息 */
-        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('草稿已经被删除') : _t('没有草稿被删除'),
+        $this->widget('Widget_Notice')->set($deleteCount > 0 ? _t('Bản nháp đã bị xó') : _t('Không có bản nháp nào bị xóa'),
         $deleteCount > 0 ? 'success' : 'notice');
         
         /** 返回原网页 */
@@ -240,7 +240,7 @@ class Widget_Contents_Page_Edit extends Widget_Contents_Post_Edit implements Wid
             /** 转向原页 */
             $this->response->goBack();
         } else {
-            $this->response->throwJson(array('success' => 1, 'message' => _t('页面排序已经完成')));
+            $this->response->throwJson(array('success' => 1, 'message' => _t('Việc sắp xếp trang đã được hoàn thành')));
         }
     }
 

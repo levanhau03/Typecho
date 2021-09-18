@@ -105,7 +105,7 @@ class Widget_Upgrade extends Widget_Abstract_Options implements Widget_Interface
         $this->update(array('value' => 'Typecho ' . Typecho_Common::VERSION),
         $this->db->sql()->where('name = ?', 'generator'));
 
-        $this->widget('Widget_Notice')->set(empty($message) ? _t("升级已经完成") : $message,
+        $this->widget('Widget_Notice')->set(empty($message) ? _t("Nâng cấp đã hoàn thành") : $message,
         empty($message) ? 'success' : 'notice');
     }
 

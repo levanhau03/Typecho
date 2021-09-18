@@ -57,31 +57,31 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
             ->where('coid = ?', $parentId))) && $this->_content->cid == $parent['cid']) {
                 $comment['parent'] = $parentId;
             } else {
-                throw new Typecho_Widget_Exception(_t('父级评论不存在'));
+                throw new Typecho_Widget_Exception(_t('Nhận xét của phụ huynh không tồn tại'));
             }
         }
 
         //检验格式
         $validator = new Typecho_Validate();
-        $validator->addRule('author', 'required', _t('必须填写用户名'));
-        $validator->addRule('author', 'xssCheck', _t('请不要在用户名中使用特殊字符'));
-        $validator->addRule('author', array($this, 'requireUserLogin'), _t('您所使用的用户名已经被注册,请登录后再次提交'));
-        $validator->addRule('author', 'maxLength', _t('用户名最多包含200个字符'), 200);
+        $validator->addRule('author', 'required', _t('Tên người dùng phải được điền và'));
+        $validator->addRule('author', 'xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong tên người dùng'));
+        $validator->addRule('author', array($this, 'requireUserLogin'), _t('Tên người dùng bạn sử dụng đã được đăng ký, vui lòng đăng nhập và gửi lại'));
+        $validator->addRule('author', 'maxLength', _t('Tên người dùng có thể chứa tối đa 200 ký tự'), 200);
 
         if ($this->options->commentsRequireMail && !$this->user->hasLogin()) {
-            $validator->addRule('mail', 'required', _t('必须填写电子邮箱地址'));
+            $validator->addRule('mail', 'required', _t('Địa chỉ email phải được điền vào'));
         }
 
-        $validator->addRule('mail', 'email', _t('邮箱地址不合法'));
-        $validator->addRule('mail', 'maxLength', _t('电子邮箱最多包含200个字符'), 200);
+        $validator->addRule('mail', 'email', _t('Địa chỉ email không hợp lệ'));
+        $validator->addRule('mail', 'maxLength', _t('Địa chỉ email có thể chứa tối đa 200 ký tự'), 200);
 
         if ($this->options->commentsRequireUrl && !$this->user->hasLogin()) {
-            $validator->addRule('url', 'required', _t('必须填写个人主页'));
+            $validator->addRule('url', 'required', _t('Trang chủ cá nhân phải được điền vào'));
         }
-        $validator->addRule('url', 'url', _t('个人主页地址格式错误'));
-        $validator->addRule('url', 'maxLength', _t('个人主页地址最多包含200个字符'), 200);
+        $validator->addRule('url', 'url', _t('Lỗi định dạng địa chỉ trang chủ cá nhân'));
+        $validator->addRule('url', 'maxLength', _t('Địa chỉ trang chủ cá nhân có thể chứa tối đa 200 ký tự'), 200);
 
-        $validator->addRule('text', 'required', _t('必须填写评论内容'));
+        $validator->addRule('text', 'required', _t('Phải điền nội dung bình luận'));
 
         $comment['text'] = $this->request->text;
 
@@ -165,7 +165,7 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
         if ($this->size($this->select()
         ->where('status = ? AND ip = ?', 'spam', $this->request->getIp())) > 0) {
             /** 使用404告诉机器人 */
-            throw new Typecho_Widget_Exception(_t('找不到内容'), 404);
+            throw new Typecho_Widget_Exception(_t('Nội dung không tìm thấy'), 404);
         }
 
         $trackback = array(
@@ -205,7 +205,7 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
         if ($this->size($this->select()
         ->where('cid = ? AND url = ? AND type <> ?', $this->_content->cid, $trackback['url'], 'comment')) > 0) {
             /** 使用403告诉机器人 */
-            throw new Typecho_Widget_Exception(_t('禁止重复提交'), 403);
+            throw new Typecho_Widget_Exception(_t('Gửi trùng lặp bị cấm'), 403);
         }
 
         /** 生成过滤器 */
@@ -280,7 +280,7 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
             if ('comment' == $callback) {
                 /** 评论关闭 */
                 if (!$this->_content->allow('comment')) {
-                    throw new Typecho_Widget_Exception(_t('对不起,此内容的反馈被禁止.'), 403);
+                    throw new Typecho_Widget_Exception(_t('Xin lỗi, phản hồi về nội dung này bị cấm.'), 403);
                 }
                 
                 /** 检查来源 */
@@ -288,7 +288,7 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
                     $referer = $this->request->getReferer();
 
                     if (empty($referer)) {
-                        throw new Typecho_Widget_Exception(_t('评论来源页错误.'), 403);
+                        throw new Typecho_Widget_Exception(_t('Trang nguồn bình luận là sai.'), 403);
                     }
 
                     $refererPart = parse_url($referer);
@@ -303,10 +303,10 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
                             
                             if ($refererPart['host'] != $currentPart['host'] ||
                             0 !== strpos($refererPart['path'], $currentPart['path'])) {
-                                throw new Typecho_Widget_Exception(_t('评论来源页错误.'), 403);
+                                throw new Typecho_Widget_Exception(_t('Trang nguồn bình luận là sai.'), 403);
                             }
                         } else {
-                            throw new Typecho_Widget_Exception(_t('评论来源页错误.'), 403);
+                            throw new Typecho_Widget_Exception(_t('Trang nguồn bình luận là sai.'), 403);
                         }
                     }
                 }
@@ -322,20 +322,20 @@ class Widget_Feedback extends Widget_Abstract_Comments implements Widget_Interfa
 
                     if ($latestComment && ($this->options->time - $latestComment['created'] > 0 &&
                     $this->options->time - $latestComment['created'] < $this->options->commentsPostInterval)) {
-                        throw new Typecho_Widget_Exception(_t('对不起, 您的发言过于频繁, 请稍侯再次发布.'), 403);
+                        throw new Typecho_Widget_Exception(_t('Xin lỗi, bài phát biểu của bạn quá thường xuyên, vui lòng đăng lại sau.'), 403);
                     }
                 }
             }
 
             /** 如果文章不允许引用 */
             if ('trackback' == $callback && !$this->_content->allow('ping')) {
-                throw new Typecho_Widget_Exception(_t('对不起,此内容的引用被禁止.'), 403);
+                throw new Typecho_Widget_Exception(_t('Xin lỗi, việc trích dẫn nội dung này bị cấm.'), 403);
             }
 
             /** 调用函数 */
             $this->$callback();
         } else {
-            throw new Typecho_Widget_Exception(_t('找不到内容'), 404);
+            throw new Typecho_Widget_Exception(_t('Nội dung không tìm thấy'), 404);
         }
     }
 }

@@ -211,70 +211,70 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $this->_wpOptions = array(
 			// Read only options
 			'software_name'		=> array(
-				'desc'			=> _t( '软件名称' ),
+				'desc'			=> _t( 'Tên của phần mềm' ),
 				'readonly'		=> true,
 				'value'			=> $this->options->software
 			),
 			'software_version'	=> array(
-				'desc'			=> _t( '软件版本' ),
+				'desc'			=> _t( 'Phiên bản phần mềm' ),
 				'readonly'		=> true,
 				'value'			=> $this->options->version
 			),
 			'blog_url'			=> array(
-				'desc'			=> _t( '博客地址' ),
+				'desc'			=> _t( 'Địa chỉ blog' ),
 				'readonly'		=> true,
 				'option'		=> 'siteUrl'
 			),
             'home_url'          => array(
-                'desc'          => _t( '博客首页地址' ),
+                'desc'          => _t( 'Địa chỉ trang chủ blog' ),
                 'readonly'      => true,
                 'option'        => 'siteUrl'
             ),
             'login_url'         => array(
-                'desc'          => _t( '登录地址' ),
+                'desc'          => _t( 'Địa chỉ đăng nhập' ),
                 'readonly'      => true,
                 'value'         => $this->options->siteUrl.'admin/login.php'
             ),
              'admin_url'        => array(
-                'desc'          => _t( '管理区域的地址' ),
+                'desc'          => _t( 'Địa chỉ khu vực quản lý' ),
                 'readonly'      => true,
                 'value'         => $this->options->siteUrl.'admin/'
             ),
 
             'post_thumbnail'    => array(
-                'desc'          => _t( '文章缩略图' ),
+                'desc'          => _t( 'Hình thu nhỏ bài viết' ),
                 'readonly'      => true,
                 'value'         => false
             ),
 
 			// Updatable options
 			'time_zone'			=> array(
-				'desc'			=> _t( '时区' ),
+				'desc'			=> _t( 'Múi giờ' ),
 				'readonly'		=> false,
 				'option'		=> 'timezone'
 			),
 			'blog_title'		=> array(
-				'desc'			=> _t( '博客标题' ),
+				'desc'			=> _t( 'Tiêu đề Blog' ),
 				'readonly'		=> false,
 				'option'			=> 'title'
 			),
 			'blog_tagline'		=> array(
-				'desc'			=> _t( '博客关键字' ),
+				'desc'			=> _t( 'Từ khóa blog' ),
 				'readonly'		=> false,
 				'option'		=> 'description'
 			),
 			'date_format'		=> array(
-				'desc'			=> _t( '日期格式' ),
+				'desc'			=> _t( 'Định dạng ngày tháng' ),
 				'readonly'		=> false,
 				'option'		=> 'postDateFormat'
 			),
 			'time_format'		=> array(
-				'desc'			=> _t( '时间格式' ),
+				'desc'			=> _t( 'Định dạng thời gian' ),
 				'readonly'		=> false,
 				'option'		=> 'postDateFormat'
 			),
 			'users_can_register'	=> array(
-				'desc'			=> _t( '是否允许注册' ),
+				'desc'			=> _t( 'Có cho phép đăng ký hay không' ),
 				'readonly'		=> false,
 				'option'		=> 'allowRegister'
 			)
@@ -295,11 +295,11 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
                 $this->user->execute();
                 return true;
             } else {
-                $this->error = new IXR_Error(403, _t('权限不足'));
+                $this->error = new IXR_Error(403, _t('Không đủ quyền'));
                 return false;
             }
         } else {
-            $this->error = new IXR_Error(403, _t('无法登陆, 密码错误'));
+            $this->error = new IXR_Error(403, _t('Không thể đăng nhập, sai mật khẩu'));
             return false;
         }
     }
@@ -617,7 +617,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             return new IXR_Error($e->getCode(), $e->getMessage());
         }
 
-        return new IXR_Error(403, _t('无法添加分类'));
+        return new IXR_Error(403, _t('Không thể thêm danh mục'));
     }
 
     /**
@@ -819,7 +819,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         }
         
         return array(
-            'standard' => _t('标准')
+            'standard' => _t('Tiêu chuẩn')
         );
     }
     
@@ -888,8 +888,8 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         
         return array(
             'hold'      =>  _t('Chờ xem xét'),
-            'approve'   =>  _t('显示'),
-            'spam'      =>  _t('垃圾')
+            'approve'   =>  _t('Chấp thuận'),
+            'spam'      =>  _t('Spam')
         );
     }
     
@@ -1009,11 +1009,11 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $comment = $this->singletonWidget('Widget_Comments_Edit', NULL, 'do=get&coid=' . intval($commentId), false);
         
         if (!$comment->have()) {
-            return new IXR_Error(404, _t('评论不存在'));
+            return new IXR_Error(404, _t('Bình luận không tồn tại'));
         }
         
         if (!$comment->commentIsWriteable()) {
-            return new IXR_Error(403, _t('没有获取评论的权限'));
+            return new IXR_Error(403, _t('Không có quyền nhận bình luận'));
         }
         
         return array(
@@ -1120,7 +1120,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $where = $this->db->sql()->where('coid = ?', $commentId);
         
         if (!$commentWidget->commentIsWriteable($where)) {
-            return new IXR_Error(403, _t('无法编辑此评论'));
+            return new IXR_Error(403, _t('Không thể chỉnh sửa nhận xét này'));
         }
 
         return intval($this->singletonWidget('Widget_Abstract_Comments')->delete($where)) > 0;
@@ -1149,7 +1149,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $where = $this->db->sql()->where('coid = ?', $commentId);
         
         if (!$commentWidget->commentIsWriteable($where)) {
-            return new IXR_Error(403, _t('无法编辑此评论'));
+            return new IXR_Error(403, _t('Không thể chỉnh sửa nhận xét này'));
         }
         
         $input = array();
@@ -1181,7 +1181,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $result = $commentWidget->update((array) $input, $where);
         
         if (!$result) {
-            return new IXR_Error(404, _t('评论不存在'));
+            return new IXR_Error(404, _t('Bình luận không tồn tại'));
         }
         
         return true;
@@ -1215,7 +1215,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         
         /** 这样可以得到cid或者slug*/
         if (!isset($post) || !($post instanceof Widget_Archive) || !$post->have() || !$post->is('single')) {
-            return new IXR_Error(404, _t('这个目标地址不存在'));
+            return new IXR_Error(404, _t('Địa chỉ đích không tồn tại'));
         }
         
         $input = array();
@@ -1250,7 +1250,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             return new IXR_Error(500, $e->getMessage());
         }
         
-        return new IXR_Error(403, _t('无法添加评论'));
+        return new IXR_Error(403, _t('Không thể thêm nhận xét'));
     }
 
 
@@ -1377,7 +1377,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $input = array();
         $type = isset($content['post_type']) && 'page' == $content['post_type'] ? 'page' : 'post';
         
-        $input['title'] = trim($content['title']) == NULL ? _t('未命名文档') : $content['title'];
+        $input['title'] = trim($content['title']) == NULL ? _t('Tài liệu không có tiêu đề') : $content['title'];
 
         if (isset($content['slug'])) {
             $input['slug'] = $content['slug'];
@@ -1671,7 +1671,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $result = Widget_Upload::uploadHandle($data);
 
         if (false === $result) {
-            return IXR_Error(500, _t('上传失败'));
+            return IXR_Error(500, _t('Tải lên thất bại'));
         } else {
 
             $insertId = $this->insert(array(
@@ -1841,7 +1841,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         /** 提交查询 */
         $post = $this->db->fetchRow($select, array($this, 'push'));
         if ($this->authorId != $this->user->uid && !$this->checkAccess($userName, $password, 'administrator')) {
-            return new IXR_Error(403, '权限不足.');
+            return new IXR_Error(403, 'Không đủ quyền.');
         }
 
         /** 暂时只做成发布*/
@@ -1999,7 +1999,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             $postStructs[] = $struct;
         }
         if (NULL == $postStructs) {
-            return new IXR_Error('404', '没有任何文章');
+            return new IXR_Error('404', 'Không có bài viết');
         }
         return $postStructs;
     }
@@ -2060,16 +2060,16 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         /** 检查源地址是否合法 */
         $params = parse_url($source);
         if (false === $params || !in_array($params['scheme'], array('http', 'https'))) {
-            return new IXR_Error(16, _t('源地址服务器错误'));
+            return new IXR_Error(16, _t('Lỗi máy chủ địa chỉ nguồn'));
         }
 
         if (!Typecho_Common::checkSafeHost($params['host'])) {
-            return new IXR_Error(16, _t('源地址服务器错误'));
+            return new IXR_Error(16, _t('Lỗi máy chủ địa chỉ nguồn'));
         }
 
         /** 这样可以得到cid或者slug*/
         if (!($post instanceof Widget_Archive) || !$post->have() || !$post->is('single')) {
-            return new IXR_Error(33, _t('这个目标地址不存在'));
+            return new IXR_Error(33, _t('Địa chỉ đích không tồn tại'));
         }
 
         if ($post) {
@@ -2084,7 +2084,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
                 if ($pingNum <= 0) {
                     /** 检查源地址是否存在*/
                     if (!($http = Typecho_Http_Client::get())) {
-                        return new IXR_Error(16, _t('源地址服务器错误'));
+                        return new IXR_Error(16, _t('Lỗi máy chủ địa chỉ nguồn'));
                     }
 
                     try {
@@ -2097,16 +2097,16 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
                             if (!$http->getResponseHeader('x-pingback')) {
                                 preg_match_all("/<link[^>]*rel=[\"']([^\"']*)[\"'][^>]*href=[\"']([^\"']*)[\"'][^>]*>/i", $response, $out);
                                 if (!isset($out[1]['pingback'])) {
-                                    return new IXR_Error(50, _t('源地址不支持PingBack'));
+                                    return new IXR_Error(50, _t('Địa chỉ nguồn không hỗ trợ PingBack'));
                                 }
                             }
 
                         } else {
-                            return new IXR_Error(16, _t('源地址服务器错误'));
+                            return new IXR_Error(16, _t('Lỗi máy chủ địa chỉ nguồn'));
                         }
 
                     } catch (Exception $e) {
-                        return new IXR_Error(16, _t('源地址服务器错误'));
+                        return new IXR_Error(16, _t('Lỗi máy chủ địa chỉ nguồn'));
                     }
 
                     /** 现在开始插入以及邮件提示了 $response就是第一行请求时返回的数组*/
@@ -2137,7 +2137,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
 
                     /** 截取一段字*/
                     if (NULL == trim($finalText)) {
-                        return new IXR_Error('17', _t('源地址中不包括目标地址'));
+                        return new IXR_Error('17', _t('Địa chỉ nguồn không bao gồm địa chỉ đích'));
                     }
 
                     $finalText = '[...]' . Typecho_Common::subStr($finalText, 0, 200, '') . '[...]';
@@ -2168,13 +2168,13 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
 
                     /** todo:发送邮件提示*/
                 } else {
-                    return new IXR_Error(48, _t('PingBack已经存在'));
+                    return new IXR_Error(48, _t('PingBack đã tồn tại'));
                 }
             } else {
-                return IXR_Error(49, _t('目标地址禁止Ping'));
+                return IXR_Error(49, _t('Ping cho địa chỉ đích bị cấm'));
             }
         } else {
-            return new IXR_Error(33, _t('这个目标地址不存在'));
+            return new IXR_Error(33, _t('Địa chỉ đích không tồn tại'));
         }
     }
     
@@ -2204,7 +2204,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
     public function action()
     {
         if (0 == $this->options->allowXmlRpc) {
-            throw new Typecho_Widget_Exception(_t('请求的地址不存在'), 404);
+            throw new Typecho_Widget_Exception(_t('Địa chỉ được yêu cầu không tồn tại'), 404);
         }
 
         if (isset($this->request->rsd)) {

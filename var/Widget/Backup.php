@@ -67,7 +67,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
         $fp = @fopen($file, 'rb');
 
         if (!$fp) {
-            $this->widget('Widget_Notice')->set(_t('无法读取备份文件'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Không thể đọc tệp sao lưu'), 'error');
             $this->response->goBack();
         }
 
@@ -76,7 +76,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
 
         if ($fileSize < $headerSize) {
             @fclose($fp);
-            $this->widget('Widget_Notice')->set(_t('备份文件格式错误'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Định dạng tệp sao lưu sai'), 'error');
             $this->response->goBack();
         }
 
@@ -84,7 +84,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
 
         if (!$fileHeader || $fileHeader != self::HEADER) {
             @fclose($fp);
-            $this->widget('Widget_Notice')->set(_t('备份文件格式错误'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Định dạng tệp sao lưu sai'), 'error');
             $this->response->goBack();
         }
 
@@ -93,7 +93,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
 
         if (!$fileFooter || $fileFooter != self::HEADER) {
             @fclose($fp);
-            $this->widget('Widget_Notice')->set(_t('备份文件格式错误'), 'error');
+            $this->widget('Widget_Notice')->set(_t('Định dạng tệp sao lưu sai'), 'error');
             $this->response->goBack();
         }
 
@@ -105,7 +105,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
 
             if (!$data) {
                 @fclose($fp);
-                $this->widget('Widget_Notice')->set(_t('恢复数据出现错误'), 'error');
+                $this->widget('Widget_Notice')->set(_t('Lỗi khi khôi phục dữ liệu'), 'error');
                 $this->response->goBack();
             }
 
@@ -114,7 +114,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
         }
 
         @fclose($fp);
-        $this->widget('Widget_Notice')->set(_t('数据恢复完成'), 'success');
+        $this->widget('Widget_Notice')->set(_t('Khôi phục dữ liệu hoàn tất'), 'success');
         $this->response->goBack();
     }
 
@@ -167,7 +167,7 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
 
             $db->query($db->insert('table.' . $table)->rows($data));
         } catch (Exception $e) {
-            $this->widget('Widget_Notice')->set(_t('恢复过程中遇到如下错误: %s', $e->getMessage()), 'error');
+            $this->widget('Widget_Notice')->set(_t('Đã gặp các lỗi sau trong quá trình khôi phục: %s', $e->getMessage()), 'error');
             $this->response->goBack();
         }
     }
@@ -247,19 +247,19 @@ class Widget_Backup extends Widget_Abstract_Options implements Widget_Interface_
             if (0 == $file['error'] && is_uploaded_file($file['tmp_name'])) {
                 $path = $file['tmp_name'];
             } else {
-                $this->widget('Widget_Notice')->set(_t('备份文件上传失败'), 'error');
+                $this->widget('Widget_Notice')->set(_t('Không tải lên được tệp sao lưu'), 'error');
                 $this->response->goBack();
             }
         } else {
             if (!$this->request->is('file')) {
-                $this->widget('Widget_Notice')->set(_t('没有选择任何备份文件'), 'error');
+                $this->widget('Widget_Notice')->set(_t('Không có tệp sao lưu nào được chọn'), 'error');
                 $this->response->goBack();
             }
 
             $path = __TYPECHO_BACKUP_DIR__ . '/' . $this->request->get('file');
 
             if (!file_exists($path)) {
-                $this->widget('Widget_Notice')->set(_t('备份文件不存在'), 'error');
+                $this->widget('Widget_Notice')->set(_t('Tệp sao lưu không tồn tại'), 'error');
                 $this->response->goBack();
             }
         }

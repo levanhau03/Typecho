@@ -59,7 +59,7 @@ class Widget_Security extends Typecho_Widget
                     '<?php if (!file_exists(dirname(__FILE__) . \'/config.inc.php\')): ?>') ||
                 false !== strpos($installFileContents,
                     '!isset($_GET[\'finish\']) && file_exists(__TYPECHO_ROOT_DIR__ . \'/config.inc.php\') && empty($_SESSION[\'typecho\'])')) {
-                $errors[] = _t('您正在运行一个不安全的安装脚本 <strong>%s</strong>, 请用新版中的对应文件替代或者直接删除它', $installFile);
+                $errors[] = _t('Bạn đang chạy tập lệnh cài đặt không an toàn <strong>%s</strong>, vui lòng thay thế nó bằng tệp tương ứng trong phiên bản mới hoặc xóa trực tiếp', $installFile);
             }
         }
 

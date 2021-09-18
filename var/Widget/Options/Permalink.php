@@ -207,34 +207,34 @@ RewriteRule . {$basePath}index.php [L]
 
         if (!defined('__TYPECHO_REWRITE__')) {
             /** 是否使用地址重写功能 */
-            $rewrite = new Typecho_Widget_Helper_Form_Element_Radio('rewrite', array('0' => _t('不启用'), '1' => _t('启用')),
-                $this->options->rewrite, _t('是否使用地址重写功能'), _t('地址重写即 rewrite 功能是某些服务器软件提供的优化内部连接的功能.') . '<br />'
-                . _t('打开此功能可以让你的链接看上去完全是静态地址.')); 
+            $rewrite = new Typecho_Widget_Helper_Form_Element_Radio('rewrite', array('0' => _t('Không kích hoạt'), '1' => _t('Kích hoạt')),
+                $this->options->rewrite, _t('Có sử dụng chức năng Rewrite hay không'), _t('Rewrite là một chức năng được cung cấp bởi một số phần mềm máy chủ để tối ưu hóa các kết nối nội bộ.') . '<br />'
+                . _t('Bật chức năng này có thể làm cho liên kết của bạn trông hoàn toàn tĩnh.')); 
 
             // disable rewrite check when rewrite opened
             if (!$this->options->rewrite && !$this->request->is('enableRewriteAnyway=1')) {
-                $errorStr = _t('重写功能检测失败, 请检查你的服务器设置');
+                $errorStr = _t('Kiểm tra chức năng viết lại không thành công, vui lòng kiểm tra cài đặt máy chủ của bạn');
 
                 /** 如果是apache服务器, 可能存在无法写入.htaccess文件的现象 */
                 if (((isset($_SERVER['SERVER_SOFTWARE']) && false !== strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'apache'))
                     || function_exists('apache_get_version')) && !file_exists(__TYPECHO_ROOT_DIR__ . '/.htaccess')
                     && !is_writeable(__TYPECHO_ROOT_DIR__)) {
-                    $errorStr .= '<br /><strong>' . _t('我们检测到你使用了apache服务器, 但是程序无法在根目录创建.htaccess文件, 这可能是产生这个错误的原因.')
-                        . _t('请调整你的目录权限, 或者手动创建一个.htaccess文件.') . '</strong>';
+                    $errorStr .= '<br /><strong>' . _t('Chúng tôi đã phát hiện ra rằng bạn đang sử dụng máy chủ apache nhưng chương trình không thể tạo tệp .htaccess trong thư mục gốc. Đây có thể là nguyên nhân gây ra lỗi này.')
+                        . _t('Vui lòng điều chỉnh quyền thư mục của bạn hoặc tạo tệp .htaccess theo cách thủ công.') . '</strong>';
                 }
 
                 $errorStr .= '<br /><input type="checkbox" name="enableRewriteAnyway" id="enableRewriteAnyway" value="1" />'
-                    . ' <label for="enableRewriteAnyway">' . _t('如果你仍然想启用此功能, 请勾选这里') . '</label>';
+                    . ' <label for="enableRewriteAnyway">' . _t('Nếu bạn vẫn muốn kích hoạt tính năng này, vui lòng kiểm tra tại đây') . '</label>';
                 $rewrite->addRule(array($this, 'checkRewrite'), $errorStr);
             }
 
             $form->addInput($rewrite);
         }
 
-        $patterns = array('/archives/[cid:digital]/' => _t('默认风格') . ' <code>/archives/{cid}/</code>',
-        '/archives/[slug].html' => _t('wordpress风格') . ' <code>/archives/{slug}.html</code>',
-        '/[year:digital:4]/[month:digital:2]/[day:digital:2]/[slug].html' => _t('按日期归档') . ' <code>/archives/{year}/{month}/{day}/{slug}.html</code>',
-        '/[category]/[slug].html' => _t('按分类归档') . ' <code>/{category}/{slug}.html</code>');
+        $patterns = array('/archives/[cid:digital]/' => _t('Kiểu mặc định') . ' <code>/archives/{cid}/</code>',
+        '/archives/[slug].html' => _t('Kiểu wordpress') . ' <code>/archives/{slug}.html</code>',
+        '/[year:digital:4]/[month:digital:2]/[day:digital:2]/[slug].html' => _t('Lưu trữ theo ngày') . ' <code>/archives/{year}/{month}/{day}/{slug}.html</code>',
+        '/[category]/[slug].html' => _t('Lưu trữ theo danh mục') . ' <code>/{category}/{slug}.html</code>');
 
         /** 自定义文章路径 */
         $postPatternValue = $this->options->routingTable['post']['url'];
@@ -247,31 +247,31 @@ RewriteRule . {$basePath}index.php [L]
         } else if (!isset($patterns[$postPatternValue])) {
             $customPatternValue = $this->decodeRule($postPatternValue);
         }
-        $patterns['custom'] = _t('个性化定义') . ' <input type="text" class="w-50 text-s mono" name="customPattern" value="' . $customPatternValue . '" />';
+        $patterns['custom'] = _t('Cá nhân hóa') . ' <input type="text" class="w-50 text-s mono" name="customPattern" value="' . $customPatternValue . '" />';
 
         $postPattern = new Typecho_Widget_Helper_Form_Element_Radio('postPattern', $patterns,
-        $postPatternValue, _t('自定义文章路径'), _t('可用参数: <code>{cid}</code> 日志 ID, <code>{slug}</code> 日志缩略名, <code>{category}</code> 分类, <code>{directory}</code> 多级分类, <code>{year}</code> 年, <code>{month}</code> 月, <code>{day}</code> 日')
-            . '<br />' . _t('选择一种合适的文章静态路径风格, 使得你的网站链接更加友好.') 
-            . '<br />' . _t('一旦你选择了某种链接风格请不要轻易修改它.'));
+        $postPatternValue, _t('Đường dẫn bài viết tùy chỉnh'), _t('Các thông số có sẵn: <code>{cid}</code> ID bài, <code>{slug}</code> Tên viết tắt bài, <code>{category}</code> Danh mục, <code>{directory}</code> Chuyên mục, <code>{year}</code> Năm, <code>{month}</code> Tháng, <code>{day}</code> Ngày')
+            . '<br />' . _t('Chọn một phong cách đường dẫn tĩnh phù hợp cho bài viết để làm cho các liên kết trang web của bạn trở nên thân thiện hơn.') 
+            . '<br />' . _t('Khi bạn chọn một kiểu liên kết, vui lòng không sửa đổi nó một cách nhẹ nhàng.'));
         if ($customPatternValue) {
             $postPattern->value('custom');
         }
         $form->addInput($postPattern->multiMode());
 
         /** 独立页面后缀名 */
-        $pagePattern = new Typecho_Widget_Helper_Form_Element_Text('pagePattern', NULL, $this->decodeRule($this->options->routingTable['page']['url']), _t('独立页面路径'), _t('可用参数: <code>{cid}</code> 页面 ID, <code>{slug}</code> 页面缩略名')
-            . '<br />' . _t('请在路径中至少包含上述的一项参数.'));
+        $pagePattern = new Typecho_Widget_Helper_Form_Element_Text('pagePattern', NULL, $this->decodeRule($this->options->routingTable['page']['url']), _t('Đường dẫn trang độc lập'), _t('Các thông số có sẵn: <code>{cid}</code> Id trang, <code>{slug}</code> Tên viết tắt trang')
+            . '<br />' . _t('Vui lòng bao gồm ít nhất một trong các tham số trên trong đường dẫn.'));
         $pagePattern->input->setAttribute('class', 'mono w-60');
-        $form->addInput($pagePattern->addRule(array($this, 'checkPagePattern'), _t('独立页面路径中没有包含 {cid} 或者 {slug} ')));
+        $form->addInput($pagePattern->addRule(array($this, 'checkPagePattern'), _t('Đường dẫn trang độc lập không chứa {cid} hoặc {slug} ')));
 
         /** 分类页面 */
-        $categoryPattern = new Typecho_Widget_Helper_Form_Element_Text('categoryPattern', NULL, $this->decodeRule($this->options->routingTable['category']['url']), _t('分类路径'), _t('可用参数: <code>{mid}</code> 分类 ID, <code>{slug}</code> 分类缩略名, <code>{directory}</code> 多级分类')
-            . '<br />' . _t('请在路径中至少包含上述的一项参数.'));
+        $categoryPattern = new Typecho_Widget_Helper_Form_Element_Text('categoryPattern', NULL, $this->decodeRule($this->options->routingTable['category']['url']), _t('Đường dẫn danh mục'), _t('Các thông số có sẵn: <code>{mid}</code> ID danh mục, <code>{slug}</code> Viết tắt danh mục, <code>{directory}</code> Chuyên mục')
+            . '<br />' . _t('Vui lòng bao gồm ít nhất một trong các tham số trên trong đường dẫn.'));
         $categoryPattern->input->setAttribute('class', 'mono w-60');
-        $form->addInput($categoryPattern->addRule(array($this, 'checkCategoryPattern'), _t('分类路径中没有包含 {mid} 或者 {slug} ')));
+        $form->addInput($categoryPattern->addRule(array($this, 'checkCategoryPattern'), _t('Đường dẫn danh mục không chứa {mid} hoặc {slug} ')));
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('保存设置'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Lưu các thiết lập'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
@@ -319,9 +319,9 @@ RewriteRule . {$basePath}index.php [L]
         }
 
         if ($patternValid) {
-            $this->widget('Widget_Notice')->set(_t("设置已经保存"), 'success');
+            $this->widget('Widget_Notice')->set(_t("Các cài đặt đã được lưu"), 'success');
         } else {
-            $this->widget('Widget_Notice')->set(_t("自定义链接与现有规则存在冲突! 它可能影响解析效率, 建议你重新分配一个规则."), 'notice');
+            $this->widget('Widget_Notice')->set(_t("Liên kết tùy chỉnh xung đột với các quy tắc hiện có! Nó có thể ảnh hưởng đến hiệu quả giải quyết. Bạn nên phân phối lại quy tắc."), 'notice');
         }
         $this->response->goBack();
     }

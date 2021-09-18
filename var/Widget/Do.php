@@ -84,6 +84,6 @@ class Widget_Do extends Typecho_Widget
             }
         }
 
-        throw new Typecho_Widget_Exception(_t('请求的地址不存在'), 404);
+        throw new Typecho_Widget_Exception(_t('Địa chỉ được yêu cầu không tồn tại'), 404);
     }
 }
