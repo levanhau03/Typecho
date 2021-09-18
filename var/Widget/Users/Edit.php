@@ -105,12 +105,12 @@ class Widget_Users_Edit extends Widget_Abstract_Users implements Widget_Interfac
         $form->addInput($mail);
 
         /** 用户昵称 */
-        $screenName = new Typecho_Widget_Helper_Form_Element_Text('screenName', NULL, NULL, _t('用户昵称'), _t('用户昵称可以与用户名不同, 用于前台显示.')
-            . '<br />' . _t('如果你将此项留空, 将默认使用用户名.'));
+        $screenName = new Typecho_Widget_Helper_Form_Element_Text('screenName', NULL, NULL, _t('Biệt hiệu của người dùng'), _t('Biệt hiệu của người dùng có thể khác với tên người dùng, được sử dụng để hiển thị nền trước.')
+            . '<br />' . _t('Nếu bạn để trống, tên người dùng sẽ được sử dụng theo mặc định.'));
         $form->addInput($screenName);
 
         /** 用户密码 */
-        $password = new Typecho_Widget_Helper_Form_Element_Password('password', NULL, NULL, _t('用户密码'), _t('为此用户分配一个密码.')
+        $password = new Typecho_Widget_Helper_Form_Element_Password('password', NULL, NULL, _t('Mật khẩu người dùng'), _t('Gán mật khẩu cho người dùng này.')
             . '<br />' . _t('建议使用特殊字符与字母、数字的混编样式,以增加系统安全性.'));
         $password->input->setAttribute('class', 'w-60');
         $form->addInput($password);
