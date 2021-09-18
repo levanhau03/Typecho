@@ -101,7 +101,7 @@ class Widget_Menu extends Typecho_Widget
      */
     public function execute()
     {
-        $parentNodes = array(NULL, _t('Bảng điều khiển'), _t('Đăng'), _t('Quản lý'), _t('Thiết lập'));
+        $parentNodes = array(NULL, _t('Bảng điều khiển'), _t('Khởi tạo'), _t('Quản lý'), _t('Thiết lập'));
 
         $childNodes =  array(
         array(
@@ -121,9 +121,9 @@ class Widget_Menu extends Typecho_Widget
             array(_t('Chào mừng'), _t('Chào mừng'), 'welcome.php', 'subscriber', true)
         ),
         array(
-            array(_t('Viết một tiêu đề'), _t('Đăng bài viết mới'), 'write-post.php', 'contributor'),
+            array(_t('Bài viết mới'), _t('Đăng bài viết mới'), 'write-post.php', 'contributor'),
             array(array('Widget_Contents_Post_Edit', 'getMenuTitle'), array('Widget_Contents_Post_Edit', 'getMenuTitle'), 'write-post.php?cid=', 'contributor', true),
-            array(_t('Tạo trang'), _t('Tạo trang mới'), 'write-page.php', 'editor'),
+            array(_t('Tạo trang mới'), _t('Tạo trang mới'), 'write-page.php', 'editor'),
             array(array('Widget_Contents_Page_Edit', 'getMenuTitle'), array('Widget_Contents_Page_Edit', 'getMenuTitle'), 'write-page.php?cid=', 'editor', true),
         ),
         array(
@@ -132,14 +132,14 @@ class Widget_Menu extends Typecho_Widget
             array(_t('Trang độc lập'), _t('Quản lý các trang độc lập'), 'manage-pages.php', 'editor', false, 'write-page.php'),
             array(_t('Bình luận'), _t('Quản lý bình luận'), 'manage-comments.php', 'contributor'),
             array(array('Widget_Comments_Admin', 'getMenuTitle'), array('Widget_Comments_Admin', 'getMenuTitle'), 'manage-comments.php?cid=', 'contributor', true),
-            array(_t('分类'), _t('管理分类'), 'manage-categories.php', 'editor', false, 'category.php'),
-            array(_t('新增分类'), _t('新增分类'), 'category.php', 'editor', true),
+            array(_t('Danh mục'), _t('Quản lý danh mục'), 'manage-categories.php', 'editor', false, 'category.php'),
+            array(_t('Danh mục mới'), _t('Danh mục mới'), 'category.php', 'editor', true),
             array(array('Widget_Metas_Category_Admin', 'getMenuTitle'), array('Widget_Metas_Category_Admin', 'getMenuTitle'), 'manage-categories.php?parent=', 'editor', true, array('Widget_Metas_Category_Admin', 'getAddLink')),
             array(array('Widget_Metas_Category_Edit', 'getMenuTitle'), array('Widget_Metas_Category_Edit', 'getMenuTitle'), 'category.php?mid=', 'editor', true),
             array(array('Widget_Metas_Category_Edit', 'getMenuTitle'), array('Widget_Metas_Category_Edit', 'getMenuTitle'), 'category.php?parent=', 'editor', true),
-            array(_t('标签'), _t('管理标签'), 'manage-tags.php', 'editor'),
+            array(_t('Thẻ'), _t('Quản lý thẻ'), 'manage-tags.php', 'editor'),
             array(array('Widget_Metas_Tag_Admin', 'getMenuTitle'), array('Widget_Metas_Tag_Admin', 'getMenuTitle'), 'manage-tags.php?mid=', 'editor', true),
-            array(_t('文件'), _t('管理文件'), 'manage-medias.php', 'editor'),
+            array(_t('Tài liệu'), _t('Quản lý tệp'), 'manage-medias.php', 'editor'),
             array(array('Widget_Contents_Attachment_Edit', 'getMenuTitle'), array('Widget_Contents_Attachment_Edit', 'getMenuTitle'), 'media.php?cid=', 'contributor', true),
             array(_t('用户'), _t('管理用户'), 'manage-users.php', 'administrator', false, 'user.php'),
             array(_t('新增用户'), _t('新增用户'), 'user.php', 'administrator', true),
