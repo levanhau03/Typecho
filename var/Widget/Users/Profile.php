@@ -46,17 +46,17 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         Typecho_Widget_Helper_Form::POST_METHOD);
 
         /** 用户昵称 */
-        $screenName = new Typecho_Widget_Helper_Form_Element_Text('screenName', NULL, NULL, _t('昵称'), _t('用户昵称可以与用户名不同, 用于前台显示.')
-            . '<br />' . _t('如果你将此项留空, 将默认使用用户名.'));
+        $screenName = new Typecho_Widget_Helper_Form_Element_Text('screenName', NULL, NULL, _t('Biệt hiệu'), _t('Biệt hiệu của người dùng có thể khác với tên người dùng, được sử dụng để hiển thị nền trước.')
+            . '<br />' . _t('Nếu bạn để trống, tên người dùng sẽ được sử dụng theo mặc định.'));
         $form->addInput($screenName);
 
         /** 个人主页地址 */
-        $url = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('Địa chỉ trang chủ cá nhân'), _t('此用户的个人主页地址, 请用 <code>http://</code> 开头.'));
+        $url = new Typecho_Widget_Helper_Form_Element_Text('url', NULL, NULL, _t('Địa chỉ trang chủ cá nhân'), _t('Địa chỉ trang chủ cá nhân của người dùng này, vui lòng bắt đầu bằng <code>http://</code>.'));
         $form->addInput($url);
 
         /** 电子邮箱地址 */
-        $mail = new Typecho_Widget_Helper_Form_Element_Text('mail', NULL, NULL, _t('电子邮箱地址 *'), _t('电子邮箱地址将作为此用户的主要联系方式.')
-            . '<br />' . _t('请不要与系统中现有的电子邮箱地址重复.'));
+        $mail = new Typecho_Widget_Helper_Form_Element_Text('mail', NULL, NULL, _t('Địa chỉ email *'), _t('Địa chỉ email sẽ là phương thức liên hệ chính của người dùng này.')
+            . '<br />' . _t('Vui lòng không trùng lặp địa chỉ email hiện có trong hệ thống.'));
         $form->addInput($mail);
 
         /** 用户动作 */
