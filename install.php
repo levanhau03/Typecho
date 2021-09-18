@@ -574,7 +574,7 @@ Typecho_Db::set(\$db);
 <div class="message notice"><p><?php _e('安装程序无法自动创建 <strong>config.inc.php</strong> 文件'); ?><br />
 <?php _e('您可以在网站根目录下手动创建 <strong>config.inc.php</strong> 文件, 并复制如下代码至其中'); ?></p>
 <p><textarea rows="5" onmouseover="this.select();" class="w-100 mono" readonly><?php echo htmlspecialchars($contents); ?></textarea></p>
-<p><button name="created" value="1" type="submit" class="btn primary">创建完毕, 继续安装 &raquo;</button></p></div>
+<p><button name="created" value="1" type="submit" class="btn primary">Đã tạo, tiếp tục cài đặt &raquo;</button></p></div>
                                     <?php
                                     } else {
                                         header('Location: ./install.php?start');
@@ -590,22 +590,22 @@ Typecho_Db::set(\$db);
                         ?>
                         <ul class="typecho-option">
                             <li>
-                            <label for="dbAdapter" class="typecho-label"><?php _e('数据库适配器'); ?></label>
+                            <label for="dbAdapter" class="typecho-label"><?php _e('Bộ điều hợp cơ sở dữ liệu'); ?></label>
                             <select name="dbAdapter" id="dbAdapter">
-                                <?php if (_p('Mysql')): ?><option value="Mysql"<?php if('Mysql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Mysql 原生函数适配器') ?></option><?php endif; ?>
-                                <?php if (_p('SQLite')): ?><option value="SQLite"<?php if('SQLite' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('SQLite 原生函数适配器 (SQLite 2.x)') ?></option><?php endif; ?>
-                                <?php if (_p('Pgsql')): ?><option value="Pgsql"<?php if('Pgsql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pgsql 原生函数适配器') ?></option><?php endif; ?>
-                                <?php if (_p('Pdo_Mysql')): ?><option value="Pdo_Mysql"<?php if('Pdo_Mysql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo 驱动 Mysql 适配器') ?></option><?php endif; ?>
-                                <?php if (_p('Pdo_SQLite')): ?><option value="Pdo_SQLite"<?php if('Pdo_SQLite' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo 驱动 SQLite 适配器 (SQLite 3.x)') ?></option><?php endif; ?>
-                                <?php if (_p('Pdo_Pgsql')): ?><option value="Pdo_Pgsql"<?php if('Pdo_Pgsql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo 驱动 PostgreSql 适配器') ?></option><?php endif; ?>
+                                <?php if (_p('Mysql')): ?><option value="Mysql"<?php if('Mysql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Mysql function') ?></option><?php endif; ?>
+                                <?php if (_p('SQLite')): ?><option value="SQLite"<?php if('SQLite' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('SQLite function (SQLite 2.x)') ?></option><?php endif; ?>
+                                <?php if (_p('Pgsql')): ?><option value="Pgsql"<?php if('Pgsql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pgsql function') ?></option><?php endif; ?>
+                                <?php if (_p('Pdo_Mysql')): ?><option value="Pdo_Mysql"<?php if('Pdo_Mysql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo driver Mysql') ?></option><?php endif; ?>
+                                <?php if (_p('Pdo_SQLite')): ?><option value="Pdo_SQLite"<?php if('Pdo_SQLite' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo driver SQLite (SQLite 3.x)') ?></option><?php endif; ?>
+                                <?php if (_p('Pdo_Pgsql')): ?><option value="Pdo_Pgsql"<?php if('Pdo_Pgsql' == $adapter): ?> selected="selected"<?php endif; ?>><?php _e('Pdo driver PostgreSql') ?></option><?php endif; ?>
                             </select>
-                            <p class="description"><?php _e('请根据您的数据库类型选择合适的适配器'); ?></p>
+                            <p class="description"><?php _e('Vui lòng chọn bộ điều hợp thích hợp theo loại cơ sở dữ liệu của bạn'); ?></p>
                             </li>
                             <?php require_once './install/' . $type . '.php'; ?>
                             <li>
-                            <label class="typecho-label" for="dbPrefix"><?php _e('数据库前缀'); ?></label>
+                            <label class="typecho-label" for="dbPrefix"><?php _e('Tiền tố cơ sở dữ liệu'); ?></label>
                             <input type="text" class="text" name="dbPrefix" id="dbPrefix" value="<?php _v('dbPrefix', 'typecho_'); ?>" />
-                            <p class="description"><?php _e('默认前缀是 "typecho_"'); ?></p>
+                            <p class="description"><?php _e('Tiền tố mặc định là "typecho_"'); ?></p>
                             </li>
                         </ul>
 
@@ -616,10 +616,10 @@ Typecho_Db::set(\$db);
                         }
                         </script>
 
-                        <h2><?php _e('创建您的管理员帐号'); ?></h2>
+                        <h2><?php _e('Tạo tài khoản quản trị của bạn'); ?></h2>
                         <ul class="typecho-option">
                             <li>
-                            <label class="typecho-label" for="userUrl"><?php _e('网站地址'); ?></label>
+                            <label class="typecho-label" for="userUrl"><?php _e('Địa chỉ trang web'); ?></label>
                             <input type="text" name="userUrl" id="userUrl" class="text" value="<?php _v('userUrl', _u()); ?>" />
                             <p class="description"><?php _e('这是程序自动匹配的网站路径, 如果不正确请修改它'); ?></p>
                             </li>

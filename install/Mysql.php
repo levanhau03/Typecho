@@ -75,7 +75,7 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
 <!-- ACE -->
 
     <li>
-        <label class="typecho-label" for="dbHost"><?php _e('数据库地址'); ?></label>
+        <label class="typecho-label" for="dbHost"><?php _e('Địa chỉ cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost', 'localhost'); ?>"/>
         <p class="description"><?php _e('您可以访问 RDS 控制台获取详细信息'); ?></p>
     </li>
@@ -146,7 +146,7 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
 
 <?php  else: ?>
     <li>
-        <label class="typecho-label" for="dbHost"><?php _e('数据库地址'); ?></label>
+        <label class="typecho-label" for="dbHost"><?php _e('Địa chỉ cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost', 'localhost'); ?>"/>
         <p class="description"><?php _e('您可能会使用 "%s"', 'localhost'); ?></p>
     </li>

@@ -1,6 +1,6 @@
 <?php if(!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <li>
-<label class="typecho-label" for="dbHost"><?php _e('数据库地址'); ?></label>
+<label class="typecho-label" for="dbHost"><?php _e('Địa chỉ cơ sở dữ liệu'); ?></label>
 <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost', 'localhost'); ?>"/>
 <p class="description"><?php _e('您可能会使用 "%s"', 'localhost'); ?></p>
 </li>
