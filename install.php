@@ -203,7 +203,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head lang="zh-CN">
     <meta charset="<?php _e('UTF-8'); ?>" />
-	<title><?php _e('Typecho 安装程序'); ?></title>
+	<title><?php _e('Trình cài đặt Typecho'); ?></title>
     <link rel="stylesheet" type="text/css" href="admin/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="admin/css/grid.css" />
     <link rel="stylesheet" type="text/css" href="admin/css/style.css" />
@@ -212,10 +212,10 @@ Typecho_Cookie::set('__typecho_lang', $lang);
 <div class="typecho-install-patch">
     <h1>Typecho</h1>
     <ol class="path">
-        <li<?php if (!isset($_GET['finish']) && !isset($_GET['config'])) : ?> class="current"<?php endif; ?>><span>1</span><?php _e('欢迎使用'); ?></li>
-        <li<?php if (isset($_GET['config'])) : ?> class="current"<?php endif; ?>><span>2</span><?php _e('初始化配置'); ?></li>
-        <li<?php if (isset($_GET['start'])) : ?> class="current"<?php endif; ?>><span>3</span><?php _e('开始安装'); ?></li>
-        <li<?php if (isset($_GET['finish'])) : ?> class="current"<?php endif; ?>><span>4</span><?php _e('安装成功'); ?></li>
+        <li<?php if (!isset($_GET['finish']) && !isset($_GET['config'])) : ?> class="current"<?php endif; ?>><span>1</span><?php _e('Chào mừng'); ?></li>
+        <li<?php if (isset($_GET['config'])) : ?> class="current"<?php endif; ?>><span>2</span><?php _e('Cấu hình ban đầu'); ?></li>
+        <li<?php if (isset($_GET['start'])) : ?> class="current"<?php endif; ?>><span>3</span><?php _e('Bắt đầu cài đặt'); ?></li>
+        <li<?php if (isset($_GET['finish'])) : ?> class="current"<?php endif; ?>><span>4</span><?php _e('Cài đặt thành công'); ?></li>
     </ol>
 </div>
 <div class="container">
@@ -224,42 +224,38 @@ Typecho_Cookie::set('__typecho_lang', $lang);
             <div class="column-14 start-06 typecho-install">
             <?php if (isset($_GET['finish'])) : ?>
                 <?php if (!isset($db)) : ?>
-                <h1 class="typecho-install-title"><?php _e('安装失败!'); ?></h1>
+                <h1 class="typecho-install-title"><?php _e('Cài đặt thất bại!'); ?></h1>
                 <div class="typecho-install-body">
                     <form method="post" action="?config" name="config">
-                    <p class="message error"><?php _e('您没有上传 config.inc.php 文件，请您重新安装！'); ?> <button class="btn primary" type="submit"><?php _e('重新安装 &raquo;'); ?></button></p>
+                    <p class="message error"><?php _e('Bạn không tải lên tệp config.inc.php, vui lòng cài đặt lại nó!'); ?> <button class="btn primary" type="submit"><?php _e('Cài đặt lại &raquo;'); ?></button></p>
                     </form>
                 </div>
                 <?php elseif (!Typecho_Cookie::get('__typecho_config')): ?>
-                    <h1 class="typecho-install-title"><?php _e('没有安装!'); ?></h1>
+                    <h1 class="typecho-install-title"><?php _e('Chưa cài đặt!'); ?></h1>
                     <div class="typecho-install-body">
                         <form method="post" action="?config" name="config">
-                            <p class="message error"><?php _e('您没有执行安装步骤，请您重新安装！'); ?> <button class="btn primary" type="submit"><?php _e('重新安装 &raquo;'); ?></button></p>
+                            <p class="message error"><?php _e('Bạn không thực hiện các bước cài đặt, vui lòng cài đặt lại!'); ?> <button class="btn primary" type="submit"><?php _e('Cài đặt lại &raquo;'); ?></button></p>
                         </form>
                     </div>
                 <?php else : ?>
                     <?php
                     $db->query($db->update('table.options')->rows(['value' => 1])->where('name = ?', 'installed'));
                     ?>
-                <h1 class="typecho-install-title"><?php _e('安装成功!'); ?></h1>
+                <h1 class="typecho-install-title"><?php _e('Cài đặt thành công!'); ?></h1>
                 <div class="typecho-install-body">
                     <div class="message success">
                     <?php if(isset($_GET['use_old']) ) : ?>
-                    <?php _e('您选择了使用原有的数据, 您的用户名和密码和原来的一致'); ?>
+                    <?php _e('Bạn đã chọn sử dụng dữ liệu gốc, tên người dùng và mật khẩu của bạn giống với dữ liệu gốc'); ?>
                     <?php else : ?>
                         <?php if (isset($_REQUEST['user']) && isset($_REQUEST['password'])): ?>
-                            <?php _e('您的用户名是'); ?>: <strong class="mono"><?php echo htmlspecialchars(_r('user')); ?></strong><br>
-                            <?php _e('您的密码是'); ?>: <strong class="mono"><?php echo htmlspecialchars(_r('password')); ?></strong>
+                            <?php _e('Tài khoản của bạn là'); ?>: <strong class="mono"><?php echo htmlspecialchars(_r('user')); ?></strong><br>
+                            <?php _e('Mật khẩu của bạn là'); ?>: <strong class="mono"><?php echo htmlspecialchars(_r('password')); ?></strong>
                         <?php endif;?>
                     <?php endif;?>
                     </div>
 
-                    <div class="p message notice">
-                    <a target="_blank" href="http://spreadsheets.google.com/viewform?key=pd1Gl4Ur_pbniqgebs5JRIg&hl=en">参与用户调查, 帮助我们完善产品</a>
-                    </div>
-
                     <div class="session">
-                    <p><?php _e('您可以将下面两个链接保存到您的收藏夹'); ?>:</p>
+                    <p><?php _e('Bạn có thể lưu hai liên kết sau vào mục yêu thích của mình'); ?>:</p>
                     <ul>
                     <?php
                         if (isset($_REQUEST['user']) && isset($_REQUEST['password'])) {
@@ -270,12 +266,12 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                             $loginUrl = _u() . '/admin/index.php';
                         }
                     ?>
-                        <li><a href="<?php echo $loginUrl; ?>"><?php _e('点击这里访问您的控制面板'); ?></a></li>
-                        <li><a href="<?php echo _u(); ?>/index.php"><?php _e('点击这里查看您的 Blog'); ?></a></li>
+                        <li><a href="<?php echo $loginUrl; ?>"><?php _e('Nhấp vào đây để truy cập bảng điều khiển của bạn'); ?></a></li>
+                        <li><a href="<?php echo _u(); ?>/index.php"><?php _e('Bấm vào đây để xem blog của bạn'); ?></a></li>
                     </ul>
                     </div>
 
-                    <p><?php _e('希望您能尽情享用 Typecho 带来的乐趣!'); ?></p>
+                    <p><?php _e('Hy vọng bạn có thể tận hưởng niềm vui của Typecho!'); ?></p>
                 </div>
                 <?php endif;?>
             <?php elseif (isset($_GET['start'])): ?>
@@ -283,7 +279,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                 <h1 class="typecho-install-title"><?php _e('安装失败!'); ?></h1>
                 <div class="typecho-install-body">
                     <form method="post" action="?config" name="config">
-                    <p class="message error"><?php _e('您没有上传 config.inc.php 文件，请您重新安装！'); ?> <button class="btn primary" type="submit"><?php _e('重新安装 &raquo;'); ?></button></p>
+                    <p class="message error"><?php _e('您没有上传 config.inc.php 文件，请您重新安装！'); ?> <button class="btn primary" type="submit"><?php _e('Cài đặt lại &raquo;'); ?></button></p>
                     </form>
                 </div>
                 <?php else : ?>
@@ -382,7 +378,7 @@ Typecho_Cookie::set('__typecho_lang', $lang);
                                         $installDb->query($installDb->insert('table.relationships')->rows(array('cid' => 1, 'mid' => 1)));
 
                                         /** 初始内容 */
-                                        $installDb->query($installDb->insert('table.contents')->rows(array('title' => _t('欢迎使用 Typecho'), 'slug' => 'start', 'created' => Typecho_Date::time(), 'modified' => Typecho_Date::time(),
+                                        $installDb->query($installDb->insert('table.contents')->rows(array('title' => _t('Chào mừng đến với'), 'slug' => 'start', 'created' => Typecho_Date::time(), 'modified' => Typecho_Date::time(),
                                         'text' => '<!--markdown-->' . _t('如果您看到这篇文章,表示您的 blog 已经安装成功.'), 'authorId' => 1, 'type' => 'post', 'status' => 'publish', 'commentsNum' => 1, 'allowComment' => 1,
                                         'allowPing' => 1, 'allowFeed' => 1, 'parent' => 0)));
 
@@ -649,7 +645,7 @@ Typecho_Db::set(\$db);
                 </form>
             <?php  else: ?>
                 <form method="post" action="?config">
-                <h1 class="typecho-install-title"><?php _e('欢迎使用 Typecho'); ?></h1>
+                <h1 class="typecho-install-title"><?php _e('Chào mừng đến với'); ?></h1>
                 <div class="typecho-install-body">
                 <h2><?php _e('安装说明'); ?></h2>
                 <p><strong><?php _e('本安装程序将自动检测服务器环境是否符合最低配置需求. 如果不符合, 将在上方出现提示信息, 请按照提示信息检查您的主机配置. 如果服务器环境符合要求, 将在下方出现 "开始下一步" 的按钮, 点击此按钮即可一步完成安装.'); ?></strong></p>
