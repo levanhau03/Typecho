@@ -10,13 +10,13 @@ $stat = Typecho_Widget::widget('Widget_Stat');
         <?php include 'page-title.php'; ?>
         <div class="row typecho-page-main">
             <div class="col-mb-12 welcome-board" role="main">
-                <p><?php _e('目前有 <em>%s</em> 篇文章, 并有 <em>%s</em> 条关于你的评论在 <em>%s</em> 个分类中.',
+                <p><?php _e('Hiện tại có <em>%s</em> bài viết, <em>%s</em> bình luận về bạn trong <em>%s</em> chuyên mục.',
                 $stat->myPublishedPostsNum, $stat->myPublishedCommentsNum, $stat->categoriesNum); ?>
-                <br><?php _e('点击下面的链接快速开始:'); ?></p>
+                <br><?php _e('Nhấp vào liên kết bên dưới để bắt đầu nhanh chóng:'); ?></p>
 
                 <ul id="start-link" class="clearfix">
                     <?php if($user->pass('contributor', true)): ?>
-                    <li><a href="<?php $options->adminUrl('write-post.php'); ?>"><?php _e('撰写新文章'); ?></a></li>
+                    <li><a href="<?php $options->adminUrl('write-post.php'); ?>"><?php _e('Đăng bài viết mới'); ?></a></li>
                     <?php if($user->pass('editor', true) && 'on' == $request->get('__typecho_all_comments') && $stat->waitingCommentsNum > 0): ?>
                         <li><a href="<?php $options->adminUrl('manage-comments.php?status=waiting'); ?>"><?php _e('待审核的评论'); ?></a>
                         <span class="balloon"><?php $stat->waitingCommentsNum(); ?></span>
