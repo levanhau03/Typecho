@@ -75,10 +75,10 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         /** 给表单增加规则 */
         $screenName->addRule(array($this, 'screenNameExists'), _t('Biệt hiệu đã tồn tại'));
         $screenName->addRule('xssCheck', _t('Vui lòng không sử dụng các ký tự đặc biệt trong biệt hiệu của bạn'));
-        $url->addRule('url', _t('个人主页地址格式错误'));
-        $mail->addRule('required', _t('必须填写电子邮箱'));
-        $mail->addRule(array($this, 'mailExists'), _t('电子邮箱地址已经存在'));
-        $mail->addRule('email', _t('电子邮箱格式错误'));
+        $url->addRule('url', _t('Lỗi định dạng địa chỉ trang chủ cá nhân'));
+        $mail->addRule('required', _t('Email phải được điền vào'));
+        $mail->addRule(array($this, 'mailExists'), _t('Địa chỉ email đã tồn tại'));
+        $mail->addRule('email', _t('Lỗi định dạng email'));
 
         return $form;
     }
@@ -97,21 +97,21 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
 
         /** 撰写设置 */
         $markdown = new Typecho_Widget_Helper_Form_Element_Radio('markdown',
-        array('0' => _t('关闭'), '1' => _t('打开')),
-        $this->options->markdown, _t('使用 Markdown 语法编辑和解析内容'), 
-            _t('使用 <a href="http://daringfireball.net/projects/markdown/">Markdown</a> 语法能够使您的撰写过程更加简便直观.')
-                . '<br />' . _t('此功能开启不会影响以前没有使用 Markdown 语法编辑的内容.'));
+        array('0' => _t('Đóng'), '1' => _t('Mở')),
+        $this->options->markdown, _t('Chỉnh sửa và phân tích cú pháp nội dung bằng cú pháp Markdown'), 
+            _t('Sử dụng cú pháp <a href="http://daringfireball.net/projects/markdown/">Markdown</a> có thể làm cho quá trình viết của bạn dễ dàng và trực quan hơn.')
+                . '<br />' . _t('Việc kích hoạt tính năng này sẽ không ảnh hưởng đến nội dung chưa được chỉnh sửa bằng cú pháp Markdown trước đó.'));
         $form->addInput($markdown);
 
         $xmlrpcMarkdown = new Typecho_Widget_Helper_Form_Element_Radio('xmlrpcMarkdown',
-        array('0' => _t('关闭'), '1' => _t('打开')),
-        $this->options->xmlrpcMarkdown, _t('在 XMLRPC 接口中使用 Markdown 语法'), 
+        array('0' => _t('Đóng'), '1' => _t('Mở')),
+        $this->options->xmlrpcMarkdown, _t('Sử dụng cú pháp Markdown trong giao diện XMLRPC'), 
             _t('对于完全支持 <a href="http://daringfireball.net/projects/markdown/">Markdown</a> 语法写作的离线编辑器, 打开此选项后将避免内容被转换为 HTML.'));
         $form->addInput($xmlrpcMarkdown);
 
         /** 自动保存 */
         $autoSave = new Typecho_Widget_Helper_Form_Element_Radio('autoSave',
-        array('0' => _t('关闭'), '1' => _t('打开')),
+        array('0' => _t('Đóng'), '1' => _t('Mở')),
         $this->options->autoSave, _t('自动保存'), _t('自动保存功能可以更好地保护你的文章不会丢失.'));
         $form->addInput($autoSave);
 
