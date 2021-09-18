@@ -124,7 +124,7 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
     <li>
         <label class="typecho-label" for="dbDatabase"><?php _e('Tên cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbDatabase" id="dbDatabase" value="<?php _v('dbDatabase', 'typecho'); ?>" />
-        <p class="description"><?php _e('请填入您在Cloud SQL的实例中创建的数据库名称'); ?></p>
+        <p class="description"><?php _e('Vui lòng điền vào tên cơ sở dữ liệu bạn đã tạo trong phiên bản Cloud SQL'); ?></p>
     </li>
 
 <?php if (0 === strpos($adapter, 'Pdo_')): ?>
