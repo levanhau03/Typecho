@@ -15,7 +15,7 @@ if (defined('SAE_MYSQL_DB') && SAE_MYSQL_DB != "app_") {
 ?>
 
 <?php if (!empty($engine)): ?>
-<h3 class="warning"><?php _e('系统将为您自动匹配 %s 环境的安装选项', $engine); ?></h3>
+<h3 class="warning"><?php _e('Hệ thống sẽ tự động khớp các tùy chọn cài đặt của môi trường %s cho bạn', $engine); ?></h3>
 <?php endif; ?>
 
 <?php if ('SAE' == $engine): ?>
@@ -40,7 +40,7 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
 <!-- BAE -->
     <?php if (!getenv('HTTP_BAE_ENV_AK')): $baeDbUser = "'{user}'"; ?>
     <li>
-        <label class="typecho-label" for="dbUser"><?php _e('应用API Key'); ?></label>
+        <label class="typecho-label" for="dbUser"><?php _e('Khóa API ứng dụng'); ?></label>
         <input type="text" class="text" name="dbUser" id="dbUser" value="<?php _v('dbUser'); ?>" />
     </li>
     <?php else: ?>
@@ -49,7 +49,7 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
 
     <?php if (!getenv('HTTP_BAE_ENV_SK')): $baeDbPassword = "'{password}'"; ?>
     <li>
-        <label class="typecho-label" for="dbPassword"><?php _e('应用Secret Key'); ?></label>
+        <label class="typecho-label" for="dbPassword"><?php _e('Áp dụng khóa bí mật'); ?></label>
         <input type="text" class="text" name="dbPassword" id="dbPassword" value="<?php _v('dbPassword'); ?>" />
     </li>
     <?php else: ?>
@@ -57,9 +57,9 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
     <?php endif; ?>
 
     <li>
-        <label class="typecho-label" for="dbDatabase"><?php _e('数据库名'); ?></label>
+        <label class="typecho-label" for="dbDatabase"><?php _e('Tên cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" id="dbDatabase" name="dbDatabase" value="<?php _v('dbDatabase'); ?>" />
-        <p class="description"><?php _e('可以在MySQL服务的管理页面看到您创建的数据库名称'); ?></p>
+        <p class="description"><?php _e('Bạn có thể thấy tên cơ sở dữ liệu bạn đã tạo trên trang quản lý của dịch vụ MySQL'); ?></p>
     </li>
     <input type="hidden" name="config" value="array (
     'host'      =>  getenv('HTTP_BAE_ENV_ADDR_SQL_IP'),
@@ -77,52 +77,52 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
     <li>
         <label class="typecho-label" for="dbHost"><?php _e('Địa chỉ cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost', 'localhost'); ?>"/>
-        <p class="description"><?php _e('您可以访问 RDS 控制台获取详细信息'); ?></p>
+        <p class="description"><?php _e('Bạn có thể truy cập bảng điều khiển RDS để biết thông tin chi tiết'); ?></p>
     </li>
     <li>
-        <label class="typecho-label" for="dbPort"><?php _e('数据库端口'); ?></label>
+        <label class="typecho-label" for="dbPort"><?php _e('Cổng cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbPort" id="dbPort" value="<?php _v('dbPort', 3306); ?>"/>
     </li>
     <li>
-        <label class="typecho-label" for="dbUser"><?php _e('数据库用户名'); ?></label>
+        <label class="typecho-label" for="dbUser"><?php _e('Người dùng cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbUser" id="dbUser" value="<?php _v('dbUser'); ?>" />
     </li>
     <li>
-        <label class="typecho-label" for="dbPassword"><?php _e('数据库密码'); ?></label>
+        <label class="typecho-label" for="dbPassword"><?php _e('Mật khẩu cơ sở dữ liệu'); ?></label>
         <input type="password" class="text" name="dbPassword" id="dbPassword" value="<?php _v('dbPassword'); ?>" />
     </li>
     <li>
-        <label class="typecho-label" for="dbDatabase"><?php _e('数据库名'); ?></label>
+        <label class="typecho-label" for="dbDatabase"><?php _e('Tên cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbDatabase" id="dbDatabase" value="<?php _v('dbDatabase', 'typecho'); ?>" />
     </li>
 
 <?php elseif ('GAE' == $engine): ?>
 <!-- GAE -->
-    <h3 class="warning"><?php _e('系统将为您自动匹配 %s 环境的安装选项', 'GAE'); ?></h3>
+    <h3 class="warning"><?php _e('Hệ thống sẽ tự động khớp các tùy chọn cài đặt của môi trường %s cho bạn', 'GAE'); ?></h3>
 <?php if (0 === strpos($adapter, 'Pdo_')): ?>
     <li>
-        <label class="typecho-label" for="dbHost"><?php _e('数据库实例名'); ?></label>
+        <label class="typecho-label" for="dbHost"><?php _e('Tên phiên bản cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost'); ?>"/>
-        <p class="description"><?php _e('请填入您在Cloud SQL面板中创建的数据库实例名称, 示例: %s', '<em class="warning">/cloudsql/typecho-gae:typecho</em>'); ?></p>
+        <p class="description"><?php _e('Vui lòng điền vào tên của phiên bản cơ sở dữ liệu bạn đã tạo trong bảng điều khiển Cloud SQL, ví dụ: %s', '<em class="warning">/cloudsql/typecho-gae:typecho</em>'); ?></p>
     </li>
 <?php else: ?>
     <li>
-        <label class="typecho-label" for="dbHost"><?php _e('数据库实例名'); ?></label>
+        <label class="typecho-label" for="dbHost"><?php _e('Tên phiên bản cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost'); ?>"/>
-        <p class="description"><?php _e('请填入您在Cloud SQL面板中创建的数据库实例名称, 示例: %s', '<em class="warning">:/cloudsql/typecho-gae:typecho</em>'); ?></p>
+        <p class="description"><?php _e('Vui lòng điền vào tên của phiên bản cơ sở dữ liệu bạn đã tạo trong bảng điều khiển Cloud SQL, ví dụ: %s', '<em class="warning">:/cloudsql/typecho-gae:typecho</em>'); ?></p>
     </li>
 <?php endif; ?>
 
     <li>
-        <label class="typecho-label" for="dbUser"><?php _e('数据库用户名'); ?></label>
+        <label class="typecho-label" for="dbUser"><?php _e('Người dùng cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbUser" id="dbUser" value="<?php _v('dbUser'); ?>" />
     </li>
     <li>
-        <label class="typecho-label" for="dbPassword"><?php _e('数据库密码'); ?></label>
+        <label class="typecho-label" for="dbPassword"><?php _e('Mật khẩu cơ sở dữ liệu'); ?></label>
         <input type="password" class="text" name="dbPassword" id="dbPassword" value="<?php _v('dbPassword'); ?>" />
     </li>
     <li>
-        <label class="typecho-label" for="dbDatabase"><?php _e('数据库名'); ?></label>
+        <label class="typecho-label" for="dbDatabase"><?php _e('Tên cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbDatabase" id="dbDatabase" value="<?php _v('dbDatabase', 'typecho'); ?>" />
         <p class="description"><?php _e('请填入您在Cloud SQL的实例中创建的数据库名称'); ?></p>
     </li>
@@ -148,26 +148,26 @@ $baeDbPassword = "getenv('HTTP_BAE_ENV_SK')";
     <li>
         <label class="typecho-label" for="dbHost"><?php _e('Địa chỉ cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbHost" id="dbHost" value="<?php _v('dbHost', 'localhost'); ?>"/>
-        <p class="description"><?php _e('您可能会使用 "%s"', 'localhost'); ?></p>
+        <p class="description"><?php _e('Bạn có thể sử dụng "%s"', 'localhost'); ?></p>
     </li>
     <li>
-        <label class="typecho-label" for="dbPort"><?php _e('数据库端口'); ?></label>
+        <label class="typecho-label" for="dbPort"><?php _e('Cổng cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbPort" id="dbPort" value="<?php _v('dbPort', '3306'); ?>"/>
-        <p class="description"><?php _e('如果您不知道此选项的意义, 请保留默认设置'); ?></p>
+        <p class="description"><?php _e('Nếu bạn không biết ý nghĩa của tùy chọn này, vui lòng giữ cài đặt mặc định'); ?></p>
     </li>
     <li>
-        <label class="typecho-label" for="dbUser"><?php _e('数据库用户名'); ?></label>
+        <label class="typecho-label" for="dbUser"><?php _e('Người dùng cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbUser" id="dbUser" value="<?php _v('dbUser', 'root'); ?>" />
-        <p class="description"><?php _e('您可能会使用 "%s"', 'root'); ?></p>
+        <p class="description"><?php _e('Bạn có thể sử dụng "%s"', 'root'); ?></p>
     </li>
     <li>
-        <label class="typecho-label" for="dbPassword"><?php _e('数据库密码'); ?></label>
+        <label class="typecho-label" for="dbPassword"><?php _e('Mật khẩu cơ sở dữ liệu'); ?></label>
         <input type="password" class="text" name="dbPassword" id="dbPassword" value="<?php _v('dbPassword'); ?>" />
     </li>
     <li>
-        <label class="typecho-label" for="dbDatabase"><?php _e('数据库名'); ?></label>
+        <label class="typecho-label" for="dbDatabase"><?php _e('Tên cơ sở dữ liệu'); ?></label>
         <input type="text" class="text" name="dbDatabase" id="dbDatabase" value="<?php _v('dbDatabase', 'typecho'); ?>" />
-        <p class="description"><?php _e('请您指定数据库名称'); ?></p>
+        <p class="description"><?php _e('Vui lòng chỉ định tên cơ sở dữ liệu'); ?></p>
     </li>
 
 <?php  endif; ?>
