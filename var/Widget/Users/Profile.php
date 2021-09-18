@@ -220,7 +220,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $form->addInput($password);
 
         /** 用户密码确认 */
-        $confirm = new Typecho_Widget_Helper_Form_Element_Password('confirm', NULL, NULL, _t('用户密码确认'), _t('请确认你的密码, 与上面输入的密码保持一致.'));
+        $confirm = new Typecho_Widget_Helper_Form_Element_Password('confirm', NULL, NULL, _t('Xác nhận mật khẩu người dùng'), _t('Vui lòng xác nhận mật khẩu của bạn, mật khẩu này phù hợp với mật khẩu đã nhập ở trên.'));
         $confirm->input->setAttribute('class', 'w-60');
         $form->addInput($confirm);
 
@@ -229,13 +229,13 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $form->addInput($do);
 
         /** 提交按钮 */
-        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('更新密码'));
+        $submit = new Typecho_Widget_Helper_Form_Element_Submit('submit', NULL, _t('Cập nhật mật khẩu'));
         $submit->input->setAttribute('class', 'btn primary');
         $form->addItem($submit);
 
-        $password->addRule('required', _t('必须填写密码'));
-        $password->addRule('minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
-        $confirm->addRule('confirm', _t('两次输入的密码不一致'), 'password');
+        $password->addRule('required', _t('Mật khẩu phải được điền vào'));
+        $password->addRule('minLength', _t('Để đảm bảo bảo mật tài khoản, vui lòng nhập mật khẩu có ít nhất sáu chữ số'), 6);
+        $confirm->addRule('confirm', _t('Hai mật khẩu đã nhập không nhất quán'), 'password');
 
         return $form;
     }
@@ -263,7 +263,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $this->widget('Widget_Notice')->highlight('user-' . $this->user->uid);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('您的档案已经更新'), 'success');
+        $this->widget('Widget_Notice')->set(_t('Hồ sơ của bạn đã được cập nhật'), 'success');
 
         /** 转向原页 */
         $this->response->goBack();
@@ -300,7 +300,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
             }
         }
 
-        $this->widget('Widget_Notice')->set(_t("设置已经保存"), 'success');
+        $this->widget('Widget_Notice')->set(_t("Các cài đặt đã được lưu"), 'success');
         $this->response->goBack();
     }
 
@@ -328,7 +328,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $this->widget('Widget_Notice')->highlight('user-' . $this->user->uid);
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t('密码已经成功修改'), 'success');
+        $this->widget('Widget_Notice')->set(_t('Mật khẩu đã được thay đổi thành công'), 'success');
 
         /** 转向原页 */
         $this->response->goBack();
@@ -355,7 +355,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         $info = Typecho_Plugin::parseInfo($pluginFileName);
 
         if (!$info['personalConfig'] || !isset($activatedPlugins[$pluginName])) {
-            throw new Typecho_Widget_Exception(_t('无法配置插件'), 500);
+            throw new Typecho_Widget_Exception(_t('Không thể định cấu hình plugin'), 500);
         }
 
         $form = $this->personalForm($pluginName, $className, $pluginFileName, $group);
@@ -385,7 +385,7 @@ class Widget_Users_Profile extends Widget_Users_Edit implements Widget_Interface
         }
 
         /** 提示信息 */
-        $this->widget('Widget_Notice')->set(_t("%s 设置已经保存", $info['title']), 'success');
+        $this->widget('Widget_Notice')->set(_t("%s cài đặt đã được lưu", $info['title']), 'success');
 
         /** 转向原页 */
         $this->response->redirect(Typecho_Common::url('profile.php', $this->options->adminUrl));
