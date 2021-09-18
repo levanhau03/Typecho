@@ -141,15 +141,15 @@ class Widget_Menu extends Typecho_Widget
             array(array('Widget_Metas_Tag_Admin', 'getMenuTitle'), array('Widget_Metas_Tag_Admin', 'getMenuTitle'), 'manage-tags.php?mid=', 'editor', true),
             array(_t('Tài liệu'), _t('Quản lý tệp'), 'manage-medias.php', 'editor'),
             array(array('Widget_Contents_Attachment_Edit', 'getMenuTitle'), array('Widget_Contents_Attachment_Edit', 'getMenuTitle'), 'media.php?cid=', 'contributor', true),
-            array(_t('用户'), _t('管理用户'), 'manage-users.php', 'administrator', false, 'user.php'),
-            array(_t('新增用户'), _t('新增用户'), 'user.php', 'administrator', true),
+            array(_t('Người dùng'), _t('Quản lý người dùng'), 'manage-users.php', 'administrator', false, 'user.php'),
+            array(_t('Người dùng mới'), _t('Người dùng mới'), 'user.php', 'administrator', true),
             array(array('Widget_Users_Edit', 'getMenuTitle'), array('Widget_Users_Edit', 'getMenuTitle'), 'user.php?uid=', 'administrator', true),
         ),
         array(
-            array(_t('基本'), _t('基本设置'), 'options-general.php', 'administrator'),
-            array(_t('评论'), _t('评论设置'), 'options-discussion.php', 'administrator'),
-            array(_t('阅读'), _t('阅读设置'), 'options-reading.php', 'administrator'),
-            array(_t('永久链接'), _t('永久链接设置'), 'options-permalink.php', 'administrator'),
+            array(_t('Cơ bản'), _t('Cài đặt cơ bản'), 'options-general.php', 'administrator'),
+            array(_t('Bình luận'), _t('Cài đặt bình luận'), 'options-discussion.php', 'administrator'),
+            array(_t('Đọc'), _t('Cài đặt đọc'), 'options-reading.php', 'administrator'),
+            array(_t('Permalink'), _t('Cài đặt Permalink'), 'options-permalink.php', 'administrator'),
         ));
 
         /** 获取扩展菜单 */
