@@ -80,15 +80,15 @@ function themeConfig($form)
     $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
         'JNavMaxNum',
         array(
-            '3' => '3个（默认）',
-            '4' => '4个',
-            '5' => '5个',
-            '6' => '6个',
-            '7' => '7个',
+            '3' => '3 mục (mặc định)',
+            '4' => '4 mục',
+            '5' => '5 mục',
+            '6' => '6 mục',
+            '7' => '7 mục',
         ),
         '3',
-        '选择导航栏最大显示的个数',
-        '介绍：用于设置最大多少个后，以更多下拉框显示'
+        'Chọn số lượng mục tối đa được hiển thị trong thanh điều hướng',
+        'Giới thiệu: Sau khi đặt số lượng tối đa, nó sẽ được hiển thị trong nhiều hộp thả xuống hơn'
     );
     $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JNavMaxNum->multiMode());
@@ -97,13 +97,13 @@ function themeConfig($form)
         'JCustomNavs',
         NULL,
         NULL,
-        '导航栏自定义链接（非必填）',
-        '介绍：用于自定义导航栏链接 <br />
-         格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
-         其他：一行一个，一行代表一个超链接 <br />
-         例如：<br />
-            百度一下 || https://baidu.com <br />
-            腾讯视频 || https://v.qq.com
+        'Liên kết tùy chỉnh thanh điều hướng (không bắt buộc)',
+        'Giới thiệu: Được sử dụng để tùy chỉnh liên kết thanh điều hướng <br />
+         Định dạng: Chuyển văn bản || Liên kết nhảy<br />
+         Khác: một trên mỗi dòng, một dòng đại diện cho một siêu kết nối <br />
+         Ví dụ:<br />
+            Baidu || https://baidu.com <br />
+            Tencent Video || https://v.qq.com
          '
     );
     $JCustomNavs->setAttribute('class', 'joe_content joe_global');
@@ -112,7 +112,7 @@ function themeConfig($form)
     $JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
         'JList_Animate',
         array(
-            'off' => '关闭（默认）',
+            'off' => 'Tắt (mặc định)',
             'bounce' => 'bounce',
             'flash' => 'flash',
             'pulse' => 'pulse',
@@ -190,8 +190,8 @@ function themeConfig($form)
             'slideOutUp' => 'slideOutUp',
         ),
         'off',
-        '选择一款炫酷的列表动画',
-        '介绍：开启后，列表将会显示所选择的炫酷动画'
+        'Chọn một hoạt ảnh danh sách thú vị',
+        'Giới thiệu: Sau khi mở, danh sách sẽ hiển thị hình ảnh động thú vị đã chọn'
     );
     $JList_Animate->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JList_Animate->multiMode());
@@ -200,9 +200,9 @@ function themeConfig($form)
         'JFooter_Left',
         NULL,
         '2019 - 2020 © Reach - <a href="https://78.al" target="_blank" rel="noopener noreferrer">Joe</a>',
-        '自定义底部栏左侧内容（非必填）',
-        '介绍：用于修改全站底部左侧内容（wap端上方） <br>
-         例如：2019 - 2020 © Reach - Joe             '
+        'Tùy chỉnh nội dung ở phía bên trái của thanh dưới cùng (không bắt buộc)',
+        'Giới thiệu: Dùng để sửa đổi nội dung ở bên trái cuối trang (phía trên cuối wap) <br>
+         Ví dụ:2019 - 2020 © Reach - Joe             '
     );
     $JFooter_Left->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JFooter_Left);
@@ -212,9 +212,9 @@ function themeConfig($form)
         NULL,
         '<a href="https://78.al/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
          <a href="https://78.al/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
-        '自定义底部栏右侧内容（非必填）',
-        '介绍：用于修改全站底部右侧内容（wap端下方） <br>
-         例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
+        'Tùy chỉnh nội dung ở phía bên phải của thanh dưới cùng (không bắt buộc)',
+        'Giới thiệu: Dùng để sửa đổi nội dung ở bên phải cuối trang (bên dưới cuối wap) <br>
+         Ví dụ:&lt;a href="/"&gt;Home&lt;/a&gt; &lt;a href="/"&gt;About&lt;/a&gt;'
     );
     $JFooter_Right->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JFooter_Right);
@@ -222,7 +222,7 @@ function themeConfig($form)
     $JLive2d = new Typecho_Widget_Helper_Form_Element_Select(
         'JLive2d',
         array(
-            'off' => '关闭（默认）',
+            'off' => 'Tắt (mặc định)',
             'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json' => 'shizuku',
             'https://cdn.jsdelivr.net/npm/live2d-widget-model-izumi@1.0.5/assets/izumi.model.json' => 'izumi',
             'https://cdn.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/01/assets/haru01.model.json' => 'haru01',
@@ -252,8 +252,8 @@ function themeConfig($form)
             'https://cdn.jsdelivr.net/npm/live2d-widget-model-hk_fos@1.0.0/assets/hk416.model.json' => 'hk416'
         ),
         'off',
-        '选择一款喜爱的Live2D动态人物模型（仅在屏幕分辨率大于1760px下显示）',
-        '介绍：开启后会在右下角显示一个小人'
+        'Chọn một mô hình ký tự động Live2D yêu thích (chỉ hiển thị khi độ phân giải màn hình lớn hơn 1760px)',
+        'Giới thiệu: Sau khi mở sẽ hiển thị một người nhỏ ở góc dưới bên phải'
     );
     $JLive2d->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JLive2d->multiMode());
@@ -262,9 +262,9 @@ function themeConfig($form)
         'JDocumentTitle',
         NULL,
         NULL,
-        '网页被隐藏时显示的标题',
-        '介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启 <br />
-         注意：严禁加单引号或双引号！！！否则会导致网站出错！！'
+        'Tiêu đề hiển thị khi trang bị ẩn',
+        'Giới thiệu: Nội dung hiển thị trong tiêu đề trang web khi chuyển nhãn trang web trên PC. Nếu bạn không điền, nó sẽ không được bật theo mặc định <br />
+         Lưu ý: Nghiêm cấm thêm dấu nháy đơn hoặc nháy kép! ! ! Nếu không nó sẽ gây ra lỗi trên trang web! !'
     );
     $JDocumentTitle->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JDocumentTitle);
@@ -272,22 +272,22 @@ function themeConfig($form)
     $JCursorEffects = new Typecho_Widget_Helper_Form_Element_Select(
         'JCursorEffects',
         array(
-            'off' => '关闭（默认）',
-            'cursor1.js' => '效果1',
-            'cursor2.js' => '效果2',
-            'cursor3.js' => '效果3',
-            'cursor4.js' => '效果4',
-            'cursor5.js' => '效果5',
-            'cursor6.js' => '效果6',
-            'cursor7.js' => '效果7',
-            'cursor8.js' => '效果8',
-            'cursor9.js' => '效果9',
-            'cursor10.js' => '效果10',
-            'cursor11.js' => '效果11',
+            'off' => 'Tắt (mặc định)',
+            'cursor1.js' => 'Hiệu ứng 1',
+            'cursor2.js' => 'Hiệu ứng 2',
+            'cursor3.js' => 'Hiệu ứng 3',
+            'cursor4.js' => 'Hiệu ứng 4',
+            'cursor5.js' => 'Hiệu ứng 5',
+            'cursor6.js' => 'Hiệu ứng 6',
+            'cursor7.js' => 'Hiệu ứng 7',
+            'cursor8.js' => 'Hiệu ứng 8',
+            'cursor9.js' => 'Hiệu ứng 9',
+            'cursor10.js' => 'Hiệu ứng 10',
+            'cursor11.js' => 'Hiệu ứng 11',
         ),
         'off',
-        '选择鼠标特效',
-        '介绍：用于开启炫酷的鼠标特效'
+        'Chọn hiệu ứng chuột',
+        'Giới thiệu: Được sử dụng để bật các hiệu ứng chuột thú vị'
     );
     $JCursorEffects->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCursorEffects->multiMode());
@@ -296,10 +296,10 @@ function themeConfig($form)
         'JCustomCSS',
         NULL,
         NULL,
-        '自定义CSS（非必填）',
-        '介绍：请填写自定义CSS内容，填写时无需填写style标签。<br />
-         其他：如果想修改主题色、卡片透明度等，都可以通过这个实现 <br />
-         例如：body { --theme: #ff6800; --background: rgba(255,255,255,0.85) }'
+        'CSS tùy chỉnh (không bắt buộc)',
+        'Giới thiệu: Vui lòng điền nội dung CSS tùy chỉnh, bạn không cần điền thẻ style khi điền.<br />
+         Khác: Nếu bạn muốn sửa đổi màu chủ đề, độ trong suốt của thẻ, v.v., bạn có thể sử dụng điều này để đạt được <br />
+         Ví dụ:body { --theme: #ff6800; --background: rgba(255,255,255,0.85) }'
     );
     $JCustomCSS->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomCSS);
@@ -308,8 +308,8 @@ function themeConfig($form)
         'JCustomScript',
         NULL,
         NULL,
-        '自定义JS（非必填）',
-        '介绍：请填写自定义JS内容，例如网站统计等，填写时无需填写script标签。'
+        'JS tùy chỉnh (không bắt buộc)',
+        'Giới thiệu: Vui lòng điền nội dung JS tùy chỉnh, chẳng hạn như thống kê trang web, v.v. Không cần điền thẻ script khi điền.'
     );
     $JCustomScript->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomScript);
@@ -318,9 +318,9 @@ function themeConfig($form)
         'JCustomHeadEnd',
         NULL,
         NULL,
-        '自定义增加&lt;head&gt;&lt;/head&gt;里内容（非必填）',
-        '介绍：此处用于在&lt;head&gt;&lt;/head&gt;标签里增加自定义内容 <br />
-         例如：可以填写引入第三方css、js等等'
+        'Tùy chỉnh tăng nội dung trong&lt;head&gt;&lt;/head&gt;(không bắt buộc)',
+        'Giới thiệu: Điều này được sử dụng để thêm nội dung tùy chỉnh vào thẻ&lt;head&gt;&lt;/head&gt; <br />
+         Ví dụ: bạn có thể điền vào phần giới thiệu của bên thứ ba css, js, v.v.'
     );
     $JCustomHeadEnd->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomHeadEnd);
@@ -329,9 +329,9 @@ function themeConfig($form)
         'JCustomBodyEnd',
         NULL,
         NULL,
-        '自定义&lt;body&gt;&lt;/body&gt;末尾位置内容（非必填）',
-        '介绍：此处用于填写在&lt;body&gt;&lt;/body&gt;标签末尾位置的内容 <br>
-         例如：可以填写引入第三方js脚本等等'
+        'Tùy chỉnh nội dung ở cuối&lt;body&gt;&lt;/body&gt;(không bắt buộc)',
+        'Giới thiệu: Điều này được sử dụng để điền nội dung vào cuối thẻ&lt;body&gt;&lt;/body&gt; <br>
+         Ví dụ: bạn có thể điền vào phần giới thiệu tập lệnh js của bên thứ ba, v.v.'
     );
     $JCustomBodyEnd->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomBodyEnd);
@@ -340,10 +340,10 @@ function themeConfig($form)
         'JBirthDay',
         NULL,
         NULL,
-        '网站成立日期（非必填）',
-        '介绍：用于显示当前站点已经运行了多少时间。<br>
-         注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>
-         其他：不填写则不显示，若填写错误，则不会显示计时'
+        'Ngày thành lập trang web (không bắt buộc)',
+        'Giới thiệu: Được sử dụng để hiển thị thời gian trang web hiện tại đã hoạt động.<br>
+         Lưu ý: Nhớ điền chính xác khi điền nhé! Ví dụ:2021/1/1 00:00:00 <br>
+        Khác: Nếu bạn không điền, nó sẽ không được hiển thị, nếu bạn điền sai, thời gian sẽ không được hiển thị.'
     );
     $JBirthDay->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JBirthDay);
@@ -352,10 +352,10 @@ function themeConfig($form)
         'JCustomFont',
         NULL,
         NULL,
-        '自定义网站字体（非必填）',
-        '介绍：用于修改全站字体，填写则使用引入的字体，不填写使用默认字体 <br>
-         格式：字体URL链接（推荐使用woff格式的字体，网页专用字体格式） <br>
-         注意：字体文件一般有几兆，建议使用cdn链接'
+        'Phông chữ trang web tùy chỉnh (không bắt buộc)',
+        'Giới thiệu: Được sử dụng để sửa đổi phông chữ của toàn bộ trang web, sử dụng phông chữ đã nhập để điền và sử dụng phông chữ mặc định nếu bạn không điền <br>
+         Định dạng: Liên kết URL phông chữ (nên sử dụng phông chữ định dạng woff, định dạng phông chữ cụ thể cho trang web) <br>
+         Lưu ý: Tệp phông chữ thường có dung lượng vài megabyte, bạn nên sử dụng liên kết cdn'
     );
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
@@ -364,11 +364,11 @@ function themeConfig($form)
         'JCustomAvatarSource',
         NULL,
         NULL,
-        '自定义头像源（非必填）',
-        '介绍：用于修改全站头像源地址 <br>
-         例如：https://gravatar.helingqi.com/wavatar/ <br>
-         其他：非必填，默认头像源为gravatar.ihuan.me <br>
-         注意：填写时，务必保证最后有一个/字符，否则不起作用！'
+        'Nguồn hình đại diện tùy chỉnh (không bắt buộc)',
+        'Giới thiệu: Được sử dụng để sửa đổi địa chỉ nguồn của hình đại diện toàn trang web <br>
+         Ví dụ:https://gravatar.helingqi.com/wavatar/ <br>
+         Khác: tùy chọn, nguồn ảnh đại diện mặc định là gravatar.ihuan.me <br>
+         Lưu ý: Khi điền, hãy chắc chắn rằng có một ký tự / ở cuối, nếu không nó sẽ không hoạt động!'
     );
     $JCustomAvatarSource->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomAvatarSource);
@@ -377,9 +377,9 @@ function themeConfig($form)
         'JAside_Author_Nick',
         NULL,
         "Typecho",
-        '博主栏博主昵称 - PC/WAP',
-        '介绍：用于修改博主栏的博主昵称 <br />
-         注意：如果不填写时则显示 *个人设置* 里的昵称'
+        'Biệt hiệu của Blogger - PC/WAP',
+        'Giới thiệu: Được sử dụng để sửa đổi biệt hiệu của blogger trong cột blogger <br />
+         Lưu ý: Nếu không điền, biệt hiệu trong * cài đặt cá nhân * sẽ được hiển thị'
     );
     $JAside_Author_Nick->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nick);
@@ -388,9 +388,9 @@ function themeConfig($form)
         'JAside_Author_Avatar',
         NULL,
         NULL,
-        '博主栏博主头像 - PC/WAP',
-        '介绍：用于修改博主栏的博主头像 <br />
-         注意：如果不填写时则显示 *个人设置* 里的头像'
+        'Hình đại diện trên Blogger - PC/WAP',
+        'Giới thiệu: Được sử dụng để sửa đổi hình đại diện của blogger trong cột blogger <br />
+         Lưu ý: Nếu bạn không điền, hình đại diện trong * cài đặt cá nhân * sẽ được hiển thị'
     );
     $JAside_Author_Avatar->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Avatar);
@@ -399,9 +399,9 @@ function themeConfig($form)
         'JAside_Author_Image',
         NULL,
         "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/aside_author_image.jpg",
-        '博主栏背景壁纸 - PC',
-        '介绍：用于修改PC端博主栏的背景壁纸 <br/>
-         格式：图片地址 或 Base64地址'
+        'Hình nền nền thanh Blogger - PC',
+        'Giới thiệu: Được sử dụng để sửa đổi hình nền nền của thanh blogger trên PC <br/>
+         Định dạng: Địa chỉ hình ảnh hoặc địa chỉ Base64'
     );
     $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Image);
@@ -410,9 +410,9 @@ function themeConfig($form)
         'JAside_Wap_Image',
         NULL,
         "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/wap_aside_image.jpg",
-        '博主栏背景壁纸 - WAP',
-        '介绍：用于修改WAP端博主栏的背景壁纸 <br/>
-         格式：图片地址 或 Base64地址'
+        'Hình nền thanh Blogger-WAP',
+        'Giới thiệu: Được sử dụng để sửa đổi hình nền nền của thanh blogger trên thiết bị đầu cuối WAP <br/>
+         Định dạng: Địa chỉ hình ảnh hoặc địa chỉ Base64'
     );
     $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Wap_Image);
@@ -421,8 +421,8 @@ function themeConfig($form)
         'JAside_Author_Link',
         NULL,
         "https://78.al",
-        '博主栏昵称跳转地址 - PC/WAP',
-        '介绍：用于修改博主栏点击博主昵称后的跳转地址'
+        'Địa chỉ chuyển hướng biệt hiệu trên Blogger - PC/WAP',
+        'Giới thiệu: Được sử dụng để sửa đổi địa chỉ chuyển hướng sau khi nhấp vào biệt hiệu của blogger trong cột blogger'
     );
     $JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Link);
@@ -431,12 +431,12 @@ function themeConfig($form)
         'JAside_Author_Motto',
         NULL,
         "Có tiền thì lấy chồng, không có tiền thì tận mắt chứng kiến.",
-        '博主栏座右铭（一言）- PC/WAP',
-        '介绍：用于修改博主栏的座右铭（一言） <br />
-         格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
-         其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
-         注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
-         推荐API：https://api.vvhan.com/api/ian'
+        'Phương châm của chuyên mục blogger (một từ)- PC/WAP',
+        'Giới thiệu: Được sử dụng để sửa đổi phương châm của chuyên mục blogger (một từ) <br />
+         Định dạng: Bạn có thể điền nhiều dòng hoặc điền một dòng. Khi điền nhiều dòng, một trong số chúng sẽ được hiển thị ngẫu nhiên mỗi lần hoặc bạn có thể điền vào địa chỉ API <br />
+         Khác: API và phương châm tùy chỉnh có thể được viết cùng nhau (điền vào một dòng mới) và sẽ không ảnh hưởng <br />
+         Lưu ý: API cần bật quyền giữa nhiều miền để gọi, nếu không cuộc gọi sẽ không thành công!<br />
+        API đề xuất:https://api.vvhan.com/api/ian'
     );
     $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Motto);
@@ -444,19 +444,19 @@ function themeConfig($form)
     $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Author_Nav',
         array(
-            'off' => '关闭（默认）',
-            '3' => '开启，并显示3条最新文章',
-            '4' => '开启，并显示4条最新文章',
-            '5' => '开启，并显示5条最新文章',
-            '6' => '开启，并显示6条最新文章',
-            '7' => '开启，并显示7条最新文章',
-            '8' => '开启，并显示8条最新文章',
-            '9' => '开启，并显示9条最新文章',
-            '10' => '开启，并显示10条最新文章'
+            'off' => 'Tắt (mặc định)',
+            '3' => 'Mở và hiển thị 3 bài báo mới nhất',
+            '4' => 'Mở và hiển thị 4 bài báo mới nhất',
+            '5' => 'Mở và hiển thị 5 bài báo mới nhất',
+            '6' => 'Mở và hiển thị 6 bài báo mới nhất',
+            '7' => 'Mở và hiển thị 7 bài báo mới nhất',
+            '8' => 'Mở và hiển thị 8 bài báo mới nhất',
+            '9' => 'Mở và hiển thị 9 bài báo mới nhất',
+            '10' => 'Mở và hiển thị 10 bài báo mới nhất'
         ),
         'off',
-        '博主栏下方随机文章条目 - PC',
-        '介绍：用于设置博主栏下方的随机文章显示数量'
+        'Các mục nhập bài viết ngẫu nhiên bên dưới cột blogger - PC',
+        'Giới thiệu: Dùng để đặt số lượng bài viết ngẫu nhiên hiển thị dưới cột blogger'
     );
     $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nav->multiMode());
@@ -464,12 +464,12 @@ function themeConfig($form)
     $JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Timelife_Status',
         array(
-            'off' => '关闭（默认）',
-            'on' => '开启'
+            'off' => 'Tắt (mặc định)',
+            'on' => 'Bật'
         ),
         'off',
-        '是否开启人生倒计时模块 - PC',
-        '介绍：用于控制是否显示人生倒计时模块'
+        'Có mở mô-đun đếm ngược tuổi thọ không - PC',
+        'Giới thiệu: Được sử dụng để kiểm soát xem có hiển thị mô-đun đếm ngược tuổi thọ hay không'
     );
     $JAside_Timelife_Status->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Timelife_Status->multiMode());
@@ -477,19 +477,19 @@ function themeConfig($form)
     $JAside_Hot_Num = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Hot_Num',
         array(
-            'off' => '关闭（默认）',
-            '3' => '显示3条',
-            '4' => '显示4条',
-            '5' => '显示5条',
-            '6' => '显示6条',
-            '7' => '显示7条',
-            '8' => '显示8条',
-            '9' => '显示9条',
-            '10' => '显示10条',
+            'off' => 'Tắt (mặc định)',
+            '3' => 'Hiển thị 3',
+            '4' => 'Hiển thị 4',
+            '5' => 'Hiển thị 5',
+            '6' => 'Hiển thị 6',
+            '7' => 'Hiển thị 7',
+            '8' => 'Hiển thị 8',
+            '9' => 'Hiển thị 9',
+            '10' => 'Hiển thị 10',
         ),
         'off',
-        '是否开启热门文章栏 - PC',
-        '介绍：用于控制是否开启热门文章栏'
+        'Có mở chuyên mục bài viết phổ biến hay không - PC',
+        'Giới thiệu: Dùng để kiểm soát xem có mở cột bài viết phổ biến hay không'
     );
     $JAside_Hot_Num->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Hot_Num->multiMode());
@@ -497,13 +497,13 @@ function themeConfig($form)
     $JAside_Newreply_Status = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Newreply_Status',
         array(
-            'off' => '关闭（默认）',
-            'on' => '开启'
+            'off' => 'Tắt (mặc định)',
+            'on' => 'Bật'
         ),
         'off',
-        '是否开启最新回复栏 - PC',
-        '介绍：用于控制是否开启最新回复栏 <br>
-         注意：如果您关闭了全站评论，将不会显示最新回复！'
+        'Có mở cột trả lời mới nhất không - PC',
+        'Giới thiệu: Dùng để kiểm soát xem có mở cột trả lời mới nhất hay không <br>
+         Lưu ý: Nếu bạn tắt bình luận trên toàn trang web, các phản hồi mới nhất sẽ không được hiển thị!'
     );
     $JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Newreply_Status->multiMode());
@@ -512,11 +512,11 @@ function themeConfig($form)
         'JAside_Weather_Key',
         NULL,
         NULL,
-        '天气栏KEY值 - PC',
-        '介绍：用于初始化天气栏 <br/>
-         注意：填写时务必填写正确！不填写则不会显示<br />
-         其他：免费申请地址：<a href="//widget.qweather.com/create-standard">widget.qweather.com/create-standard</a><br />
-         简要：在网页生成时，配置项随便选择，只需要生成代码后的Token即可'
+        'Giá trị KEY của thanh thời tiết - PC',
+        'Giới thiệu: Được sử dụng để khởi tạo thanh thời tiết <br/>
+         Lưu ý: Nhớ điền chính xác khi điền nhé! Nếu nó không được điền, nó sẽ không được hiển thị<br />
+         Khác: Địa chỉ ứng dụng miễn phí:<a href="//widget.qweather.com/create-standard">widget.qweather.com/create-standard</a><br />
+         Tóm tắt: Khi trang web được tạo, các mục cấu hình có thể được chọn theo ý muốn, chỉ có Mã thông báo sau khi mã được tạo'
     );
     $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Weather_Key);
@@ -524,14 +524,14 @@ function themeConfig($form)
     $JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Weather_Style',
         array(
-            '1' => '自动（默认）',
-            '2' => '浅色',
-            '3' => '深色'
+            '1' => 'Tự động (mặc định)',
+            '2' => 'Màu sáng',
+            '3' => 'Màu tối'
         ),
         '1',
-        '选择天气栏的风格 - PC',
-        '介绍：选择一款您所喜爱的天气风格 <br />
-         注意：需要先填写天气的KEY值才会生效'
+        'Chọn kiểu của thanh thời tiết - PC',
+        'Giới thiệu: Chọn phong cách thời tiết bạn thích <br />
+         Lưu ý: Bạn cần điền giá trị KEY của thời tiết trước khi nó có hiệu lực'
     );
     $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Weather_Style->multiMode());
@@ -540,10 +540,10 @@ function themeConfig($form)
         'JADContent',
         NULL,
         NULL,
-        '侧边栏广告 - PC',
-        '介绍：用于设置侧边栏广告 <br />
-         格式：广告图片 || 跳转链接 （中间使用两个竖杠分隔）<br />
-         注意：如果您只想显示图片不想跳转，可填写：广告图片 || javascript:void(0)'
+        'Quảng cáo thanh bên - PC',
+        'Giới thiệu: Được sử dụng để thiết lập quảng cáo thanh bên <br />
+         Định dạng: Hình ảnh quảng cáo || Liên kết nhảy<br />
+         Lưu ý: Nếu bạn chỉ muốn hiển thị hình ảnh và không muốn nhảy, bạn có thể điền vào: hình ảnh quảng cáo || javascript:void(0)'
     );
     $JADContent->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JADContent);
@@ -552,10 +552,10 @@ function themeConfig($form)
         'JCustomAside',
         NULL,
         NULL,
-        '自定义侧边栏模块 - PC',
-        '介绍：用于自定义侧边栏模块 <br />
-         格式：请填写前端代码，不会写请勿填写 <br />
-         例如：您可以在此处添加一个搜索框、时间、宠物、恋爱计时等等'
+        'Tùy chỉnh mô-đun thanh bên - PC',
+        'Giới thiệu: Được sử dụng để tùy chỉnh mô-đun thanh bên <br />
+         Định dạng: Vui lòng điền mã giao diện người dùng, đừng điền nếu bạn không biết cách viết <br />
+         Ví dụ: bạn có thể thêm hộp tìm kiếm, thời gian, vật nuôi, thời gian hẹn hò, v.v. tại đây'
     );
     $JCustomAside->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JCustomAside);
@@ -563,12 +563,12 @@ function themeConfig($form)
     $JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_3DTag',
         array(
-            'off' => '关闭（默认）',
-            'on' => '开启'
+            'off' => 'Tắt (mặc định)',
+            'on' => 'Bật'
         ),
         'off',
-        '是否开启3D云标签 - PC',
-        '介绍：用于设置侧边栏是否显示3D云标签'
+        'Có bật thẻ đám mây 3D hay không - PC',
+        'Giới thiệu: Được sử dụng để đặt có hiển thị các thẻ đám mây 3D trong thanh bên hay không'
     );
     $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_3DTag->multiMode());
@@ -576,12 +576,12 @@ function themeConfig($form)
     $JAside_Flatterer = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Flatterer',
         array(
-            'off' => '关闭（默认）',
-            'on' => '开启'
+            'off' => 'Tắt (mặc định)',
+            'on' => 'Bật'
         ),
         'off',
-        '是否开启舔狗日记 - PC',
-        '介绍：用于设置侧边栏是否显示舔狗日记'
+        'Có mở nhật ký chó liếm không - PC',
+        'Giới thiệu: Nó được sử dụng để đặt có hiển thị nhật ký chó liếm trong thanh bên hay không'
     );
     $JAside_Flatterer->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Flatterer->multiMode());
@@ -589,13 +589,13 @@ function themeConfig($form)
     $JAside_History_Today = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_History_Today',
         array(
-            'off' => '关闭（默认）',
-            'on' => '开启'
+            'off' => 'Tắt (mặc định)',
+            'on' => 'Bật'
         ),
         'off',
-        '是否开启那年今日 - PC',
-        '介绍：用于设置侧边栏是否显示往年今日的文章 <br />
-         其他：如果往年今日有文章则显示，没有则不显示！'
+        'Có mở cửa năm đó hôm nay không - PC',
+        'Giới thiệu: Được sử dụng để đặt có hiển thị các bài báo của ngày hôm nay từ những năm trước trong thanh bên hay không <br />
+         Khác: Nếu có một bài báo hôm nay, nó sẽ được hiển thị trong những năm trước, và nó sẽ không được hiển thị nếu không có bài viết!'
     );
     $JAside_History_Today->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_History_Today->multiMode());
@@ -605,10 +605,10 @@ function themeConfig($form)
         'JThumbnail',
         NULL,
         NULL,
-        '自定义缩略图',
-        '介绍：用于修改主题默认缩略图 <br/>
-         格式：图片地址，一行一个 <br />
-         注意：不填写时，则使用主题内置的默认缩略图
+        'Hình thu nhỏ tùy chỉnh',
+        'Giới thiệu: Được sử dụng để sửa đổi hình thu nhỏ mặc định của chủ đề <br/>
+         Định dạng: địa chỉ hình ảnh, một địa chỉ trên mỗi dòng <br />
+         Lưu ý: Khi không điền, hình thu nhỏ mặc định được tích hợp trong chủ đề sẽ được sử dụng
          '
     );
     $JThumbnail->setAttribute('class', 'joe_content joe_image');
@@ -618,7 +618,7 @@ function themeConfig($form)
         'JLazyload',
         NULL,
         "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/lazyload.jpg",
-        '自定义懒加载图',
+        'Biểu đồ tải chậm tùy chỉnh',
         '介绍：用于修改主题默认懒加载图 <br/>
          格式：图片地址'
     );
@@ -628,7 +628,7 @@ function themeConfig($form)
     $JDynamic_Background = new Typecho_Widget_Helper_Form_Element_Select(
         'JDynamic_Background',
         array(
-            'off' => '关闭（默认）',
+            'off' => 'Tắt (mặc định)',
             'backdrop1.js' => '效果1',
             'backdrop2.js' => '效果2',
             'backdrop3.js' => '效果3',
@@ -721,7 +721,7 @@ function themeConfig($form)
 
     $JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Radio(
         'JIndex_Hot',
-        array('off' => '关闭（默认）', 'on' => '开启'),
+        array('off' => 'Tắt (mặc định)', 'on' => 'Bật'),
         'off',
         '是否开启首页热门文章',
         '介绍：开启后，网站首页将会显示浏览量最多的4篇热门文章'
@@ -804,7 +804,7 @@ function themeConfig($form)
 
     $JLimitOneChinese = new Typecho_Widget_Helper_Form_Element_Select(
         'JLimitOneChinese',
-        array('off' => '关闭（默认）', 'on' => '开启'),
+        array('off' => 'Tắt (mặc định)', 'on' => 'Bật'),
         'off',
         '是否开启评论至少包含一个中文',
         '介绍：开启后如果评论内容未包含一个中文，则将会把评论置为审核状态 <br />
@@ -827,7 +827,7 @@ function themeConfig($form)
     $JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
         'JSiteMap',
         array(
-            'off' => '关闭（默认）',
+            'off' => 'Tắt (mặc định)',
             '100' => '显示最新 100 条链接',
             '200' => '显示最新 200 条链接',
             '300' => '显示最新 300 条链接',
@@ -880,7 +880,7 @@ function themeConfig($form)
     /* 评论发信 */
     $JCommentMail = new Typecho_Widget_Helper_Form_Element_Select(
         'JCommentMail',
-        array('off' => '关闭（默认）', 'on' => '开启'),
+        array('off' => 'Tắt (mặc định)', 'on' => 'Bật'),
         'off',
         '是否开启评论邮件通知',
         '介绍：开启后评论内容将会进行邮箱通知 <br />
@@ -968,7 +968,7 @@ function themeConfig($form)
     $JOverdue = new Typecho_Widget_Helper_Form_Element_Select(
         'JOverdue',
         array(
-            'off' => '关闭（默认）',
+            'off' => 'Tắt (mặc định)',
             '3' => '大于3天',
             '7' => '大于7天',
             '15' => '大于15天',
